@@ -10,7 +10,18 @@ const fadeUp = (delay = 0) => ({
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-alabaster overflow-hidden flex flex-col justify-center pt-16">
+    <section className="relative min-h-screen overflow-hidden flex flex-col justify-center pt-16" style={{ backgroundColor: "#FAF9F6" }}>
+      {/* Real mechanic background — right half */}
+      <div className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block">
+        <img
+          src="https://images.unsplash.com/photo-1625047509252-ab38fb5c7343?w=1200&q=80"
+          alt="Mechanic at work"
+          className="w-full h-full object-cover"
+          style={{ opacity: 0.08 }}
+        />
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #FAF9F6 0%, transparent 40%)" }} />
+      </div>
+
       {/* Architectural grid lines */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 left-1/3 w-px h-full bg-stone opacity-40" />
@@ -18,10 +29,10 @@ export default function HeroSection() {
         <div className="absolute top-1/3 left-0 right-0 h-px bg-stone opacity-30" />
       </div>
 
-      {/* Accent circle */}
+      {/* Accent glow */}
       <div
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-[0.04] pointer-events-none"
-        style={{ backgroundColor: "#FF4D00", filter: "blur(80px)" }}
+        className="absolute right-1/4 top-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full opacity-[0.06] pointer-events-none"
+        style={{ backgroundColor: "#FF4D00", filter: "blur(100px)" }}
       />
 
       <div className="max-w-[1400px] mx-auto px-8 md:px-16 w-full">
@@ -103,87 +114,60 @@ export default function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right: Visual dashboard mockup */}
+          {/* Right: Real app screenshot + phone */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
             className="hidden lg:flex items-center justify-center relative py-20"
           >
-            <div className="relative w-full max-w-lg">
-              {/* Main card */}
+            <div className="relative w-full max-w-lg flex items-center justify-center">
+              {/* Background glow */}
               <div
-                className="w-full rounded-sm p-6 shadow-2xl"
+                className="absolute inset-0 rounded-full opacity-20 blur-3xl"
+                style={{ backgroundColor: "#FF4D00", transform: "scale(0.6)" }}
+              />
+
+              {/* Phone mockup image */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="relative z-10"
+              >
+                <img
+                  src="https://www.workroo.com/assets/img/Phone_1.png"
+                  alt="Workroo App"
+                  className="w-72 object-contain drop-shadow-2xl"
+                  style={{ filter: "drop-shadow(0 40px 60px rgba(26,26,26,0.25))" }}
+                />
+              </motion.div>
+
+              {/* Floating notification card */}
+              <motion.div
+                initial={{ opacity: 0, x: 30, y: -10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.6 }}
+                className="absolute top-24 -right-4 px-4 py-3 rounded-sm shadow-xl z-20"
                 style={{
-                  background: "rgba(250,249,246,0.7)",
-                  backdropFilter: "blur(20px)",
+                  background: "rgba(250,249,246,0.97)",
                   border: "0.5px solid #E5E5E1",
-                  boxShadow: "0 40px 80px rgba(26,26,26,0.12)",
+                  backdropFilter: "blur(12px)",
+                  minWidth: 190,
                 }}
               >
-                {/* Header bar */}
-                <div className="flex items-center justify-between mb-5 pb-4" style={{ borderBottom: "0.5px solid #E5E5E1" }}>
-                  <div>
-                    <div className="text-xs font-display tracking-widest uppercase text-obsidian/40 mb-1">Live Job</div>
-                    <div className="font-display font-700 text-obsidian text-lg">Toyota Camry 2021</div>
-                  </div>
-                  <div
-                    className="px-3 py-1 text-xs font-display tracking-wide text-white"
-                    style={{ backgroundColor: "#FF4D00" }}
-                  >
-                    IN PROGRESS
-                  </div>
-                </div>
+                <div className="text-xs text-obsidian/40 font-display tracking-wide uppercase mb-0.5">Live Update</div>
+                <div className="text-sm font-body text-obsidian font-medium">Brake pads replaced ✓</div>
+              </motion.div>
 
-                {/* Steps */}
-                {[
-                  { step: "01", label: "Oil filter replacement", done: true },
-                  { step: "02", label: "Brake pad inspection", done: true },
-                  { step: "03", label: "Tyre rotation — Front axle", done: false },
-                  { step: "04", label: "Full safety check", done: false },
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 py-3" style={{ borderBottom: i < 3 ? "0.5px solid #E5E5E1" : "none" }}>
-                    <div
-                      className="w-8 h-8 rounded-sm flex items-center justify-center text-xs font-display font-600 flex-shrink-0"
-                      style={{
-                        backgroundColor: item.done ? "#1A1A1A" : "#E5E5E1",
-                        color: item.done ? "#FAF9F6" : "#1A1A1A",
-                      }}
-                    >
-                      {item.done ? "✓" : item.step}
-                    </div>
-                    <span className={`text-sm font-body ${item.done ? "line-through text-obsidian/30" : "text-obsidian/80"}`}>
-                      {item.label}
-                    </span>
-                  </div>
-                ))}
-
-                {/* Progress bar */}
-                <div className="mt-5">
-                  <div className="flex justify-between text-xs text-obsidian/40 font-body mb-2">
-                    <span>Progress</span>
-                    <span>50%</span>
-                  </div>
-                  <div className="w-full h-1 bg-stone rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: "50%" }}
-                      transition={{ delay: 1, duration: 1.2, ease: "easeOut" }}
-                      className="h-full"
-                      style={{ backgroundColor: "#FF4D00" }}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating notification */}
+              {/* Floating alert card */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2, duration: 0.6 }}
-                className="absolute -bottom-8 -left-10 px-4 py-3 rounded-sm shadow-lg"
+                initial={{ opacity: 0, x: -30, y: 10 }}
+                animate={{ opacity: 1, x: 0, y: 0 }}
+                transition={{ delay: 1.5, duration: 0.6 }}
+                className="absolute -bottom-4 -left-6 px-4 py-3 rounded-sm shadow-xl z-20"
                 style={{
-                  background: "rgba(250,249,246,0.95)",
+                  background: "rgba(250,249,246,0.97)",
                   border: "0.5px solid #E5E5E1",
                   backdropFilter: "blur(12px)",
                   minWidth: 200,

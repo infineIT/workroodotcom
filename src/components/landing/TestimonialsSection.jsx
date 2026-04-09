@@ -8,6 +8,7 @@ const testimonials = [
     name: "Yass",
     role: "Owner, Hallam Hi-Tech Australia",
     initial: "Y",
+    photo: "https://www.workroo.com/assets/img/testimonials/testimonials-2.jpg",
     type: "Workshop Owner",
   },
   {
@@ -16,6 +17,7 @@ const testimonials = [
     name: "Nigal",
     role: "Operations Manager, Omega Auto Parts",
     initial: "N",
+    photo: null,
     type: "Operations",
   },
   {
@@ -24,6 +26,7 @@ const testimonials = [
     name: "Joanna Li",
     role: "Hallam Hi-Tech Customer",
     initial: "J",
+    photo: "https://www.workroo.com/assets/img/testimonials/testimonials-1.jpg",
     type: "Customer",
   },
 ];
@@ -104,14 +107,20 @@ export default function TestimonialsSection() {
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div
-                  className="w-10 h-10 rounded-sm flex items-center justify-center font-display font-700 text-sm flex-shrink-0"
-                  style={{
-                    backgroundColor: i === 1 ? "#FF4D00" : "#1A1A1A",
-                    color: "#FAF9F6",
-                  }}
-                >
-                  {t.initial}
+                <div className="w-10 h-10 rounded-sm overflow-hidden flex-shrink-0">
+                  {t.photo ? (
+                    <img src={t.photo} alt={t.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <div
+                      className="w-full h-full flex items-center justify-center font-display font-700 text-sm"
+                      style={{
+                        backgroundColor: i === 1 ? "#FF4D00" : "#1A1A1A",
+                        color: "#FAF9F6",
+                      }}
+                    >
+                      {t.initial}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <div

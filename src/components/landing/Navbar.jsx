@@ -23,12 +23,25 @@ export default function Navbar() {
       style={{ backdropFilter: scrolled ? "blur(16px)" : "none" }}
     >
       <div className="max-w-[1400px] mx-auto px-8 md:px-16 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-obsidian rounded-sm flex items-center justify-center">
-            <div className="w-3 h-3 bg-orange rounded-sm" style={{ backgroundColor: "#FF4D00" }} />
+        {/* Logo — real Workroo logo, inverted to show dark on light bg */}
+        <div className="flex items-center">
+          <img
+            src="https://www.workroo.com/assets/img/logo.png"
+            alt="Workroo"
+            className="h-9 object-contain"
+            style={{ filter: "brightness(0) saturate(100%)" }}
+            onError={(e) => {
+              e.target.style.display = "none";
+              e.target.nextSibling.style.display = "flex";
+            }}
+          />
+          {/* Fallback */}
+          <div className="items-center gap-1.5" style={{ display: "none" }}>
+            <svg width="22" height="14" viewBox="0 0 22 14" fill="none">
+              <path d="M1 13 Q11 1 21 13" stroke="#FF4D00" strokeWidth="2.5" strokeLinecap="round" fill="none"/>
+            </svg>
+            <span className="font-display font-800 text-obsidian text-lg tracking-tight">WORKROO</span>
           </div>
-          <span className="font-display font-700 text-obsidian text-lg tracking-tight">workroo</span>
         </div>
 
         {/* Nav Links */}

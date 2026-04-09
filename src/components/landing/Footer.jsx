@@ -11,11 +11,20 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 mb-16">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-5">
-              <div className="w-7 h-7 bg-white/10 rounded-sm flex items-center justify-center">
-                <div className="w-3 h-3 rounded-sm" style={{ backgroundColor: "#FF4D00" }} />
-              </div>
-              <span className="font-display font-700 text-white text-lg tracking-tight">workroo</span>
+            <div className="mb-5">
+              <img
+                src="https://www.workroo.com/assets/img/logo.png"
+                alt="Workroo"
+                className="h-9 object-contain"
+                style={{ filter: "brightness(0) invert(1)" }}
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  e.target.nextSibling.style.display = "block";
+                }}
+              />
+              <span className="font-display font-700 text-white text-lg tracking-tight" style={{ display: "none" }}>
+                WORKROO
+              </span>
             </div>
             <p className="text-white/35 font-body text-sm leading-relaxed max-w-xs">
               Connecting mechanics and customers in real time. Building the True Car Record.

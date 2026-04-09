@@ -63,6 +63,27 @@ export default function SolutionSection() {
           </motion.div>
         </div>
 
+        {/* App image */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="flex justify-center mb-20"
+        >
+          <div className="relative">
+            <img
+              src="https://www.workroo.com/assets/img/Phone_1.png"
+              alt="Workroo App Interface"
+              className="h-80 object-contain"
+              style={{ filter: "drop-shadow(0 30px 50px rgba(26,26,26,0.18))" }}
+            />
+            <div
+              className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
+              style={{ background: "linear-gradient(to top, #FAF9F6, transparent)" }}
+            />
+          </div>
+        </motion.div>
+
         {/* Pillar cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {pillars.map((pillar, i) => (
