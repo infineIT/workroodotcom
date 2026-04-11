@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#E8481A" }}>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#F5A623" }}>
                 <span className="text-white font-bold text-sm">W</span>
               </div>
               <span className="font-bold text-white text-base tracking-tight">WORKROO</span>
@@ -53,7 +53,7 @@ export default function Footer() {
               <li>
                 <span
                   className="inline-flex items-center gap-2 text-xs font-bold tracking-widest px-3 py-1.5 rounded"
-                  style={{ backgroundColor: "#E8481A", color: "#fff" }}
+                  style={{ backgroundColor: "#F5A623", color: "#fff" }}
                 >
                   Promo: IWISHWUR
                 </span>

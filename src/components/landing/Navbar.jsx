@@ -33,7 +33,7 @@ export default function Navbar() {
         <a
           href="#cta"
           className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded transition-all hover:opacity-90"
-          style={{ backgroundColor: "#E8481A" }}
+          style={{ backgroundColor: "#F5A623" }}
         >
           Get Early Access
         </a>

@@ -29,7 +29,7 @@ export default function CTASection() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
-              className="text-sm font-semibold uppercase tracking-widest mb-4" style={{ color: "#E8481A" }}
+              className="text-sm font-semibold uppercase tracking-widest mb-4" style={{ color: "#F5A623" }}
             >
               Get Started
             </motion.p>
@@ -40,7 +40,7 @@ export default function CTASection() {
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight"
             >
               Your Workshop's{" "}
-              <span style={{ color: "#E8481A" }}>Digital Future</span>{" "}
+              <span style={{ color: "#F5A623" }}>Digital Future</span>{" "}
               Starts Today.
             </motion.h2>
             <motion.p
@@ -55,8 +55,8 @@ export default function CTASection() {
             <ul className="space-y-3 mb-8">
               {included.map((item, i) => (
                 <li key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#FEF0EA" }}>
-                    <Check className="w-3 h-3" style={{ color: "#E8481A" }} strokeWidth={3} />
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#FEF6E7" }}>
+                    <Check className="w-3 h-3" style={{ color: "#F5A623" }} strokeWidth={3} />
                   </div>
                   <span className="text-gray-600 text-sm">{item}</span>
                 </li>
@@ -65,7 +65,7 @@ export default function CTASection() {
 
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
               <span className="text-gray-400 text-sm">Promo Code</span>
-              <span className="font-bold text-sm tracking-widest" style={{ color: "#E8481A" }}>INNOVHUB</span>
+              <span className="font-bold text-sm tracking-widest" style={{ color: "#F5A623" }}>INNOVHUB</span>
             </div>
           </div>
 
@@ -77,8 +77,8 @@ export default function CTASection() {
           >
             {submitted ? (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: "#FEF0EA" }}>
-                  <Check className="w-7 h-7" style={{ color: "#E8481A" }} strokeWidth={2.5} />
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: "#FEF6E7" }}>
+                  <Check className="w-7 h-7" style={{ color: "#F5A623" }} strokeWidth={2.5} />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">You're on the list.</h3>
                 <p className="text-gray-500 text-sm">
@@ -126,7 +126,7 @@ export default function CTASection() {
                   <button
                     type="submit"
                     className="w-full flex items-center justify-center gap-2 py-3 text-white font-semibold rounded-lg text-sm transition-opacity hover:opacity-90 mt-2"
-                    style={{ backgroundColor: "#E8481A" }}
+                    style={{ backgroundColor: "#F5A623" }}
                   >
                     Get Early Access
                     <ArrowRight className="w-4 h-4" />
