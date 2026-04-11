@@ -38,7 +38,7 @@ export default function ProblemSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActive((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 7000);
     return () => clearInterval(timer);
   }, []);
 
@@ -146,7 +146,7 @@ export default function ProblemSection() {
                     style={{ backgroundColor: "#F05A28" }}
                     initial={{ scaleX: 0, originX: 0 }}
                     animate={{ scaleX: 1 }}
-                    transition={{ duration: 4, ease: "linear" }}
+                    transition={{ duration: 7, ease: "linear" }}
                   />
                 )}
               </button>
