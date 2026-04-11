@@ -1,39 +1,99 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const appScreens = [
-  "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/37b13a5d6_1.jpg",
-  "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/17fa8e91a_WorkrooOnthephone1.jpg",
-  "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/fdc93664b_WorkrooOnthephone.jpg",
+const images = [
+  {
+    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/40b0203b6_WorkrooOnthephone1.jpg",
+    alt: "Customer checking workroo app on phone",
+  },
+  {
+    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/f72246a88_workroocustomerview-task.jpg",
+    alt: "Workroo customer view with tasks",
+  },
+  {
+    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/27778f5fc_3.jpg",
+    alt: "Mechanic using workroo on tablet",
+  },
 ];
 
 export default function ProblemSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActive((prev) => (prev + 1) % images.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section ref={ref} id="problem" className="py-20 bg-gray-950 overflow-hidden">
+    <section className="py-20 bg-gray-50">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Scattered app screenshots grid */}
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-4">
-          {[...Array(10)].map((_, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="rounded-xl overflow-hidden bg-gray-800"
-              style={{
-                aspectRatio: i % 3 === 0 ? "3/4" : "4/3",
-                transform: `rotate(${(i % 5 - 2) * 2}deg)`,
-              }}
-            >
-              <img
-                src={appScreens[i % appScreens.length]}
-                alt="App screen"
-                className="w-full h-full object-cover opacity-80"
+        <div className="text-center mb-12">
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>
+            In Action
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">See Workroo at Work</h2>
+        </div>
+
+        <div className="flex flex-col lg:flex-row items-center gap-6">
+          {/* Main prominent image */}
+          <div className="w-full lg:w-2/3 relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-gray-200">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={active}
+                src={images[active].url}
+                alt={images[active].alt}
+                className="w-full h-full object-cover"
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.97 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
               />
-            </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Thumbnails */}
+          <div className="flex lg:flex-col gap-4 w-full lg:w-1/3">
+            {images.map((img, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`relative rounded-xl overflow-hidden transition-all duration-300 flex-1 lg:flex-none aspect-video lg:aspect-auto lg:h-28 ${
+                  active === i
+                    ? "ring-2 ring-offset-2 shadow-lg scale-105"
+                    : "opacity-60 hover:opacity-85"
+                }`}
+                style={active === i ? { ringColor: "#F05A28" } : {}}
+              >
+                <img
+                  src={img.url}
+                  alt={img.alt}
+                  className="w-full h-full object-cover"
+                />
+                {active === i && (
+                  <div
+                    className="absolute inset-0 border-2 rounded-xl pointer-events-none"
+                    style={{ borderColor: "#F05A28" }}
+                  />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-8">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className="w-2 h-2 rounded-full transition-all duration-300"
+              style={{
+                backgroundColor: active === i ? "#F05A28" : "#D1D5DB",
+                transform: active === i ? "scale(1.4)" : "scale(1)",
+              }}
+            />
           ))}
         </div>
       </div>
