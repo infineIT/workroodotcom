@@ -12,16 +12,29 @@ export default function HeroSection() {
   return (
     <section
       className="relative min-h-screen overflow-hidden pt-14"
-      style={{ background: "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 40%, #FFF5F0 100%)" }}
+      style={{ background: "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 60%, #FFF5F0 100%)" }}
     >
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-0 items-center min-h-[calc(100vh-56px)]">
-        
-        {/* Left: Text */}
-        <div className="flex flex-col justify-center py-16 z-10">
+      {/* Right-side image — absolutely positioned, fills right 55% of viewport */}
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] hidden lg:block">
+        <img
+          src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/ca1110ae1_image.png"
+          alt="Customer checking vehicle status on phone"
+          className="w-full h-full object-cover object-left"
+        />
+        {/* Blend mask — left edge of image fades into bg */}
+        <div
+          className="absolute inset-y-0 left-0 w-64 pointer-events-none"
+          style={{ background: "linear-gradient(to right, #FFE4D6 0%, transparent 100%)" }}
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative max-w-6xl mx-auto px-6 flex items-center min-h-[calc(100vh-56px)]">
+        <div className="flex flex-col justify-center py-16 w-full lg:w-1/2">
           <motion.h1
             {...fadeUp(0.1)}
             className="font-bold text-gray-900 leading-[1.1] mb-5"
-            style={{ fontSize: "clamp(2.2rem, 5vw, 3.8rem)" }}
+            style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)" }}
           >
             Mechanics &amp; Customers{" "}
             <span style={{ color: "#F05A28" }} className="underline decoration-orange-400 underline-offset-4">
@@ -29,7 +42,7 @@ export default function HeroSection() {
             </span>
           </motion.h1>
 
-          <motion.p {...fadeUp(0.2)} className="text-gray-500 text-lg leading-relaxed max-w-md mb-8">
+          <motion.p {...fadeUp(0.2)} className="text-gray-600 text-lg leading-relaxed max-w-md mb-8">
             workroo creates a live, transparent record of every repair — so
             customers know what they pay for, and mechanics finally get the
             recognition their work deserves.
@@ -67,32 +80,10 @@ export default function HeroSection() {
             <p className="text-sm text-gray-500">Trusted by workshops across Australia</p>
           </motion.div>
         </div>
-
-        {/* Right: Image */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-          className="hidden lg:flex items-center justify-end h-full relative"
-        >
-          {/* Blend mask on the left edge of the image */}
-          <div
-            className="absolute inset-y-0 left-0 w-40 z-10 pointer-events-none"
-            style={{
-              background: "linear-gradient(to right, #FFF3EE 0%, transparent 100%)",
-            }}
-          />
-          <img
-            src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/ca1110ae1_image.png"
-            alt="Customer checking vehicle status on phone"
-            className="w-full h-full object-cover object-center"
-            style={{ maxHeight: "100vh", borderRadius: "0" }}
-          />
-        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-gray-400">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-400">
         <ChevronDown className="w-5 h-5 animate-bounce" />
       </div>
     </section>
