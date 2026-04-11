@@ -11,13 +11,13 @@ const fadeUp = (delay = 0) => ({
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen overflow-hidden flex flex-col justify-center pt-16" style={{ backgroundColor: "#FAF9F6" }}>
-      {/* Real mechanic background — right half */}
+      {/* Lifestyle background — right half */}
       <div className="absolute inset-y-0 right-0 w-1/2 pointer-events-none hidden lg:block">
         <img
-          src="https://images.unsplash.com/photo-1625047509252-ab38fb5c7343?w=1200&q=80"
-          alt="Mechanic at work"
+          src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/17fa8e91a_WorkrooOnthephone1.jpg"
+          alt="Workroo on the phone"
           className="w-full h-full object-cover"
-          style={{ opacity: 0.08 }}
+          style={{ opacity: 0.12 }}
         />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #FAF9F6 0%, transparent 40%)" }} />
       </div>
@@ -136,9 +136,9 @@ export default function HeroSection() {
                 className="relative z-10"
               >
                 <img
-                  src="https://www.workroo.com/assets/img/Phone_1.png"
+                  src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/fdc93664b_WorkrooOnthephone.jpg"
                   alt="Workroo App"
-                  className="w-72 object-contain drop-shadow-2xl"
+                  className="w-72 object-contain rounded-2xl drop-shadow-2xl"
                   style={{ filter: "drop-shadow(0 40px 60px rgba(26,26,26,0.25))" }}
                 />
               </motion.div>

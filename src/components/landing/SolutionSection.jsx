@@ -70,16 +70,12 @@ export default function SolutionSection() {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="flex justify-center mb-20"
         >
-          <div className="relative">
+          <div className="relative w-full max-w-3xl overflow-hidden rounded-xl">
             <img
-              src="https://www.workroo.com/assets/img/Phone_1.png"
-              alt="Workroo App Interface"
-              className="h-80 object-contain"
-              style={{ filter: "drop-shadow(0 30px 50px rgba(26,26,26,0.18))" }}
-            />
-            <div
-              className="absolute inset-x-0 bottom-0 h-24 pointer-events-none"
-              style={{ background: "linear-gradient(to top, #FAF9F6, transparent)" }}
+              src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/17fa8e91a_WorkrooOnthephone1.jpg"
+              alt="Workroo App in use"
+              className="w-full object-cover"
+              style={{ maxHeight: 420 }}
             />
           </div>
         </motion.div>

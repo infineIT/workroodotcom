@@ -46,6 +46,21 @@ export default function ProblemSection() {
           <div className="mt-4 w-12 h-px" style={{ backgroundColor: "#FF4D00" }} />
         </motion.div>
 
+        {/* Mechanic image */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.05 }}
+          className="mb-16 overflow-hidden rounded-xl"
+        >
+          <img
+            src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/37b13a5d6_1.jpg"
+            alt="Customer receiving notification"
+            className="w-full object-cover"
+            style={{ maxHeight: 380, objectPosition: "center 30%" }}
+          />
+        </motion.div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-0">
           {problems.map((p, i) => (
             <motion.div
