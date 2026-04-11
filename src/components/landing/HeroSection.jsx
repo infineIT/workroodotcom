@@ -12,7 +12,7 @@ export default function HeroSection() {
   return (
     <section
       className="relative min-h-screen overflow-hidden pt-14"
-      style={{ background: "linear-gradient(135deg, #F0F0FF 0%, #E8E8FF 40%, #F5F0FF 100%)" }}
+      style={{ background: "linear-gradient(135deg, #FFF3EE 0%, #FFE8DC 40%, #FFF5F0 100%)" }}
     >
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-56px)]">
         {/* Left: Text */}
@@ -23,7 +23,7 @@ export default function HeroSection() {
             style={{ fontSize: "clamp(2.2rem, 5vw, 3.8rem)" }}
           >
             Mechanics &amp; Customers{" "}
-            <span className="text-indigo-500 underline decoration-indigo-400 underline-offset-4">
+            <span style={{ color: "#FF4D00" }} className="underline decoration-orange-400 underline-offset-4">
               Connected in Real Time.
             </span>
           </motion.h1>
@@ -38,7 +38,7 @@ export default function HeroSection() {
             <a
               href="#cta"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white rounded-lg transition-all hover:opacity-90"
-              style={{ backgroundColor: "#6366F1" }}
+              style={{ backgroundColor: "#FF4D00" }}
             >
               Start Free Trial
               <ArrowRight className="w-4 h-4" />
@@ -53,7 +53,7 @@ export default function HeroSection() {
 
           <motion.div {...fadeUp(0.4)} className="flex items-center gap-3">
             <div className="flex -space-x-2">
-              {["#6366F1", "#8B5CF6", "#A78BFA"].map((c, i) => (
+              {["#FF4D00", "#111111", "#FF6A2B"].map((c, i) => (
                 <div
                   key={i}
                   className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold"
@@ -81,7 +81,7 @@ export default function HeroSection() {
                 src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/fdc93664b_WorkrooOnthephone.jpg"
                 alt="Workroo App"
                 className="w-64 rounded-3xl shadow-2xl"
-                style={{ filter: "drop-shadow(0 30px 60px rgba(99,102,241,0.3))" }}
+                style={{ filter: "drop-shadow(0 30px 60px rgba(255,77,0,0.3))" }}
               />
             </div>
 

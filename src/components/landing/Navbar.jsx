@@ -23,7 +23,7 @@ export default function Navbar() {
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+                className="text-sm text-gray-600 hover:text-orange-500 transition-colors"
             >
               {item}
             </a>
@@ -32,7 +32,8 @@ export default function Navbar() {
 
         <a
           href="#cta"
-          className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-gray-900 border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-all"
+          className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded transition-all hover:opacity-90"
+          style={{ backgroundColor: "#FF4D00" }}
         >
           Get Early Access
         </a>

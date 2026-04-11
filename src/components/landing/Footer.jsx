@@ -8,7 +8,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#6366F1" }}>
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#FF4D00" }}>
                 <span className="text-white font-bold text-sm">W</span>
               </div>
               <span className="font-bold text-white text-base tracking-tight">WORKROO</span>
@@ -29,7 +29,7 @@ export default function Footer() {
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
-                    className="text-gray-400 text-sm hover:text-white transition-colors"
+                    className="text-gray-400 text-sm hover:text-orange-400 transition-colors"
                   >
                     {item}
                   </a>
@@ -53,7 +53,7 @@ export default function Footer() {
               <li>
                 <span
                   className="inline-flex items-center gap-2 text-xs font-bold tracking-widest px-3 py-1.5 rounded"
-                  style={{ backgroundColor: "#6366F1", color: "#fff" }}
+                  style={{ backgroundColor: "#FF4D00", color: "#fff" }}
                 >
                   Promo: IWISHWUR
                 </span>

@@ -41,7 +41,7 @@ export default function TestimonialsSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-14"
         >
-          <p className="text-sm font-semibold text-indigo-500 uppercase tracking-widest mb-3">Testimonials</p>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#FF4D00" }}>Testimonials</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Real Words from Real Workshops.</h2>
         </motion.div>
 
@@ -63,8 +63,8 @@ export default function TestimonialsSection() {
                 <span
                   className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-6"
                   style={{
-                    backgroundColor: t.featured ? "rgba(99,102,241,0.2)" : "#EEF2FF",
-                    color: t.featured ? "#A5B4FC" : "#6366F1",
+                    backgroundColor: t.featured ? "rgba(255,77,0,0.2)" : "#FFF3EE",
+                    color: t.featured ? "#FF8A5C" : "#FF4D00",
                   }}
                 >
                   {t.type}
@@ -83,7 +83,7 @@ export default function TestimonialsSection() {
                   ) : (
                     <div
                       className="w-full h-full flex items-center justify-center text-white text-sm font-bold"
-                      style={{ backgroundColor: "#6366F1" }}
+                      style={{ backgroundColor: "#FF4D00" }}
                     >
                       {t.initial}
                     </div>

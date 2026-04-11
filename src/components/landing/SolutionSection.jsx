@@ -15,7 +15,7 @@ export default function SolutionSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-            style={{ backgroundColor: "#6366F1" }}
+            style={{ backgroundColor: "#FF4D00" }}
           >
             <span className="text-white font-bold text-2xl">W</span>
           </motion.div>
@@ -45,7 +45,7 @@ export default function SolutionSection() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
             className="w-full rounded-lg py-4 px-6 text-center text-white font-semibold text-base"
-            style={{ backgroundColor: "#111111" }}
+            style={{ backgroundColor: "#FF4D00" }}
           >
             30% increase in customer engagement
           </motion.div>
