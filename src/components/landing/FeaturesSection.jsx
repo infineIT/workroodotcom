@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Eye, MessageCircle, Bell, Cloud, Calendar, Wrench, DollarSign, Users, Truck, Clock, BarChart2 } from "lucide-react";
+import { Eye, MessageCircle, Bell, Cloud, Calendar, Settings, DollarSign, Users, Truck, Clock, BarChart } from "lucide-react";
 
 const features = [
   {
@@ -49,7 +49,7 @@ const features = [
     highlight: "Faster bookings. Less admin.",
   },
   {
-    icon: Wrench,
+    icon: Settings,
     number: "06",
     title: "Job Management",
     headline: "Your Workshop at a Glance",
@@ -94,7 +94,7 @@ const features = [
     highlight: "Automated reminders. Happy customers.",
   },
   {
-    icon: BarChart2,
+    icon: BarChart,
     number: "11",
     title: "Reporting",
     headline: "Understand Your Business",
