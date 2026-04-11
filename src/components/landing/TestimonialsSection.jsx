@@ -3,8 +3,7 @@ import { motion, useInView } from "framer-motion";
 
 const testimonials = [
   {
-    quote:
-      "Our customer engagement is 20% higher and increasing. workroo provides a platform to build trust on transparency.",
+    quote: "Our customer engagement is 20% higher and increasing. workroo provides a platform to build trust on transparency.",
     name: "Yass",
     role: "Owner, Hallam Hi-Tech Australia",
     initial: "Y",
@@ -12,17 +11,16 @@ const testimonials = [
     type: "Workshop Owner",
   },
   {
-    quote:
-      "I have total visibility on what's happening in my workshop. Confidently I can take a vacation.",
+    quote: "I have total visibility on what's happening in my workshop. Confidently I can take a vacation.",
     name: "Nigal",
     role: "Operations Manager, Omega Auto Parts",
     initial: "N",
     photo: null,
     type: "Operations",
+    featured: true,
   },
   {
-    quote:
-      "Wow — this is so amazing! I have never seen what was done to my car before. Now I know what I pay for.",
+    quote: "Wow — this is so amazing! I have never seen what was done to my car before. Now I know what I pay for.",
     name: "Joanna Li",
     role: "Hallam Hi-Tech Customer",
     initial: "J",
@@ -36,87 +34,56 @@ export default function TestimonialsSection() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section
-      ref={ref}
-      id="testimonials"
-      className="py-40 overflow-hidden"
-      style={{ backgroundColor: "#FAF9F6" }}
-    >
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-        {/* Header */}
+    <section ref={ref} id="testimonials" className="py-24 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-24"
+          className="text-center mb-14"
         >
-          <span className="text-xs font-display tracking-[0.2em] uppercase text-obsidian/40">
-            What Our Customers Say
-          </span>
-          <div className="mt-4 w-12 h-px bg-obsidian/20" />
-          <h2
-            className="font-display font-800 text-obsidian mt-6 leading-tight max-w-xl"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-          >
-            Real Words from Real Workshops.
-          </h2>
+          <p className="text-sm font-semibold text-indigo-500 uppercase tracking-widest mb-3">Testimonials</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Real Words from Real Workshops.</h2>
         </motion.div>
 
-        {/* Testimonial grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: i * 0.15 }}
-              className="p-10 flex flex-col justify-between"
-              style={{
-                background: i === 1 ? "#1A1A1A" : "rgba(250,249,246,0.8)",
-                border: i === 1 ? "none" : "0.5px solid #E5E5E1",
-                minHeight: 320,
-              }}
+              transition={{ duration: 0.6, delay: i * 0.12 }}
+              className={`rounded-2xl p-8 flex flex-col justify-between ${
+                t.featured
+                  ? "text-white"
+                  : "bg-white border border-gray-100 shadow-sm"
+              }`}
+              style={t.featured ? { backgroundColor: "#111111" } : {}}
             >
-              {/* Type badge */}
               <div>
-                <div
-                  className="inline-block text-xs font-display tracking-widest uppercase px-3 py-1 mb-8"
+                <span
+                  className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-6"
                   style={{
-                    backgroundColor: i === 1 ? "rgba(255,77,0,0.15)" : "rgba(26,26,26,0.05)",
-                    color: i === 1 ? "#FF4D00" : "#C8C8C2",
+                    backgroundColor: t.featured ? "rgba(99,102,241,0.2)" : "#EEF2FF",
+                    color: t.featured ? "#A5B4FC" : "#6366F1",
                   }}
                 >
                   {t.type}
-                </div>
-
-                {/* Quote mark */}
-                <div
-                  className="font-display text-5xl leading-none mb-4 -mt-2"
-                  style={{ color: i === 1 ? "rgba(255,77,0,0.4)" : "#E5E5E1" }}
-                >
-                  "
-                </div>
-
+                </span>
                 <p
-                  className="font-body text-lg leading-relaxed mb-10"
-                  style={{ color: i === 1 ? "rgba(250,249,246,0.85)" : "#1A1A1A" }}
+                  className="text-base leading-relaxed mb-6"
+                  style={{ color: t.featured ? "rgba(255,255,255,0.85)" : "#374151" }}
                 >
-                  {t.quote}
+                  "{t.quote}"
                 </p>
               </div>
-
-              {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 rounded-sm overflow-hidden flex-shrink-0">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
                   {t.photo ? (
                     <img src={t.photo} alt={t.name} className="w-full h-full object-cover" />
                   ) : (
                     <div
-                      className="w-full h-full flex items-center justify-center font-display font-700 text-sm"
-                      style={{
-                        backgroundColor: i === 1 ? "#FF4D00" : "#1A1A1A",
-                        color: "#FAF9F6",
-                      }}
+                      className="w-full h-full flex items-center justify-center text-white text-sm font-bold"
+                      style={{ backgroundColor: "#6366F1" }}
                     >
                       {t.initial}
                     </div>
@@ -124,14 +91,14 @@ export default function TestimonialsSection() {
                 </div>
                 <div>
                   <div
-                    className="font-display font-600 text-sm"
-                    style={{ color: i === 1 ? "#FAF9F6" : "#1A1A1A" }}
+                    className="text-sm font-semibold"
+                    style={{ color: t.featured ? "#fff" : "#111111" }}
                   >
                     {t.name}
                   </div>
                   <div
-                    className="text-xs font-body"
-                    style={{ color: i === 1 ? "rgba(250,249,246,0.4)" : "#C8C8C2" }}
+                    className="text-xs"
+                    style={{ color: t.featured ? "rgba(255,255,255,0.4)" : "#9CA3AF" }}
                   >
                     {t.role}
                   </div>

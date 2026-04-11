@@ -1,54 +1,35 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 export default function Footer() {
   return (
-    <footer
-      className="py-16 overflow-hidden"
-      style={{ backgroundColor: "#1A1A1A", borderTop: "0.5px solid rgba(255,255,255,0.06)" }}
-    >
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-20 mb-16">
+    <footer className="bg-gray-950 text-white">
+      <div className="max-w-6xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
           {/* Brand */}
           <div>
-            <div className="mb-5">
-              <img
-                src="https://www.workroo.com/assets/img/logo.png"
-                alt="Workroo"
-                className="h-9 object-contain"
-                style={{ filter: "brightness(0) invert(1)" }}
-                onError={(e) => {
-                  e.target.style.display = "none";
-                  e.target.nextSibling.style.display = "block";
-                }}
-              />
-              <span className="font-display font-700 text-white text-lg tracking-tight" style={{ display: "none" }}>
-                WORKROO
-              </span>
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "#6366F1" }}>
+                <span className="text-white font-bold text-sm">W</span>
+              </div>
+              <span className="font-bold text-white text-base tracking-tight">WORKROO</span>
             </div>
-            <p className="text-white/35 font-body text-sm leading-relaxed max-w-xs">
-              Connecting mechanics and customers in real time. Building the True Car Record.
+            <p className="text-gray-400 text-sm leading-relaxed mb-4 max-w-xs">
+              Connecting mechanics and customers in real time, building the True Car Record.
             </p>
-            <div className="mt-6">
-              <a
-                href="mailto:hello@workroo.com.au"
-                className="text-sm font-body transition-colors duration-200 hover:text-white"
-                style={{ color: "rgba(255,77,0,0.8)" }}
-              >
-                hello@workroo.com.au
-              </a>
-            </div>
+            <a href="mailto:hello@workroo.com.au" className="text-gray-400 text-sm hover:text-white transition-colors">
+              hello@workroo.com.au
+            </a>
           </div>
 
-          {/* Links */}
+          {/* Platform links */}
           <div>
-            <div className="text-xs font-display tracking-[0.2em] uppercase text-white/20 mb-6">Platform</div>
+            <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-5">Platform</div>
             <ul className="space-y-3">
               {["Solution", "Features", "Market", "Testimonials"].map((item) => (
                 <li key={item}>
                   <a
                     href={`#${item.toLowerCase()}`}
-                    className="text-white/40 font-body text-sm hover:text-white transition-colors duration-200"
+                    className="text-gray-400 text-sm hover:text-white transition-colors"
                   >
                     {item}
                   </a>
@@ -57,51 +38,34 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Company */}
           <div>
-            <div className="text-xs font-display tracking-[0.2em] uppercase text-white/20 mb-6">Company</div>
+            <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-5">Company</div>
             <ul className="space-y-3">
               <li>
-                <a
-                  href="https://www.workroo.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/40 font-body text-sm hover:text-white transition-colors duration-200"
-                >
+                <a href="https://www.workroo.com.au" target="_blank" rel="noopener noreferrer" className="text-gray-400 text-sm hover:text-white transition-colors">
                   www.workroo.com.au
                 </a>
               </li>
               <li>
-                <span className="text-white/40 font-body text-sm">
-                  Built by Charith Haputhanthree
-                </span>
+                <span className="text-gray-400 text-sm">Built by Chanth Haputhantree</span>
               </li>
               <li>
-                <div
-                  className="inline-flex items-center gap-2 px-3 py-2 mt-2"
-                  style={{ border: "0.5px solid rgba(255,77,0,0.3)" }}
+                <span
+                  className="inline-flex items-center gap-2 text-xs font-bold tracking-widest px-3 py-1.5 rounded"
+                  style={{ backgroundColor: "#6366F1", color: "#fff" }}
                 >
-                  <span className="text-white/30 text-xs font-body">Promo</span>
-                  <span className="font-display font-700 text-xs tracking-widest" style={{ color: "#FF4D00" }}>
-                    INNOVHUB
-                  </span>
-                </div>
+                  Promo: IWISHWUR
+                </span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div
-          className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4"
-          style={{ borderTop: "0.5px solid rgba(255,255,255,0.06)" }}
-        >
-          <p className="text-white/20 text-xs font-body">
-            © 2024 workroo. All rights reserved.
-          </p>
-          <p className="text-white/20 text-xs font-body">
-            IBISWorld report G3911 · NADA Data
-          </p>
+        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between gap-3 text-xs text-gray-600">
+          <span>© 2024 workroo. All rights reserved.</span>
+          <span>MECHANIC'S ONLY - NDIA</span>
+          <span>WISHWUR report ©2021</span>
         </div>
       </div>
     </footer>

@@ -1,115 +1,54 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { Wrench, Users, TrendingUp } from "lucide-react";
-
-const pillars = [
-  {
-    icon: Wrench,
-    title: "Happy Mechanics",
-    description: "For the first time, their work is visible. Every repair step documented, recognized, and valued.",
-  },
-  {
-    icon: Users,
-    title: "Happy Customers",
-    description: "They know exactly what they pay for. Real-time transparency builds loyalty that lasts.",
-  },
-  {
-    icon: TrendingUp,
-    title: "Grow the Industry",
-    description: "A true digital record builds industry-wide trust and drives sustainable growth for everyone.",
-  },
-];
 
 export default function SolutionSection() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} id="solution" className="py-40 bg-alabaster overflow-hidden">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-        {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 mb-28">
-          <div>
-            <motion.span
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              transition={{ duration: 0.5 }}
-              className="text-xs font-display tracking-[0.2em] uppercase text-obsidian/40"
-            >
-              The Solution
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="font-display font-800 text-obsidian mt-5 leading-tight"
-              style={{ fontSize: "clamp(2.5rem, 5vw, 4.5rem)" }}
-            >
-              Connect. Capture.{" "}
-              <span style={{ color: "#FF4D00" }}>Build Trust.</span>
-            </motion.h2>
-          </div>
+    <section ref={ref} id="solution" className="py-20 bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 md:p-14 max-w-3xl mx-auto">
+          {/* Workroo icon */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.25 }}
-            className="flex items-end"
+            transition={{ duration: 0.5 }}
+            className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+            style={{ backgroundColor: "#6366F1" }}
           >
-            <p className="text-obsidian/60 text-lg leading-relaxed max-w-lg">
-              workroo connects customers and mechanics in real time, creating a
-              live, visual record of every job. No more guesswork. No more
-              invoices without evidence. Just pure, transparent service.
-            </p>
+            <span className="text-white font-bold text-2xl">W</span>
           </motion.div>
-        </div>
 
-        {/* App image */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="flex justify-center mb-20"
-        >
-          <div className="relative w-full max-w-3xl overflow-hidden rounded-xl">
-            <img
-              src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/17fa8e91a_WorkrooOnthephone1.jpg"
-              alt="Workroo App in use"
-              className="w-full object-cover"
-              style={{ maxHeight: 420 }}
-            />
-          </div>
-        </motion.div>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight"
+          >
+            Make Every Repair Visible
+          </motion.h2>
 
-        {/* Pillar cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {pillars.map((pillar, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 + i * 0.15 }}
-              className="p-10 group cursor-default"
-              style={{
-                background: "rgba(250,249,246,0.8)",
-                border: "0.5px solid #E5E5E1",
-                transition: "box-shadow 0.3s ease",
-              }}
-              whileHover={{ boxShadow: "0 20px 60px rgba(26,26,26,0.08)" }}
-            >
-              <div
-                className="w-12 h-12 flex items-center justify-center mb-8"
-                style={{ backgroundColor: "#1A1A1A" }}
-              >
-                <pillar.icon className="w-5 h-5 text-white" />
-              </div>
-              <h3 className="font-display font-700 text-obsidian text-2xl mb-4">
-                {pillar.title}
-              </h3>
-              <p className="text-obsidian/55 font-body text-base leading-relaxed">
-                {pillar.description}
-              </p>
-            </motion.div>
-          ))}
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-gray-500 text-lg leading-relaxed mb-8"
+          >
+            Provide customers with a live, visual capture of all work carried out on their vehicle.
+            Every step is documented in real time — creating a True Car Record that builds genuine trust
+            and brand loyalty.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="w-full rounded-lg py-4 px-6 text-center text-white font-semibold text-base"
+            style={{ backgroundColor: "#111111" }}
+          >
+            30% increase in customer engagement
+          </motion.div>
         </div>
       </div>
     </section>

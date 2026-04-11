@@ -47,56 +47,46 @@ export default function FeaturesSection() {
   const [activeFeature, setActiveFeature] = useState(0);
 
   return (
-    <section ref={ref} id="features" className="py-40 overflow-hidden" style={{ backgroundColor: "#FAF9F6" }}>
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16">
-        {/* Section header */}
+    <section ref={ref} id="features" className="py-24 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="mb-24"
+          className="mb-14 text-center"
         >
-          <span className="text-xs font-display tracking-[0.2em] uppercase text-obsidian/40">
-            Features
-          </span>
-          <div className="mt-4 w-12 h-px bg-obsidian/20" />
-          <h2
-            className="font-display font-800 text-obsidian mt-6 leading-tight max-w-2xl"
-            style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
-          >
+          <p className="text-sm font-semibold text-indigo-500 uppercase tracking-widest mb-3">Features</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mx-auto leading-tight">
             Every Tool Your Workshop Needs.{" "}
-            <span style={{ color: "#FF4D00" }}>Nothing It Doesn't.</span>
+            <span className="text-indigo-500">Nothing It Doesn't.</span>
           </h2>
         </motion.div>
 
-        {/* Feature tabs */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Tab list */}
-          <div className="lg:col-span-2 flex flex-col gap-0">
+          <div className="lg:col-span-2 flex flex-col gap-2">
             {features.map((f, i) => (
               <motion.button
                 key={i}
                 initial={{ opacity: 0, x: -20 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+                transition={{ duration: 0.4, delay: i * 0.08 }}
                 onClick={() => setActiveFeature(i)}
-                className="text-left p-6 relative transition-all duration-300 group"
-                style={{
-                  borderLeft: i === activeFeature ? "2px solid #FF4D00" : "2px solid transparent",
-                  borderBottom: "0.5px solid #E5E5E1",
-                  backgroundColor: i === activeFeature ? "rgba(255,77,0,0.03)" : "transparent",
-                }}
+                className={`text-left p-5 rounded-xl border transition-all duration-200 ${
+                  i === activeFeature
+                    ? "bg-white border-indigo-200 shadow-sm"
+                    : "bg-transparent border-transparent hover:bg-white hover:border-gray-100"
+                }`}
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                   <span
-                    className="text-xs font-display tracking-widest"
-                    style={{ color: i === activeFeature ? "#FF4D00" : "#C8C8C2" }}
+                    className="text-xs font-mono"
+                    style={{ color: i === activeFeature ? "#6366F1" : "#9CA3AF" }}
                   >
                     {f.number}
                   </span>
                   <span
-                    className="font-display font-600 text-base transition-colors"
-                    style={{ color: i === activeFeature ? "#1A1A1A" : "#C8C8C2" }}
+                    className="font-semibold text-sm"
+                    style={{ color: i === activeFeature ? "#111111" : "#9CA3AF" }}
                   >
                     {f.title}
                   </span>
@@ -108,40 +98,31 @@ export default function FeaturesSection() {
           {/* Feature detail */}
           <motion.div
             key={activeFeature}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="lg:col-span-3 p-10 md:p-14 flex flex-col justify-between"
-            style={{
-              background: "rgba(250,249,246,0.6)",
-              border: "0.5px solid #E5E5E1",
-              backdropFilter: "blur(12px)",
-              minHeight: 360,
-            }}
+            transition={{ duration: 0.35 }}
+            className="lg:col-span-3 bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-10 flex flex-col justify-between"
+            style={{ minHeight: 320 }}
           >
             <div>
               <div
-                className="w-14 h-14 flex items-center justify-center mb-10"
-                style={{ backgroundColor: "#FF4D00" }}
+                className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
+                style={{ backgroundColor: "#EEF2FF" }}
               >
                 {React.createElement(features[activeFeature].icon, {
-                  className: "w-6 h-6 text-white",
+                  className: "w-6 h-6",
+                  style: { color: "#6366F1" },
                 })}
               </div>
-              <h3 className="font-display font-800 text-obsidian text-3xl md:text-4xl mb-6 leading-tight">
+              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
                 {features[activeFeature].headline}
               </h3>
-              <p className="text-obsidian/60 font-body text-lg leading-relaxed mb-10">
+              <p className="text-gray-500 text-base leading-relaxed mb-8">
                 {features[activeFeature].description}
               </p>
             </div>
-            <div
-              className="px-5 py-4"
-              style={{ backgroundColor: "#1A1A1A" }}
-            >
-              <p className="text-white/80 font-display text-sm tracking-wide">
-                {features[activeFeature].highlight}
-              </p>
+            <div className="bg-gray-900 text-white text-sm font-medium rounded-lg px-5 py-3 inline-block">
+              {features[activeFeature].highlight}
             </div>
           </motion.div>
         </div>
