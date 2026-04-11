@@ -3,8 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   {
-    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/40b0203b6_WorkrooOnthephone1.jpg",
-    alt: "Workshop booking and job management",
+    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/cf4c7e93a_generated_image.png",
+    alt: "Workshop booking and job management dashboard",
     step: "Step 1",
     title: "Automated Bookings & Job Management",
     description: "Streamline your workshop with automated booking confirmations and centralised job management — so your team always knows what's next.",
