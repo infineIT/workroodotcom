@@ -14,20 +14,10 @@ export default function HeroSection() {
       className="relative min-h-screen overflow-hidden pt-14"
       style={{ background: "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 40%, #FFF5F0 100%)" }}
     >
-      {/* Hero background image — right side */}
-      <div
-        className="absolute inset-y-0 right-0 w-full lg:w-3/5 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/e16354ee4_generated_image.png')`,
-        }}
-      >
-        {/* Fade overlay so text side stays readable */}
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #FFF3EE 0%, rgba(255,243,238,0.5) 40%, transparent 100%)" }} />
-      </div>
-
-      <div className="relative max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-56px)]">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-0 items-center min-h-[calc(100vh-56px)]">
+        
         {/* Left: Text */}
-        <div className="flex flex-col justify-center py-16">
+        <div className="flex flex-col justify-center py-16 z-10">
           <motion.h1
             {...fadeUp(0.1)}
             className="font-bold text-gray-900 leading-[1.1] mb-5"
@@ -78,8 +68,27 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right: empty — image fills this space via absolute bg */}
-        <div className="hidden lg:block" />
+        {/* Right: Image */}
+        <motion.div
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+          className="hidden lg:flex items-center justify-end h-full relative"
+        >
+          {/* Blend mask on the left edge of the image */}
+          <div
+            className="absolute inset-y-0 left-0 w-40 z-10 pointer-events-none"
+            style={{
+              background: "linear-gradient(to right, #FFF3EE 0%, transparent 100%)",
+            }}
+          />
+          <img
+            src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/ca1110ae1_image.png"
+            alt="Customer checking vehicle status on phone"
+            className="w-full h-full object-cover object-center"
+            style={{ maxHeight: "100vh", borderRadius: "0" }}
+          />
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
