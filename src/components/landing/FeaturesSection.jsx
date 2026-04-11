@@ -126,7 +126,7 @@ export default function FeaturesSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
           {/* Tab list */}
-          <div className="lg:col-span-2 flex flex-col gap-2">
+          <div className="lg:col-span-2 flex flex-col gap-2 lg:max-h-[520px] lg:overflow-y-auto pr-1">
             {features.map((f, i) => (
               <motion.button
                 key={i}
