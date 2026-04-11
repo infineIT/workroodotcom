@@ -25,16 +25,16 @@ export default function Footer() {
           <div>
             <div className="text-xs font-semibold text-gray-500 uppercase tracking-widest mb-5">Platform</div>
             <ul className="space-y-3">
-              {["Solution", "Features", "Market", "Testimonials"].map((item) => (
-                <li key={item}>
+              {["Solution", "Features", "Market", "Testimonials"].map((item) =>
+              <li key={item}>
                   <a
-                    href={`#${item.toLowerCase()}`}
-                    className="text-gray-400 text-sm hover:text-orange-400 transition-colors"
-                  >
+                  href={`#${item.toLowerCase()}`}
+                  className="text-gray-400 text-sm hover:text-orange-400 transition-colors">
+                  
                     {item}
                   </a>
                 </li>
-              ))}
+              )}
             </ul>
           </div>
 
@@ -48,26 +48,26 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <span className="text-gray-400 text-sm">Built by Chanth Haputhantree</span>
+                <span className="text-gray-400 text-sm"></span>
               </li>
               <li>
-                <span
-                  className="inline-flex items-center gap-2 text-xs font-bold tracking-widest px-3 py-1.5 rounded"
-                  style={{ backgroundColor: "#F05A28", color: "#fff" }}
-                >
-                  Promo: IWISHWUR
-                </span>
+                
+
+
+
+
+                
               </li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between gap-3 text-xs text-gray-600">
-          <span>© 2024 workroo. All rights reserved.</span>
+          <span>© 2026 workroo. All rights reserved.</span>
           <span>MECHANIC'S ONLY - NDIA</span>
           <span>WISHWUR report ©2021</span>
         </div>
       </div>
-    </footer>
-  );
+    </footer>);
+
 }
