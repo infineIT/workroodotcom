@@ -17,7 +17,7 @@ const slides = [
     description: "The moment work begins, customers receive live updates on their phone — no more wondering what's happening to their vehicle.",
   },
   {
-    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/27778f5fc_3.jpg",
+    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/f53e445e5_generated_image.png",
     alt: "Mechanic documenting progress",
     step: "Step 3",
     title: "Mechanics Document Progress",
