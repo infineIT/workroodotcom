@@ -4,24 +4,31 @@ import { motion, AnimatePresence } from "framer-motion";
 const slides = [
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/40b0203b6_WorkrooOnthephone1.jpg",
-    alt: "Customer checking workroo app on phone",
+    alt: "Workshop booking and job management",
     step: "Step 1",
-    title: "Customer Gets Notified",
-    description: "The moment work begins, customers receive a real-time update on their phone — no more wondering what's happening to their vehicle.",
+    title: "Automated Bookings & Job Management",
+    description: "Streamline your workshop with automated booking confirmations and centralised job management — so your team always knows what's next.",
   },
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/f72246a88_workroocustomerview-task.jpg",
-    alt: "Workroo customer view with tasks",
+    alt: "Customer connected in real time",
     step: "Step 2",
-    title: "Full Transparency on Every Task",
-    description: "Customers see a live breakdown of every repair — what was done, what parts were used, and when it was completed.",
+    title: "Customers Get Connected in Real Time",
+    description: "The moment work begins, customers receive live updates on their phone — no more wondering what's happening to their vehicle.",
   },
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/27778f5fc_3.jpg",
-    alt: "Mechanic using workroo on tablet",
+    alt: "Mechanic documenting progress",
     step: "Step 3",
-    title: "Mechanics Document in Real Time",
-    description: "Technicians log every job digitally as they work — creating a verified record that builds trust and reduces disputes.",
+    title: "Mechanics Document Progress",
+    description: "Technicians log every job digitally as they work — creating a verified record that builds trust and eliminates disputes.",
+  },
+  {
+    url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/40b0203b6_WorkrooOnthephone1.jpg",
+    alt: "Satisfied and returning customers",
+    step: "Step 4",
+    title: "Satisfied & Returning Customers",
+    description: "Transparency builds loyalty. Customers who can see exactly what was done — and why — keep coming back and refer others.",
   },
 ];
 
