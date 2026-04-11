@@ -14,7 +14,18 @@ export default function HeroSection() {
       className="relative min-h-screen overflow-hidden pt-14"
       style={{ background: "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 40%, #FFF5F0 100%)" }}
     >
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-56px)]">
+      {/* Hero background image — right side */}
+      <div
+        className="absolute inset-y-0 right-0 w-full lg:w-3/5 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/e16354ee4_generated_image.png')`,
+        }}
+      >
+        {/* Fade overlay so text side stays readable */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to right, #FFF3EE 0%, rgba(255,243,238,0.5) 40%, transparent 100%)" }} />
+      </div>
+
+      <div className="relative max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-56px)]">
         {/* Left: Text */}
         <div className="flex flex-col justify-center py-16">
           <motion.h1
@@ -67,47 +78,8 @@ export default function HeroSection() {
           </motion.div>
         </div>
 
-        {/* Right: Phone mockup */}
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-          className="hidden lg:flex items-center justify-center relative py-16"
-        >
-          <div className="relative w-full max-w-lg">
-            {/* Main phone */}
-            <div className="relative z-10 flex justify-center">
-              <img
-                src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/fdc93664b_WorkrooOnthephone.jpg"
-                alt="Workroo App"
-                className="w-64 rounded-3xl shadow-2xl"
-                style={{ filter: "drop-shadow(0 30px 60px rgba(240,90,40,0.25))" }}
-              />
-            </div>
-
-            {/* Floating card: brake pads */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.6 }}
-              className="absolute bottom-24 -left-8 bg-white rounded-xl shadow-lg p-4 z-20 min-w-[180px]"
-            >
-              <div className="text-xs text-gray-400 mb-1">Live Update</div>
-              <div className="text-sm font-semibold text-gray-800">Brake pads replaced ✓</div>
-            </motion.div>
-
-            {/* Floating card: customer alert */}
-            <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 0.6 }}
-              className="absolute top-20 -right-8 bg-white rounded-xl shadow-lg p-4 z-20 min-w-[200px]"
-            >
-              <div className="text-xs text-gray-400 mb-1">Customer Alert</div>
-              <div className="text-sm font-semibold text-gray-800">Your car is ready for pickup 🚗</div>
-            </motion.div>
-          </div>
-        </motion.div>
+        {/* Right: empty — image fills this space via absolute bg */}
+        <div className="hidden lg:block" />
       </div>
 
       {/* Scroll indicator */}
