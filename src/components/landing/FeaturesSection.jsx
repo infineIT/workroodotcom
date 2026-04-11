@@ -109,7 +109,7 @@ export default function FeaturesSection() {
           <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>Features</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mx-auto leading-tight">
             Every Tool Your Workshop Needs.{" "}
-            <span style={{ color: "#F05A28" }}>Nothing It Doesn't.</span>
+            <span style={{ color: "#F05A28" }}>So You Stay Ahead.</span>
           </h2>
         </motion.div>
 
