@@ -16,7 +16,7 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-        <img src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/aaddf76e2_image.png" alt="Workroo" className="h-8 w-auto" />
+        <img src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/aaddf76e2_image.png" alt="Workroo" className="h-14 w-auto" />
 
         <div className="hidden md:flex items-center gap-8">
           {["Solution", "Features", "Market", "Testimonials"].map((item) => (
