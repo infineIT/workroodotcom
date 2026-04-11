@@ -19,10 +19,10 @@ export default function Navbar() {
         <img src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/aaddf76e2_image.png" alt="Workroo" className="h-14 w-auto" />
 
         <div className="hidden md:flex items-center gap-8">
-          {["Solution", "Features", "Testimonials"].map((item) => (
+          {["How It Works", "Features", "Testimonials"].map((item) => (
             <a
               key={item}
-              href={`#${item.toLowerCase()}`}
+              href={item === "How It Works" ? "#how-it-works" : `#${item.toLowerCase()}`}
                 className="text-sm text-gray-600 hover:text-orange-500 transition-colors"
             >
               {item}

@@ -43,7 +43,7 @@ export default function ProblemSection() {
   }, []);
 
   return (
-    <section className="py-20 bg-gray-50">
+    <section className="py-20 bg-gray-50" id="how-it-works">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>
