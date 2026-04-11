@@ -95,7 +95,7 @@ export default function CTASection() {
                     <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Workshop Name</label>
                     <input
                       type="text"
-                      placeholder="Hallam Hi-Tech"
+                      placeholder=""
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
                     />
                   </div>
