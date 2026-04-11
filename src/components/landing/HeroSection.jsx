@@ -15,15 +15,15 @@ export default function HeroSection() {
       style={{ background: "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 60%, #FFF5F0 100%)" }}
     >
       {/* Right-side image — absolutely positioned, fills right 55% of viewport */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] hidden lg:block">
+      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] hidden lg:block" style={{ backgroundColor: "#FFE4D6" }}>
         <img
           src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/ca1110ae1_image.png"
           alt="Customer checking vehicle status on phone"
-          className="w-full h-full object-cover object-left"
+          className="w-full h-full object-cover object-right"
         />
         {/* Blend mask — left edge of image fades into bg */}
         <div
-          className="absolute inset-y-0 left-0 w-64 pointer-events-none"
+          className="absolute inset-y-0 left-0 w-48 pointer-events-none"
           style={{ background: "linear-gradient(to right, #FFE4D6 0%, transparent 100%)" }}
         />
       </div>
