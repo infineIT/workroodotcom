@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Eye, MessageCircle, Bell, Cloud } from "lucide-react";
+import { Eye, MessageCircle, Bell, Cloud, Calendar, Wrench, DollarSign, Users, Truck, Clock, BarChart2 } from "lucide-react";
 
 const features = [
   {
@@ -38,6 +38,69 @@ const features = [
     description:
       "Connect to your workshop from any device, anywhere in the world. Stay informed about every job in progress, manage operations remotely, and never be out of the loop — even on vacation.",
     highlight: "Full visibility. Zero boundaries.",
+  },
+  {
+    icon: Calendar,
+    number: "05",
+    title: "Booking Diary",
+    headline: "Bookings Made Simple",
+    description:
+      "Create, reschedule or delete bookings in just a few clicks. Bookings are readily convertible to jobs, saving you time.",
+    highlight: "Faster bookings. Less admin.",
+  },
+  {
+    icon: Wrench,
+    number: "06",
+    title: "Job Management",
+    headline: "Your Workshop at a Glance",
+    description:
+      "The essence of workroo — keeping you up to date with each and every job in your workshop at a glance. Manage jobs with your colleagues centrally and in real time.",
+    highlight: "Every job. Always in control.",
+  },
+  {
+    icon: DollarSign,
+    number: "07",
+    title: "Invoicing / Quoting",
+    headline: "Quick & Easy Invoicing",
+    description:
+      "Quick and easy invoicing/quoting with preconfigured invoice items. Convert invoices/quotes to jobs or bookings directly.",
+    highlight: "Invoice faster. Get paid sooner.",
+  },
+  {
+    icon: Users,
+    number: "08",
+    title: "Customer & Vehicle Management",
+    headline: "Know Your Customers",
+    description:
+      "Easily store your workshop's customers details for use throughout the system via workroo's intelligent auto-suggest and auto-complete functions.",
+    highlight: "Smart suggestions. Less typing.",
+  },
+  {
+    icon: Truck,
+    number: "09",
+    title: "Supplier Management",
+    headline: "Stay on Top of Supply",
+    description:
+      "Reorder from your trusted suppliers in a dash. Stay on top of your bills and bill payments with ease.",
+    highlight: "Suppliers organised. Cash flow clear.",
+  },
+  {
+    icon: Clock,
+    number: "10",
+    title: "Service Scheduling",
+    headline: "Never Miss a Service",
+    description:
+      "Easily know which vehicles are due or overdue for service. Easily send reminders to your customers via both email and SMS.",
+    highlight: "Automated reminders. Happy customers.",
+  },
+  {
+    icon: BarChart2,
+    number: "11",
+    title: "Reporting",
+    headline: "Understand Your Business",
+    description:
+      "Better understand your business with our reporting system — everything from sales and received payments to stock value and employee efficiency.",
+    highlight: "Data-driven decisions. Better results.",
   },
 ];
 
