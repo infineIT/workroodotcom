@@ -17,7 +17,7 @@ export default function HeroSection() {
       {/* Right-side image — absolutely positioned, fills right 55% of viewport */}
       <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] hidden lg:block" style={{ backgroundColor: "#FFE4D6" }}>
         <img
-          src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/ca1110ae1_image.png"
+          src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/874291538_image.png"
           alt="Customer checking vehicle status on phone"
           className="w-full h-full object-cover object-right"
         />
