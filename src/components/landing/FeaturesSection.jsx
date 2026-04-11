@@ -54,10 +54,10 @@ export default function FeaturesSection() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           className="mb-14 text-center"
         >
-          <p className="text-sm font-semibold text-indigo-500 uppercase tracking-widest mb-3">Features</p>
+          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#E8481A" }}>Features</p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mx-auto leading-tight">
             Every Tool Your Workshop Needs.{" "}
-            <span className="text-indigo-500">Nothing It Doesn't.</span>
+            <span style={{ color: "#E8481A" }}>Nothing It Doesn't.</span>
           </h2>
         </motion.div>
 
@@ -73,14 +73,14 @@ export default function FeaturesSection() {
                 onClick={() => setActiveFeature(i)}
                 className={`text-left p-5 rounded-xl border transition-all duration-200 ${
                   i === activeFeature
-                    ? "bg-white border-indigo-200 shadow-sm"
+                    ? "bg-white border-orange-200 shadow-sm"
                     : "bg-transparent border-transparent hover:bg-white hover:border-gray-100"
                 }`}
               >
                 <div className="flex items-center gap-3">
                   <span
                     className="text-xs font-mono"
-                    style={{ color: i === activeFeature ? "#6366F1" : "#9CA3AF" }}
+                    style={{ color: i === activeFeature ? "#E8481A" : "#9CA3AF" }}
                   >
                     {f.number}
                   </span>
@@ -107,11 +107,11 @@ export default function FeaturesSection() {
             <div>
               <div
                 className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-                style={{ backgroundColor: "#EEF2FF" }}
+                style={{ backgroundColor: "#FEF0EA" }}
               >
                 {React.createElement(features[activeFeature].icon, {
                   className: "w-6 h-6",
-                  style: { color: "#6366F1" },
+                  style: { color: "#E8481A" },
                 })}
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">

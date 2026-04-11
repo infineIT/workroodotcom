@@ -26,7 +26,7 @@ export default function StatsSection() {
             >
               <div
                 className="text-4xl md:text-5xl font-bold mb-2"
-                style={{ color: stat.accent ? "#FF4D00" : "#111111" }}
+                style={{ color: stat.accent ? "#E8481A" : "#111111" }}
               >
                 {stat.value}
               </div>

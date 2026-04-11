@@ -12,7 +12,7 @@
     --card-foreground: 0 0% 7%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 7%;
-    --primary: 18 100% 50%;
+    --primary: 18 82% 51%;
     --primary-foreground: 0 0% 100%;
     --secondary: 240 5% 96%;
     --secondary-foreground: 0 0% 7%;
@@ -24,15 +24,15 @@
     --destructive-foreground: 0 0% 98%;
     --border: 240 5% 91%;
     --input: 240 5% 91%;
-    --ring: 18 100% 50%;
+    --ring: 18 82% 51%;
     --radius: 0.5rem;
 
     /* Custom design tokens */
     --color-white: #FFFFFF;
     --color-ink: #111111;
-    --color-orange: #FF4D00;
-    --color-orange-dark: #E04000;
-    --color-orange-light: #FFF3EE;
+    --color-orange: #E8481A;
+    --color-orange-dark: #C93D12;
+    --color-orange-light: #FEF0EA;
     --color-hero-bg: #FFF3EE;
     --color-dark: #111111;
     --color-gray: #F5F5F7;
