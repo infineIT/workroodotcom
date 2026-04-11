@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const images = [
+const slides = [
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/40b0203b6_WorkrooOnthephone1.jpg",
     alt: "Customer checking workroo app on phone",
+    step: "Step 1",
+    title: "Customer Gets Notified",
+    description: "The moment work begins, customers receive a real-time update on their phone — no more wondering what's happening to their vehicle.",
   },
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/f72246a88_workroocustomerview-task.jpg",
     alt: "Workroo customer view with tasks",
+    step: "Step 2",
+    title: "Full Transparency on Every Task",
+    description: "Customers see a live breakdown of every repair — what was done, what parts were used, and when it was completed.",
   },
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/27778f5fc_3.jpg",
     alt: "Mechanic using workroo on tablet",
+    step: "Step 3",
+    title: "Mechanics Document in Real Time",
+    description: "Technicians log every job digitally as they work — creating a verified record that builds trust and reduces disputes.",
   },
 ];
 
@@ -21,8 +30,8 @@ export default function ProblemSection() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActive((prev) => (prev + 1) % images.length);
-    }, 3500);
+      setActive((prev) => (prev + 1) % slides.length);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -31,70 +40,111 @@ export default function ProblemSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-12">
           <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>
-            In Action
+            How It Works
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">See Workroo at Work</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">The Workroo Story</h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row items-center gap-6">
-          {/* Main prominent image */}
-          <div className="w-full lg:w-2/3 relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-gray-200">
+        <div className="flex flex-col lg:flex-row gap-8 items-stretch">
+          {/* Main image */}
+          <div className="w-full lg:w-3/5 relative rounded-2xl overflow-hidden shadow-xl bg-gray-200" style={{ minHeight: 360 }}>
             <AnimatePresence mode="wait">
               <motion.img
                 key={active}
-                src={images[active].url}
-                alt={images[active].alt}
-                className="w-full h-full object-cover"
+                src={slides[active].url}
+                alt={slides[active].alt}
+                className="w-full h-full object-cover absolute inset-0"
                 initial={{ opacity: 0, scale: 1.04 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.7, ease: "easeInOut" }}
               />
             </AnimatePresence>
+
+            {/* Caption overlay */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`caption-${active}`}
+                className="absolute bottom-0 left-0 right-0 p-6"
+                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)" }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#F05A28" }}>
+                  {slides[active].step}
+                </span>
+                <h3 className="text-white text-xl font-bold mt-1">{slides[active].title}</h3>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          {/* Thumbnails */}
-          <div className="flex lg:flex-col gap-4 w-full lg:w-1/3">
-            {images.map((img, i) => (
+          {/* Story steps */}
+          <div className="w-full lg:w-2/5 flex flex-col gap-3 justify-center">
+            {slides.map((slide, i) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
-                className={`relative rounded-xl overflow-hidden transition-all duration-300 flex-1 lg:flex-none aspect-video lg:aspect-auto lg:h-28 ${
+                className={`text-left rounded-xl p-5 transition-all duration-400 border ${
                   active === i
-                    ? "ring-2 ring-offset-2 shadow-lg scale-105"
-                    : "opacity-60 hover:opacity-85"
+                    ? "bg-white shadow-md border-orange-200"
+                    : "bg-white/60 border-transparent hover:bg-white hover:shadow-sm"
                 }`}
-                style={active === i ? { ringColor: "#F05A28" } : {}}
               >
-                <img
-                  src={img.url}
-                  alt={img.alt}
-                  className="w-full h-full object-cover"
-                />
+                <div className="flex items-start gap-4">
+                  {/* Thumbnail */}
+                  <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                    <img src={slide.url} alt={slide.alt} className="w-full h-full object-cover" />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1">
+                      <span
+                        className="text-xs font-bold uppercase tracking-wider"
+                        style={{ color: active === i ? "#F05A28" : "#9CA3AF" }}
+                      >
+                        {slide.step}
+                      </span>
+                      {active === i && (
+                        <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: "#F05A28" }} />
+                      )}
+                    </div>
+                    <h4
+                      className="font-semibold text-sm leading-snug mb-1"
+                      style={{ color: active === i ? "#111111" : "#6B7280" }}
+                    >
+                      {slide.title}
+                    </h4>
+                    <AnimatePresence>
+                      {active === i && (
+                        <motion.p
+                          className="text-xs text-gray-500 leading-relaxed"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {slide.description}
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+
+                {/* Progress bar for active */}
                 {active === i && (
-                  <div
-                    className="absolute inset-0 border-2 rounded-xl pointer-events-none"
-                    style={{ borderColor: "#F05A28" }}
+                  <motion.div
+                    className="mt-3 h-0.5 rounded-full"
+                    style={{ backgroundColor: "#F05A28" }}
+                    initial={{ scaleX: 0, originX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ duration: 4, ease: "linear" }}
                   />
                 )}
               </button>
             ))}
           </div>
-        </div>
-
-        {/* Dot indicators */}
-        <div className="flex justify-center gap-2 mt-8">
-          {images.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setActive(i)}
-              className="w-2 h-2 rounded-full transition-all duration-300"
-              style={{
-                backgroundColor: active === i ? "#F05A28" : "#D1D5DB",
-                transform: active === i ? "scale(1.4)" : "scale(1)",
-              }}
-            />
-          ))}
         </div>
       </div>
     </section>
