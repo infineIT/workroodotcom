@@ -12,13 +12,13 @@
     --card-foreground: 0 0% 7%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 7%;
-    --primary: 38 90% 55%;
+    --primary: 18 82% 51%;
     --primary-foreground: 0 0% 100%;
     --secondary: 240 5% 96%;
     --secondary-foreground: 0 0% 7%;
     --muted: 240 5% 96%;
     --muted-foreground: 0 0% 45%;
-    --accent: 38 90% 55%;
+    --accent: 18 100% 50%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
@@ -30,10 +30,10 @@
     /* Custom design tokens */
     --color-white: #FFFFFF;
     --color-ink: #111111;
-    --color-orange: #F5A623;
-    --color-orange-dark: #D4891A;
-    --color-orange-light: #FEF6E7;
-    --color-hero-bg: #FFFBF0;
+    --color-orange: #E8481A;
+    --color-orange-dark: #C93D12;
+    --color-orange-light: #FEF0EA;
+    --color-hero-bg: #FFF3EE;
     --color-dark: #111111;
     --color-gray: #F5F5F7;
     --color-gray-mid: #9CA3AF;
