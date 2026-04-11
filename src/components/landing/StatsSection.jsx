@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 
 const stats = [
-  { value: "8", label: "Average Visits Per Day", sublabel: "per workshop" },
+  { value: "20 hrs", label: "Saved Per Week", sublabel: "per workshop" },
   { value: "100%", label: "Customer Retention", sublabel: "proven outcomes", accent: true },
   { value: "24 min", label: "Avg. Time Spent", sublabel: "per session" },
   { value: "+30%", label: "Customer Engagement", sublabel: "and growing" },
