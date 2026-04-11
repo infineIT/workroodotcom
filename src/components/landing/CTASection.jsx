@@ -64,11 +64,6 @@ export default function CTASection() {
                 </li>
               ))}
             </ul>
-
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 rounded-lg border border-gray-200">
-              <span className="text-gray-400 text-sm">Promo Code</span>
-              <span className="font-bold text-sm tracking-widest" style={{ color: "#F05A28" }}>INNOVHUB</span>
-            </div>
           </div>
 
           <motion.div
