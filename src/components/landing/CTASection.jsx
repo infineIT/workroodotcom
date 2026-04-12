@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import { base44 } from "@/api/base44Client";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
 
@@ -17,10 +18,21 @@ export default function CTASection() {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [workshopName, setWorkshopName] = useState("");
+  const [workshopSize, setWorkshopSize] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email) setSubmitted(true);
+    if (!email) return;
+    setLoading(true);
+    await base44.integrations.Core.SendEmail({
+      to: "charith@infineit.com",
+      subject: "New Early Access Request — workroo",
+      body: `New early access request received:\n\nWorkshop Name: ${workshopName}\nContact Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nWorkshop Size: ${workshopSize}`,
+    });
+    setLoading(false);
+    setSubmitted(true);
   };
 
   return (
@@ -92,6 +104,8 @@ export default function CTASection() {
                     <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Workshop Name</label>
                     <input
                       type="text"
+                      value={workshopName}
+                      onChange={(e) => setWorkshopName(e.target.value)}
                       placeholder=""
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
                     />
@@ -130,6 +144,8 @@ export default function CTASection() {
                       <div>
                       <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Workshop Size</label>
                     <select
+                      value={workshopSize}
+                      onChange={(e) => setWorkshopSize(e.target.value)}
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
                     >
                       <option value="">Select size</option>
@@ -142,11 +158,12 @@ export default function CTASection() {
 
                   <button
                     type="submit"
-                    className="w-full flex items-center justify-center gap-2 py-3 text-white font-semibold rounded-lg text-sm transition-opacity hover:opacity-90 mt-2"
+                    disabled={loading}
+                    className="w-full flex items-center justify-center gap-2 py-3 text-white font-semibold rounded-lg text-sm transition-opacity hover:opacity-90 mt-2 disabled:opacity-60"
                     style={{ backgroundColor: "#F05A28" }}
                   >
-                    Get Early Access
-                    <ArrowRight className="w-4 h-4" />
+                    {loading ? "Sending..." : "Get Early Access"}
+                    {!loading && <ArrowRight className="w-4 h-4" />}
                   </button>
                 </form>
 
