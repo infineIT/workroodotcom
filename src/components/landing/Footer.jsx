@@ -64,8 +64,6 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between gap-3 text-xs text-gray-600">
           <span>© 2026 workroo. All rights reserved.</span>
-          
-          <span>WISHWUR report ©2021</span>
         </div>
       </div>
     </footer>);
