@@ -58,7 +58,7 @@ export default function HeroSection() {
               <ArrowRight className="w-4 h-4" />
             </a>
             <a
-              href="#solution"
+              href="#how-it-works"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all"
             >
               See How It Works
