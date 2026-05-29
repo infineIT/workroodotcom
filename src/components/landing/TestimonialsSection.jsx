@@ -81,7 +81,7 @@ export default function TestimonialsSection() {
               </div>
               {t.logo && (
                 <div className="mb-4">
-                  <img src={t.logo} alt="Company logo" className="h-10 w-auto object-contain" />
+                  <img src={t.logo} alt="Company logo" className="h-6 w-auto object-contain" />
                 </div>
               )}
               <div className="flex items-center gap-3">
