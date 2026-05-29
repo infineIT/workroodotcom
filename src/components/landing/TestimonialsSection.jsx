@@ -10,6 +10,7 @@ const testimonials = [
     photo: null,
     type: "Workshop Owner",
     logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/68dea466b_Hallam-Hi-Tech-Logo-Light-Background.png",
+    logoSize: "h-10",
   },
   {
     quote: "I have total visibility on what's happening in my workshop. Confidently I can take a vacation.",
@@ -20,6 +21,7 @@ const testimonials = [
     type: "Operations",
     featured: true,
     logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/b8325d390_omega-auto-parts-logo-colour.svg",
+    logoSize: "h-6",
   },
   {
     quote: "Wow — this is so amazing! I have never seen what was done to my car before. Now I know what I pay for.",
@@ -29,6 +31,7 @@ const testimonials = [
     photo: null,
     type: "Customer",
     logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/68dea466b_Hallam-Hi-Tech-Logo-Light-Background.png",
+    logoSize: "h-10",
   },
 ];
 
@@ -81,7 +84,7 @@ export default function TestimonialsSection() {
               </div>
               {t.logo && (
                 <div className="mb-4">
-                  <img src={t.logo} alt="Company logo" className="h-6 w-auto object-contain" />
+                  <img src={t.logo} alt="Company logo" className={`${t.logoSize || 'h-8'} w-auto object-contain`} />
                 </div>
               )}
               <div className="flex items-center gap-3">
