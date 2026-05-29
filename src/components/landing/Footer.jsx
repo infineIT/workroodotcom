@@ -17,8 +17,8 @@ export default function Footer() {
             <p className="text-gray-400 text-sm leading-relaxed mb-4 max-w-xs">
               Connecting mechanics and customers in real time, building the True Car Record.
             </p>
-            <a href="mailto:hello@workroo.com.au" className="text-gray-400 text-sm hover:text-white transition-colors block mb-2">
-              hello@workroo.com.au
+            <a href="mailto:workroo@infineit.com" className="text-gray-400 text-sm hover:text-white transition-colors block mb-2">
+              workroo@infineit.com
             </a>
             <a href="tel:+61425164118" className="text-gray-400 text-sm hover:text-white transition-colors">
               +61 425 164 118
