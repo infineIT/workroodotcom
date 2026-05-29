@@ -9,6 +9,7 @@ const testimonials = [
     initial: "Y",
     photo: "https://www.workroo.com/assets/img/testimonials/testimonials-2.jpg",
     type: "Workshop Owner",
+    logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/68dea466b_Hallam-Hi-Tech-Logo-Light-Background.png",
   },
   {
     quote: "I have total visibility on what's happening in my workshop. Confidently I can take a vacation.",
@@ -26,6 +27,7 @@ const testimonials = [
     initial: "J",
     photo: "https://www.workroo.com/assets/img/testimonials/testimonials-1.jpg",
     type: "Customer",
+    logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/68dea466b_Hallam-Hi-Tech-Logo-Light-Background.png",
   },
 ];
 
@@ -76,6 +78,11 @@ export default function TestimonialsSection() {
                   "{t.quote}"
                 </p>
               </div>
+              {t.logo && (
+                <div className="mb-4">
+                  <img src={t.logo} alt="Company logo" className="h-10 w-auto object-contain" />
+                </div>
+              )}
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
                   {t.photo ? (
