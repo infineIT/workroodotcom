@@ -19,6 +19,7 @@ const testimonials = [
     photo: null,
     type: "Operations",
     featured: true,
+    logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/b8325d390_omega-auto-parts-logo-colour.svg",
   },
   {
     quote: "Wow — this is so amazing! I have never seen what was done to my car before. Now I know what I pay for.",
