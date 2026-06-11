@@ -28,6 +28,7 @@ export default function Navbar() {
               {item}
             </a>
           ))}
+          <a href="/blog" className="text-sm text-gray-600 hover:text-orange-500 transition-colors">Blog</a>
         </div>
 
         <a
