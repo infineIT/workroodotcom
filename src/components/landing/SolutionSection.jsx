@@ -33,7 +33,7 @@ export default function SolutionSection() {
             initial={{ opacity: 0, y: 12 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-500 text-lg leading-relaxed mb-8"
+            className="text-gray-600 text-lg leading-relaxed mb-8"
           >
             Provide customers with a live, visual capture of all work carried out on their vehicle.
             Every step is documented in real time — creating a True Car Record that builds genuine trust

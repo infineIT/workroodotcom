@@ -126,7 +126,7 @@ export default function ProblemSection() {
                     <AnimatePresence>
                       {active === i && (
                         <motion.p
-                          className="text-xs text-gray-500 leading-relaxed"
+                          className="text-xs text-gray-600 leading-relaxed"
                           initial={{ opacity: 0, height: 0 }}
                           animate={{ opacity: 1, height: "auto" }}
                           exit={{ opacity: 0, height: 0 }}

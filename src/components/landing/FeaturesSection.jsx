@@ -9,7 +9,7 @@ const features = [
     title: "Live Work Capture",
     headline: "Make Every Repair Visible",
     description: "Provide customers with a live, visual capture of all work carried out on their vehicle. Every step is documented in real time — creating a True Car Record that builds genuine trust and brand loyalty.",
-    highlight: "20% increase in customer engagement",
+    highlight: "30% increase in customer engagement",
   },
   {
     icon: MessageCircle,
@@ -169,7 +169,7 @@ export default function FeaturesSection() {
               <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
                 {features[activeFeature].headline}
               </h3>
-              <p className="text-gray-500 text-base leading-relaxed mb-8">
+              <p className="text-gray-600 text-base leading-relaxed mb-8">
                 {features[activeFeature].description}
               </p>
             </div>

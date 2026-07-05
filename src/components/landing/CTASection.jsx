@@ -61,7 +61,7 @@ export default function CTASection() {
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.2 }}
-              className="text-gray-500 text-lg leading-relaxed mb-8"
+              className="text-gray-600 text-lg leading-relaxed mb-8"
             >
               Join workshops across Australia already using workroo to build trust, reduce friction, and grow their business.
             </motion.p>
