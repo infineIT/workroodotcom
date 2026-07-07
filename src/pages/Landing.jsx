@@ -5,7 +5,6 @@ import HeroSection from "@/components/landing/HeroSection";
 import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
 import FeaturesSection from "../components/landing/FeaturesSection.jsx";
-import WordmarkMarquee from "@/components/landing/WordmarkMarquee";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
 import StatsSection from "@/components/landing/StatsSection";
 import CTASection from "@/components/landing/CTASection";
@@ -31,7 +30,6 @@ export default function Landing() {
       <ProblemSection />
       <SolutionSection />
       <FeaturesSection />
-      <WordmarkMarquee />
       <StatsSection />
       <TestimonialsSection />
       <BlogPreviewSection />

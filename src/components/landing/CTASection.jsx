@@ -40,12 +40,11 @@ export default function CTASection() {
               Get started
             </p>
             <h2
-              className="font-display text-ink mb-6"
-              style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+              className="text-ink mb-6"
+              style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
               data-reveal
             >
-              Put your workshop{" "}
-              <em className="italic text-rust">on the record</em>.
+              Put your workshop <span className="text-rust">on the record</span>.
             </h2>
             <p className="text-ink/75 text-lg leading-relaxed max-w-md mb-12" data-reveal>
               Workshops across Australia use Workroo to build trust, cut
@@ -60,7 +59,7 @@ export default function CTASection() {
                     i === included.length - 1 ? "hairline-b" : ""
                   }`}
                 >
-                  <span className="font-display italic text-taupe text-xs">
+                  <span className="text-rust text-xs font-semibold">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {item}
@@ -73,8 +72,8 @@ export default function CTASection() {
             {submitted ? (
               <div className="flex flex-col justify-center h-full" data-reveal>
                 <p
-                  className="font-display text-ink mb-4"
-                  style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+                  className="font-bold text-ink mb-4"
+                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}
                 >
                   You're on the list.
                 </p>
@@ -85,16 +84,16 @@ export default function CTASection() {
             ) : (
               <div data-reveal>
                 <p
-                  className="font-display text-ink mb-2"
-                  style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.1rem)" }}
+                  className="font-bold text-ink mb-2"
+                  style={{ fontSize: "clamp(1.3rem, 2.4vw, 1.8rem)" }}
                 >
                   Request early access
                 </p>
-                <p className="text-taupe text-sm mb-10">No credit card required.</p>
+                <p className="text-taupe text-sm mb-8">No credit card required.</p>
 
-                <form onSubmit={handleSubmit} className="space-y-8">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label htmlFor="cta-workshop" className="eyebrow block mb-1">
+                    <label htmlFor="cta-workshop" className="eyebrow eyebrow-muted block mb-1">
                       Workshop name
                     </label>
                     <input
@@ -106,7 +105,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-name" className="eyebrow block mb-1">
+                    <label htmlFor="cta-name" className="eyebrow eyebrow-muted block mb-1">
                       Contact name
                     </label>
                     <input
@@ -118,7 +117,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-email" className="eyebrow block mb-1">
+                    <label htmlFor="cta-email" className="eyebrow eyebrow-muted block mb-1">
                       Email address
                     </label>
                     <input
@@ -131,7 +130,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-phone" className="eyebrow block mb-1">
+                    <label htmlFor="cta-phone" className="eyebrow eyebrow-muted block mb-1">
                       Phone number
                     </label>
                     <input
@@ -143,7 +142,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-size" className="eyebrow block mb-1">
+                    <label htmlFor="cta-size" className="eyebrow eyebrow-muted block mb-1">
                       Workshop size
                     </label>
                     <select

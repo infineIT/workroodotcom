@@ -85,9 +85,6 @@ export default function Navbar() {
       </header>
 
       <nav id="site-menu" className={`menu-overlay ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
-        <div className="menu-motif-circle" aria-hidden="true" />
-        <div className="menu-motif-word" aria-hidden="true">roo</div>
-
         <ul className="relative flex flex-col items-start gap-1">
           {menuLinks.map((link, i) => (
             <li key={link.label}>

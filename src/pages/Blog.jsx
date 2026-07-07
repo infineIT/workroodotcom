@@ -25,11 +25,11 @@ export default function Blog() {
             Blog
           </p>
           <h1
-            className="font-display text-ink mb-6"
-            style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
+            className="text-ink mb-6"
+            style={{ fontSize: "clamp(2.2rem, 5vw, 3.6rem)" }}
             data-reveal
           >
-            From the <em className="italic text-rust">workshop</em>.
+            From the <span className="text-rust">workshop</span>.
           </h1>
           <p className="text-ink/75 text-lg max-w-md" data-reveal>
             Tips, stories and news from the Workroo team.
@@ -41,7 +41,7 @@ export default function Blog() {
             <div className="w-8 h-8 border-2 border-hairline border-t-ink rounded-full animate-spin" />
           </div>
         ) : posts.length === 0 ? (
-          <p className="text-taupe py-24 font-display text-2xl">
+          <p className="text-taupe py-24 text-xl font-medium">
             No posts yet. Check back soon.
           </p>
         ) : (
@@ -55,17 +55,17 @@ export default function Blog() {
                 }`}
               >
                 <div className="md:col-span-2 flex flex-col gap-2">
-                  <span className="eyebrow">{post.published_date || ""}</span>
+                  <span className="eyebrow eyebrow-muted">{post.published_date || ""}</span>
                   {post.tags && post.tags.length > 0 && (
-                    <span className="text-taupe text-xs uppercase tracking-[0.2em]">
+                    <span className="text-rust text-xs font-semibold uppercase tracking-[0.14em]">
                       {post.tags[0]}
                     </span>
                   )}
                 </div>
                 <div className="md:col-span-7">
                   <h2
-                    className="font-display text-ink transition-colors duration-300 group-hover:text-rust"
-                    style={{ fontSize: "clamp(1.5rem, 3vw, 2.3rem)" }}
+                    className="text-ink font-semibold transition-colors duration-300 group-hover:text-rust"
+                    style={{ fontSize: "clamp(1.3rem, 2.4vw, 1.8rem)" }}
                   >
                     {post.title}
                   </h2>

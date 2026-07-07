@@ -39,12 +39,11 @@ export default function TestimonialsSection() {
             Testimonials
           </p>
           <h2
-            className="font-display text-ink max-w-3xl"
-            style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+            className="text-ink max-w-3xl"
+            style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
             data-reveal
           >
-            Real words from{" "}
-            <em className="italic text-rust">real workshops</em>.
+            Real words from <span className="text-rust">real workshops</span>.
           </h2>
         </div>
 
@@ -62,8 +61,8 @@ export default function TestimonialsSection() {
               </div>
               <blockquote className="md:col-span-6">
                 <p
-                  className="font-display text-ink leading-snug"
-                  style={{ fontSize: "clamp(1.35rem, 2.4vw, 1.9rem)" }}
+                  className="text-ink font-medium leading-snug"
+                  style={{ fontSize: "clamp(1.15rem, 2vw, 1.5rem)" }}
                 >
                   “{t.quote}”
                 </p>

@@ -12,10 +12,10 @@ export default function Footer() {
     <footer className="bg-ink text-cream">
       <div className="max-w-6xl mx-auto px-6 pt-16 md:pt-24 pb-10">
         <p
-          className="font-display leading-none mb-14 md:mb-20"
-          style={{ fontSize: "clamp(3rem, 10vw, 8rem)", fontWeight: 340 }}
+          className="font-bold uppercase tracking-tight leading-none mb-12 md:mb-16"
+          style={{ fontSize: "clamp(1.9rem, 4vw, 2.8rem)" }}
         >
-          Workroo
+          Work<span className="text-rust-bright">roo</span>
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-14">
@@ -45,7 +45,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="font-display text-lg text-cream/80 hover:text-rust-bright transition-colors"
+                    className="text-sm font-medium text-cream/80 hover:text-rust-bright transition-colors"
                   >
                     {link.label}
                   </a>
@@ -62,7 +62,7 @@ export default function Footer() {
                   href="https://www.workroo.com.au"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-lg text-cream/80 hover:text-rust-bright transition-colors"
+                  className="text-sm font-medium text-cream/80 hover:text-rust-bright transition-colors"
                 >
                   Website
                 </a>
@@ -72,7 +72,7 @@ export default function Footer() {
                   href="https://www.facebook.com/workroo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-lg text-cream/80 hover:text-rust-bright transition-colors"
+                  className="text-sm font-medium text-cream/80 hover:text-rust-bright transition-colors"
                 >
                   Facebook
                 </a>
@@ -82,7 +82,7 @@ export default function Footer() {
                   href="https://www.linkedin.com/company/workroo/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-display text-lg text-cream/80 hover:text-rust-bright transition-colors"
+                  className="text-sm font-medium text-cream/80 hover:text-rust-bright transition-colors"
                 >
                   LinkedIn
                 </a>
@@ -93,7 +93,7 @@ export default function Footer() {
 
         <div
           className="pt-8 flex flex-col md:flex-row justify-between gap-3 text-xs text-cream/40"
-          style={{ borderTop: "1px solid rgba(242,240,235,0.18)" }}
+          style={{ borderTop: "1px solid rgba(255,255,255,0.18)" }}
         >
           <span>© 2026 Workroo. All rights reserved.</span>
           <span>Melbourne, Australia</span>

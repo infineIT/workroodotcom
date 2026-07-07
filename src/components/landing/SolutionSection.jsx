@@ -13,12 +13,11 @@ export default function SolutionSection() {
 
           <div className="lg:col-span-8">
             <h2
-              className="font-display text-ink mb-8"
-              style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+              className="text-ink mb-8"
+              style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
               data-reveal
             >
-              Make every repair{" "}
-              <em className="italic text-rust">visible</em>.
+              Make every repair <span className="text-rust">visible</span>.
             </h2>
 
             <p className="text-ink/75 text-lg leading-relaxed max-w-xl mb-14" data-reveal>
@@ -29,12 +28,12 @@ export default function SolutionSection() {
 
             <div className="hairline-t pt-8 flex items-baseline gap-6" data-reveal>
               <span
-                className="font-display text-ink"
-                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+                className="font-bold text-rust"
+                style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}
               >
                 30%
               </span>
-              <span className="eyebrow">More customer engagement</span>
+              <span className="eyebrow eyebrow-muted">More customer engagement</span>
             </div>
           </div>
         </div>

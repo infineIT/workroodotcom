@@ -53,11 +53,11 @@ export default function ProblemSection() {
             How it works
           </p>
           <h2
-            className="font-display text-ink max-w-3xl"
-            style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+            className="text-ink max-w-3xl"
+            style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
             data-reveal
           >
-            Every repair, <em className="italic text-rust">on the record</em>.
+            Every repair, <span className="text-rust">on the record</span>.
           </h2>
         </div>
 
@@ -94,7 +94,7 @@ export default function ProblemSection() {
               >
                 <div className="flex items-baseline gap-6">
                   <span
-                    className={`font-display italic text-lg transition-colors duration-300 ${
+                    className={`text-sm font-semibold transition-colors duration-300 ${
                       active === i ? "text-rust" : "text-taupe"
                     }`}
                   >
@@ -102,7 +102,7 @@ export default function ProblemSection() {
                   </span>
                   <div className="flex-1">
                     <h3
-                      className={`font-display text-xl md:text-2xl transition-colors duration-300 ${
+                      className={`text-lg md:text-xl font-semibold transition-colors duration-300 ${
                         active === i ? "text-ink" : "text-taupe"
                       }`}
                     >

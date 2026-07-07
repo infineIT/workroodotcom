@@ -43,7 +43,7 @@ export default function BlogPost() {
   if (notFound || !post) {
     return (
       <div className="min-h-screen bg-cream flex flex-col items-center justify-center gap-6 px-6">
-        <p className="font-display text-ink text-3xl">Post not found.</p>
+        <p className="text-ink text-2xl font-bold">Post not found.</p>
         <Link to="/blog" className="btn-pill">
           Back to blog
         </Link>
@@ -67,8 +67,8 @@ export default function BlogPost() {
         )}
 
         <h1
-          className="font-display text-ink mb-8"
-          style={{ fontSize: "clamp(2.3rem, 5.5vw, 3.8rem)" }}
+          className="text-ink mb-8"
+          style={{ fontSize: "clamp(1.9rem, 4.5vw, 3rem)" }}
         >
           {post.title}
         </h1>

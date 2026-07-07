@@ -103,12 +103,11 @@ export default function FeaturesSection() {
             Features
           </p>
           <h2
-            className="font-display text-ink max-w-3xl"
-            style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+            className="text-ink max-w-3xl"
+            style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
             data-reveal
           >
-            Every tool your workshop{" "}
-            <em className="italic text-rust">needs</em>.
+            Every tool your workshop <span className="text-rust">needs</span>.
           </h2>
         </div>
 
@@ -126,14 +125,14 @@ export default function FeaturesSection() {
                 }`}
               >
                 <span
-                  className={`font-display italic text-sm transition-colors duration-300 ${
+                  className={`text-xs font-semibold transition-colors duration-300 ${
                     i === activeFeature ? "text-rust" : "text-taupe"
                   }`}
                 >
                   {f.number}
                 </span>
                 <span
-                  className={`font-display text-lg transition-colors duration-300 ${
+                  className={`text-base font-semibold transition-colors duration-300 ${
                     i === activeFeature ? "text-ink" : "text-taupe"
                   }`}
                 >
@@ -145,19 +144,19 @@ export default function FeaturesSection() {
 
           {/* Feature detail */}
           <div className="lg:col-span-7 lg:pt-2" data-reveal key={activeFeature}>
-            <span className="font-display italic text-taupe" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
+            <span className="font-bold text-rust" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
               {feature.number}
             </span>
             <h3
-              className="font-display text-ink mt-4 mb-6"
-              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+              className="text-ink mt-4 mb-6"
+              style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}
             >
               {feature.headline}
             </h3>
             <p className="text-ink/75 text-lg leading-relaxed max-w-lg mb-10">
               {feature.description}
             </p>
-            <p className="eyebrow hairline-t pt-6 inline-block">{feature.highlight}</p>
+            <p className="eyebrow eyebrow-muted hairline-t pt-6 inline-block">{feature.highlight}</p>
           </div>
         </div>
       </div>

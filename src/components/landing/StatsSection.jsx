@@ -15,8 +15,8 @@ export default function StatsSection() {
           {stats.map((stat) => (
             <div key={stat.label} className="hairline-t pt-6" data-reveal>
               <div
-                className="font-display text-ink mb-4"
-                style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)" }}
+                className="font-bold text-ink mb-3"
+                style={{ fontSize: "clamp(1.9rem, 3.8vw, 3rem)" }}
               >
                 {stat.value}
               </div>

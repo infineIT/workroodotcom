@@ -20,10 +20,10 @@ export default function BlogPreviewSection() {
           <div data-reveal>
             <p className="eyebrow mb-5">Blog</p>
             <h2
-              className="font-display text-ink"
-              style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+              className="text-ink"
+              style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
             >
-              From the <em className="italic text-rust">workshop</em>.
+              From the <span className="text-rust">workshop</span>.
             </h2>
           </div>
           <Link to="/blog" className="btn-pill" data-reveal>
@@ -42,12 +42,12 @@ export default function BlogPreviewSection() {
               data-reveal
             >
               <div className="md:col-span-2">
-                <span className="eyebrow">{post.published_date || ""}</span>
+                <span className="eyebrow eyebrow-muted">{post.published_date || ""}</span>
               </div>
               <div className="md:col-span-7">
                 <h3
-                  className="font-display text-ink transition-colors duration-300 group-hover:text-rust"
-                  style={{ fontSize: "clamp(1.4rem, 2.6vw, 2rem)" }}
+                  className="text-ink font-semibold transition-colors duration-300 group-hover:text-rust"
+                  style={{ fontSize: "clamp(1.2rem, 2.2vw, 1.6rem)" }}
                 >
                   {post.title}
                 </h3>
