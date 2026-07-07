@@ -4,13 +4,14 @@ import { base44 } from "@/api/base44Client";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
 import ReactMarkdown from "react-markdown";
-import { ArrowLeft, Calendar, Tag } from "lucide-react";
+import { usePageMotion } from "@/lib/motion";
 
 export default function BlogPost() {
   const { slugOrId } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const motionRef = usePageMotion([loading]);
 
   useEffect(() => {
     async function load() {
@@ -33,62 +34,68 @@ export default function BlogPost() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin" />
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-hairline border-t-ink rounded-full animate-spin" />
       </div>
     );
   }
 
   if (notFound || !post) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-xl font-semibold text-gray-700">Post not found.</p>
-        <Link to="/blog" className="text-sm font-medium" style={{ color: "#F05A28" }}>← Back to Blog</Link>
+      <div className="min-h-screen bg-cream flex flex-col items-center justify-center gap-6 px-6">
+        <p className="font-display text-ink text-3xl">Post not found.</p>
+        <Link to="/blog" className="btn-pill">
+          Back to blog
+        </Link>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white font-body">
+    <div ref={motionRef} className="min-h-screen bg-cream font-body">
       <Navbar />
-      <div className="pt-24 pb-20 max-w-3xl mx-auto px-6">
-        <Link to="/blog" className="inline-flex items-center gap-1 text-sm text-gray-400 hover:text-gray-600 mb-8">
-          <ArrowLeft className="w-4 h-4" /> Back to Blog
+      <div className="pt-32 md:pt-44 pb-24 max-w-3xl mx-auto px-6">
+        <Link
+          to="/blog"
+          className="eyebrow inline-block mb-10 transition-colors hover:text-rust"
+        >
+          ← Back to blog
         </Link>
 
-        {post.cover_image && (
-          <div className="rounded-2xl overflow-hidden mb-8 h-64 md:h-80">
-            <img src={post.cover_image} alt={post.title} className="w-full h-full object-cover" />
-          </div>
-        )}
-
         {post.tags && post.tags.length > 0 && (
-          <div className="flex items-center gap-1 mb-4">
-            <Tag className="w-3 h-3" style={{ color: "#F05A28" }} />
-            {post.tags.map((tag) => (
-              <span key={tag} className="text-xs font-semibold uppercase tracking-wider mr-2" style={{ color: "#F05A28" }}>
-                {tag}
-              </span>
-            ))}
-          </div>
+          <p className="eyebrow mb-4">{post.tags.join(" · ")}</p>
         )}
 
-        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{post.title}</h1>
+        <h1
+          className="font-display text-ink mb-8"
+          style={{ fontSize: "clamp(2.3rem, 5.5vw, 3.8rem)" }}
+        >
+          {post.title}
+        </h1>
 
-        <div className="flex items-center gap-4 mb-8 pb-8 border-b border-gray-100">
+        <div className="flex items-center gap-4 mb-10 pb-8 hairline-b">
           {post.author_avatar && (
-            <img src={post.author_avatar} alt={post.author_name} className="w-9 h-9 rounded-full object-cover" />
+            <img
+              src={post.author_avatar}
+              alt={post.author_name}
+              className="w-9 h-9 rounded-full object-cover"
+            />
           )}
-          {post.author_name && <span className="text-sm font-medium text-gray-700">{post.author_name}</span>}
+          {post.author_name && (
+            <span className="text-ink text-sm font-medium">{post.author_name}</span>
+          )}
           {post.published_date && (
-            <div className="flex items-center gap-1 text-xs text-gray-400">
-              <Calendar className="w-3 h-3" />
-              <span>{post.published_date}</span>
-            </div>
+            <span className="eyebrow">{post.published_date}</span>
           )}
         </div>
 
-        <div className="prose prose-gray max-w-none text-gray-700 leading-relaxed">
+        {post.cover_image && (
+          <div className="img-frame h-64 md:h-96 mb-12" data-img-reveal data-parallax>
+            <img src={post.cover_image} alt={post.title} />
+          </div>
+        )}
+
+        <div className="post-prose">
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
       </div>

@@ -1,182 +1,164 @@
-import React, { useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
-import { Eye, MessageCircle, Bell, Cloud, Calendar, Settings, DollarSign, Users, Truck, Clock, BarChart } from "lucide-react";
+import React, { useState } from "react";
 
 const features = [
   {
-    icon: Eye,
     number: "01",
-    title: "Live Work Capture",
-    headline: "Make Every Repair Visible",
-    description: "Provide customers with a live, visual capture of all work carried out on their vehicle. Every step is documented in real time — creating a True Car Record that builds genuine trust and brand loyalty.",
-    highlight: "30% increase in customer engagement",
+    title: "Live work capture",
+    headline: "Make every repair visible",
+    description:
+      "Give customers a live, visual capture of the work on their vehicle. Every step is documented in real time — a true record of the car that builds trust and loyalty.",
+    highlight: "30% more customer engagement",
   },
   {
-    icon: MessageCircle,
     number: "02",
-    title: "Real-Time Customer Connection",
-    headline: "Answer Questions Instantly",
-    description: "workroo opens seamless communication channels between your team and your customers. No more missed calls, no more guessing. Transparent dialogue at every stage of the job.",
-    highlight: "Answer queries → Build trust → Grow business",
+    title: "Real-time customer connection",
+    headline: "Answer questions instantly",
+    description:
+      "Workroo opens a direct channel between your team and your customers. No missed calls, no guessing. A clear conversation at every stage of the job.",
+    highlight: "Answered questions build trust",
   },
   {
-    icon: Bell,
     number: "03",
-    title: "Intelligent Alerts",
-    headline: "Never Miss a Beat",
-    description: "Send automated alerts for bookings, pickups, and drop-offs. Build custom alert sequences and schedule them to match your workshop's unique workflow — no coding required.",
+    title: "Intelligent alerts",
+    headline: "Never miss a beat",
+    description:
+      "Send automated alerts for bookings, pickups and drop-offs. Build custom alert sequences that match your workshop's workflow — no coding required.",
     highlight: "Custom alerts, on your schedule",
   },
   {
-    icon: Cloud,
     number: "04",
-    title: "Cloud-First Workshop",
-    headline: "Do Business Anywhere",
-    description: "Connect to your workshop from any device, anywhere in the world. Stay informed about every job in progress, manage operations remotely, and never be out of the loop — even on vacation.",
-    highlight: "Full visibility. Zero boundaries.",
+    title: "Cloud-first workshop",
+    headline: "Do business anywhere",
+    description:
+      "Connect to your workshop from any device, anywhere. Stay across every job in progress and manage operations remotely — even on holiday.",
+    highlight: "Full visibility, from anywhere",
   },
   {
-    icon: Calendar,
     number: "05",
-    title: "Booking Diary",
-    headline: "Bookings Made Simple",
-    description: "Create, reschedule or delete bookings in just a few clicks. Bookings are readily convertible to jobs, saving you time.",
-    highlight: "Faster bookings. Less admin.",
+    title: "Booking diary",
+    headline: "Bookings made simple",
+    description:
+      "Create, reschedule or delete bookings in a few clicks. Bookings convert straight into jobs, which saves you time.",
+    highlight: "Faster bookings, less admin",
   },
   {
-    icon: Settings,
     number: "06",
-    title: "Job Management",
-    headline: "Your Workshop at a Glance",
-    description: "The essence of workroo — keeping you up to date with each and every job in your workshop at a glance. Manage jobs with your colleagues centrally and in real time.",
-    highlight: "Every job. Always in control.",
+    title: "Job management",
+    headline: "Your workshop at a glance",
+    description:
+      "Keep up to date with every job in your workshop at a glance. Manage jobs with your colleagues centrally and in real time.",
+    highlight: "Every job, in view",
   },
   {
-    icon: DollarSign,
     number: "07",
-    title: "Invoicing / Quoting",
-    headline: "Quick & Easy Invoicing",
-    description: "Quick and easy invoicing/quoting with preconfigured invoice items. Convert invoices/quotes to jobs or bookings directly.",
-    highlight: "Invoice faster. Get paid sooner.",
+    title: "Invoicing and quoting",
+    headline: "Quick and easy invoicing",
+    description:
+      "Invoice and quote fast with preconfigured items. Convert invoices and quotes into jobs or bookings directly.",
+    highlight: "Invoice faster, get paid sooner",
   },
   {
-    icon: Users,
     number: "08",
-    title: "Customer & Vehicle Management",
-    headline: "Know Your Customers",
-    description: "Easily store your workshop's customers details for use throughout the system via workroo's intelligent auto-suggest and auto-complete functions.",
-    highlight: "Smart suggestions. Less typing.",
+    title: "Customer and vehicle management",
+    headline: "Know your customers",
+    description:
+      "Store customer details once and use them across the system, with auto-suggest and auto-complete doing the typing for you.",
+    highlight: "Smart suggestions, less typing",
   },
   {
-    icon: Truck,
     number: "09",
-    title: "Supplier Management",
-    headline: "Stay on Top of Supply",
-    description: "Reorder from your trusted suppliers in a dash. Stay on top of your bills and bill payments with ease.",
-    highlight: "Suppliers organised. Cash flow clear.",
+    title: "Supplier management",
+    headline: "Stay on top of supply",
+    description:
+      "Reorder from your trusted suppliers in a dash. Keep bills and payments organised without effort.",
+    highlight: "Suppliers organised, cash flow clear",
   },
   {
-    icon: Clock,
     number: "10",
-    title: "Service Scheduling",
-    headline: "Never Miss a Service",
-    description: "Easily know which vehicles are due or overdue for service. Easily send reminders to your customers via both email and SMS.",
-    highlight: "Automated reminders. Happy customers.",
+    title: "Service scheduling",
+    headline: "Never miss a service",
+    description:
+      "Know which vehicles are due or overdue for service, and send reminders to customers by email or SMS.",
+    highlight: "Reminders that send themselves",
   },
   {
-    icon: BarChart,
     number: "11",
     title: "Reporting",
-    headline: "Understand Your Business",
-    description: "Better understand your business with our reporting system — everything from sales and received payments to stock value and employee efficiency.",
-    highlight: "Data-driven decisions. Better results.",
+    headline: "Understand your business",
+    description:
+      "See the numbers that matter — sales, payments received, stock value and team efficiency — in one reporting system.",
+    highlight: "Decisions backed by numbers",
   },
 ];
 
 export default function FeaturesSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [activeFeature, setActiveFeature] = useState(0);
+  const feature = features[activeFeature];
 
   return (
-    <section ref={ref} id="features" className="py-24 bg-gray-50">
+    <section id="features" className="section-pad bg-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="mb-14 text-center"
-        >
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>Features</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mx-auto leading-tight">
-            Every Tool Your Workshop Needs.{" "}
-            <span style={{ color: "#F05A28" }}>So You Stay Ahead.</span>
+        <div data-reveal-group className="mb-14 md:mb-20">
+          <p className="eyebrow mb-5" data-reveal>
+            Features
+          </p>
+          <h2
+            className="font-display text-ink max-w-3xl"
+            style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+            data-reveal
+          >
+            Every tool your workshop{" "}
+            <em className="italic text-rust">needs</em>.
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Tab list */}
-          <div className="lg:col-span-2 flex flex-col gap-1 lg:max-h-[560px] lg:overflow-y-auto pr-1">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16" data-reveal-group>
+          {/* Feature index */}
+          <div className="lg:col-span-5" data-reveal>
             {features.map((f, i) => (
-              <motion.button
-                key={i}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: i * 0.04 }}
+              <button
+                key={f.number}
+                type="button"
                 onClick={() => setActiveFeature(i)}
-                className={`text-left px-4 py-3 rounded-xl border transition-all duration-200 ${
-                  i === activeFeature
-                    ? "bg-white border-orange-200 shadow-sm"
-                    : "bg-transparent border-transparent hover:bg-white hover:border-gray-100"
+                aria-current={i === activeFeature}
+                className={`flex w-full items-baseline gap-5 text-left hairline-t py-3.5 transition-colors duration-300 ${
+                  i === features.length - 1 ? "hairline-b" : ""
                 }`}
               >
-                <div className="flex items-center gap-3">
-                  <span
-                    className="text-xs font-mono w-6 flex-shrink-0"
-                    style={{ color: i === activeFeature ? "#F05A28" : "#9CA3AF" }}
-                  >
-                    {f.number}
-                  </span>
-                  <span
-                    className="font-semibold text-sm"
-                    style={{ color: i === activeFeature ? "#111111" : "#9CA3AF" }}
-                  >
-                    {f.title}
-                  </span>
-                </div>
-              </motion.button>
+                <span
+                  className={`font-display italic text-sm transition-colors duration-300 ${
+                    i === activeFeature ? "text-rust" : "text-taupe"
+                  }`}
+                >
+                  {f.number}
+                </span>
+                <span
+                  className={`font-display text-lg transition-colors duration-300 ${
+                    i === activeFeature ? "text-ink" : "text-taupe"
+                  }`}
+                >
+                  {f.title}
+                </span>
+              </button>
             ))}
           </div>
 
           {/* Feature detail */}
-          <motion.div
-            key={activeFeature}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35 }}
-            className="lg:col-span-3 bg-white rounded-2xl border border-gray-100 shadow-sm p-8 md:p-10 flex flex-col justify-between"
-            style={{ minHeight: 320 }}
-          >
-            <div>
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center mb-6"
-                style={{ backgroundColor: "#FEF1EC" }}
-              >
-                {React.createElement(features[activeFeature].icon, {
-                  className: "w-6 h-6",
-                  style: { color: "#F05A28" },
-                })}
-              </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight">
-                {features[activeFeature].headline}
-              </h3>
-              <p className="text-gray-600 text-base leading-relaxed mb-8">
-                {features[activeFeature].description}
-              </p>
-            </div>
-            <div className="bg-gray-900 text-white text-sm font-medium rounded-lg px-5 py-3 inline-block">
-              {features[activeFeature].highlight}
-            </div>
-          </motion.div>
+          <div className="lg:col-span-7 lg:pt-2" data-reveal key={activeFeature}>
+            <span className="font-display italic text-taupe" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
+              {feature.number}
+            </span>
+            <h3
+              className="font-display text-ink mt-4 mb-6"
+              style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+            >
+              {feature.headline}
+            </h3>
+            <p className="text-ink/75 text-lg leading-relaxed max-w-lg mb-10">
+              {feature.description}
+            </p>
+            <p className="eyebrow hairline-t pt-6 inline-block">{feature.highlight}</p>
+          </div>
         </div>
       </div>
     </section>

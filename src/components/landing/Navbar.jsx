@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { X } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 
-const navLinks = [
-  { label: "How It Works", href: "#how-it-works" },
+const menuLinks = [
+  { label: "Home", href: "#top" },
+  { label: "How it works", href: "#how-it-works" },
   { label: "Features", href: "#features" },
   { label: "Testimonials", href: "#testimonials" },
+  { label: "Blog", href: "/blog" },
+  { label: "Early access", href: "#cta" },
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  // Lock body scroll while the mobile drawer is open
+  // Lock body scroll while the menu is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => {
@@ -25,111 +23,117 @@ export default function Navbar() {
     };
   }, [menuOpen]);
 
-  // Smooth-scroll to an in-page anchor regardless of host routing quirks.
-  const handleAnchorClick = (e, href) => {
-    if (!href.startsWith("#")) return; // let real routes (e.g. /blog) navigate normally
+  // Escape closes the menu
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  const handleLinkClick = (e, href) => {
+    setMenuOpen(false);
+    if (!href.startsWith("#")) {
+      e.preventDefault();
+      navigate(href);
+      return;
+    }
+    // Hash link: smooth-scroll on the landing page, otherwise go home first
+    if (location.pathname !== "/") {
+      e.preventDefault();
+      navigate("/" + href);
+      return;
+    }
     const target = href === "#top" ? document.body : document.querySelector(href);
     if (!target) return;
     e.preventDefault();
-    setMenuOpen(false);
     target.scrollIntoView({ behavior: "smooth", block: "start" });
-    // Keep the URL hash in sync without triggering a jump/reload
     if (window.history?.replaceState) {
       window.history.replaceState(null, "", href === "#top" ? window.location.pathname : href);
     }
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-sm border-b border-gray-100" : "bg-white"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="#top" onClick={(e) => handleAnchorClick(e, "#top")} className="flex items-center">
-          <img src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/aaddf76e2_image.png" alt="Workroo" className="h-14 w-auto" />
-        </a>
-
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={(e) => handleAnchorClick(e, item.href)}
-              className="text-sm text-gray-600 hover:text-orange-500 transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-          <a href="/blog" className="text-sm text-gray-600 hover:text-orange-500 transition-colors">Blog</a>
-        </div>
-
+    <div className={menuOpen ? "menu-is-open" : ""}>
+      <header className="site-header">
         <a
-          href="#cta"
-          onClick={(e) => handleAnchorClick(e, "#cta")}
-          className="hidden md:inline-flex items-center px-4 py-2 text-sm font-medium text-white rounded transition-all hover:opacity-90"
-          style={{ backgroundColor: "#F05A28" }}
+          href="/"
+          onClick={(e) => handleLinkClick(e, "#top")}
+          aria-label="Workroo — home"
+          className="logo-mark"
         >
-          Get Early Access
+          <img
+            src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/aaddf76e2_image.png"
+            alt="Workroo"
+          />
         </a>
 
         <button
           type="button"
+          className="menu-btn"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          aria-controls="site-menu"
           onClick={() => setMenuOpen((open) => !open)}
-          className="md:hidden flex items-center justify-center p-2 -mr-2"
         >
-          {menuOpen ? (
-            <X className="w-6 h-6 text-gray-900" />
-          ) : (
-            <span className="flex flex-col gap-1.5">
-              <span className="w-5 h-px bg-gray-900 block" />
-              <span className="w-5 h-px bg-gray-900 block" />
-              <span className="w-3 h-px bg-gray-900 block" />
-            </span>
-          )}
+          <span />
+          <span />
+          <span />
         </button>
-      </div>
+      </header>
 
-      {/* Mobile drawer */}
-      {menuOpen && (
-        <div className="md:hidden fixed inset-0 top-14 z-40">
-          {/* Backdrop */}
-          <div
-            className="absolute inset-0 bg-black/30"
-            onClick={() => setMenuOpen(false)}
-            aria-hidden="true"
-          />
-          <div className="relative bg-white border-b border-gray-100 shadow-lg px-6 py-6 flex flex-col gap-1">
-            {navLinks.map((item) => (
+      <nav id="site-menu" className={`menu-overlay ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
+        <div className="menu-motif-circle" aria-hidden="true" />
+        <div className="menu-motif-word" aria-hidden="true">roo</div>
+
+        <ul className="relative flex flex-col items-start gap-1">
+          {menuLinks.map((link, i) => (
+            <li key={link.label}>
               <a
-                key={item.label}
-                href={item.href}
-                onClick={(e) => handleAnchorClick(e, item.href)}
-                className="py-3 text-base font-medium text-gray-800 hover:text-orange-500 transition-colors border-b border-gray-50"
+                href={link.href.startsWith("#") ? `/${link.href}` : link.href}
+                className="menu-link"
+                style={{ "--i": i }}
+                tabIndex={menuOpen ? 0 : -1}
+                onClick={(e) => handleLinkClick(e, link.href)}
               >
-                {item.label}
+                {link.label}
               </a>
-            ))}
+            </li>
+          ))}
+        </ul>
+
+        <div className="menu-foot font-body text-xs uppercase tracking-[0.2em]">
+          <div className="flex items-center gap-6">
             <a
-              href="/blog"
-              onClick={() => setMenuOpen(false)}
-              className="py-3 text-base font-medium text-gray-800 hover:text-orange-500 transition-colors border-b border-gray-50"
+              href="https://www.workroo.com.au"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={menuOpen ? 0 : -1}
             >
-              Blog
+              Website
             </a>
             <a
-              href="#cta"
-              onClick={(e) => handleAnchorClick(e, "#cta")}
-              className="mt-4 inline-flex items-center justify-center px-4 py-3 text-base font-semibold text-white rounded-lg transition-all hover:opacity-90"
-              style={{ backgroundColor: "#F05A28" }}
+              href="https://www.facebook.com/workroo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={menuOpen ? 0 : -1}
             >
-              Get Early Access
+              Facebook
+            </a>
+            <a
+              href="https://www.linkedin.com/company/workroo/"
+              target="_blank"
+              rel="noopener noreferrer"
+              tabIndex={menuOpen ? 0 : -1}
+            >
+              LinkedIn
             </a>
           </div>
+          <span className="text-cream/40">Melbourne, Australia</span>
         </div>
-      )}
-    </nav>
+      </nav>
+    </div>
   );
 }

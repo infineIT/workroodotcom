@@ -1,34 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const slides = [
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/cf4c7e93a_generated_image.png",
     alt: "Workshop booking and job management dashboard",
-    step: "Step 1",
-    title: "Automated Bookings & Job Management",
-    description: "Streamline your workshop with automated booking confirmations and centralised job management — so your team always knows what's next.",
+    step: "01",
+    title: "Bookings and jobs, in one place",
+    description:
+      "Bookings confirm themselves. Jobs live in a single view. Your team always knows what comes next.",
   },
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/f72246a88_workroocustomerview-task.jpg",
     alt: "Customer connected in real time",
-    step: "Step 2",
-    title: "Customers Get Connected in Real Time",
-    description: "The moment work begins, customers receive live updates on their phone — no more wondering what's happening to their vehicle.",
+    step: "02",
+    title: "Customers connect in real time",
+    description:
+      "The moment work begins, updates reach the customer's phone. No more wondering what's happening to the car.",
   },
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/f53e445e5_generated_image.png",
     alt: "Mechanic documenting progress",
-    step: "Step 3",
-    title: "Mechanics Document Progress",
-    description: "Technicians log every job digitally as they work — creating a verified record that builds trust and eliminates disputes.",
+    step: "03",
+    title: "Mechanics document the work",
+    description:
+      "Technicians log each job as they go. The result is a verified record that ends disputes before they start.",
   },
   {
     url: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/40b0203b6_WorkrooOnthephone1.jpg",
     alt: "Satisfied and returning customers",
-    step: "Step 4",
-    title: "Satisfied & Returning Customers",
-    description: "Transparency builds loyalty. Customers who can see exactly what was done — and why — keep coming back and refer others.",
+    step: "04",
+    title: "Customers come back",
+    description:
+      "People who can see what was done, and why, return. And they tell others.",
   },
 ];
 
@@ -43,111 +46,77 @@ export default function ProblemSection() {
   }, []);
 
   return (
-    <section className="py-20 bg-gray-50" id="how-it-works">
+    <section className="section-pad bg-cream" id="how-it-works">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>
-            How It Works
+        <div data-reveal-group className="mb-14 md:mb-20">
+          <p className="eyebrow mb-5" data-reveal>
+            How it works
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">The Workroo Story</h2>
+          <h2
+            className="font-display text-ink max-w-3xl"
+            style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+            data-reveal
+          >
+            Every repair, <em className="italic text-rust">on the record</em>.
+          </h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-          {/* Main image */}
-          <div className="w-full lg:w-3/5 relative rounded-2xl overflow-hidden shadow-xl bg-gray-200" style={{ minHeight: 360 }}>
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={active}
-                src={slides[active].url}
-                alt={slides[active].alt}
-                className="w-full h-full object-cover absolute inset-0"
-                initial={{ opacity: 0, scale: 1.04 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.97 }}
-                transition={{ duration: 0.7, ease: "easeInOut" }}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          {/* Slideshow image */}
+          <div
+            className="img-frame h-[340px] md:h-[480px] lg:h-[560px]"
+            data-img-reveal
+          >
+            {slides.map((slide, i) => (
+              <img
+                key={slide.step}
+                src={slide.url}
+                alt={slide.alt}
+                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out ${
+                  active === i ? "opacity-100" : "opacity-0"
+                }`}
               />
-            </AnimatePresence>
-
-            {/* Caption overlay */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`caption-${active}`}
-                className="absolute bottom-0 left-0 right-0 p-6"
-                style={{ background: "linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%)" }}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <span className="text-xs font-bold uppercase tracking-widest" style={{ color: "#F05A28" }}>
-                  {slides[active].step}
-                </span>
-                <h3 className="text-white text-xl font-bold mt-1">{slides[active].title}</h3>
-              </motion.div>
-            </AnimatePresence>
+            ))}
           </div>
 
-          {/* Story steps */}
-          <div className="w-full lg:w-2/5 flex flex-col gap-3 justify-center">
+          {/* Steps */}
+          <div data-reveal-group>
             {slides.map((slide, i) => (
               <button
-                key={i}
+                key={slide.step}
+                type="button"
                 onClick={() => setActive(i)}
-                className={`text-left rounded-xl p-5 transition-all duration-400 border ${
-                  active === i
-                    ? "bg-white shadow-md border-orange-200"
-                    : "bg-white/60 border-transparent hover:bg-white hover:shadow-sm"
+                aria-current={active === i}
+                className={`block w-full text-left hairline-t py-6 transition-colors duration-300 ${
+                  i === slides.length - 1 ? "hairline-b" : ""
                 }`}
+                data-reveal
               >
-                <div className="flex items-start gap-4">
-                  {/* Thumbnail */}
-                  <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
-                    <img src={slide.url} alt={slide.alt} className="w-full h-full object-cover" />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span
-                        className="text-xs font-bold uppercase tracking-wider"
-                        style={{ color: active === i ? "#F05A28" : "#9CA3AF" }}
-                      >
-                        {slide.step}
-                      </span>
-                      {active === i && (
-                        <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: "#F05A28" }} />
-                      )}
-                    </div>
-                    <h4
-                      className="font-semibold text-sm leading-snug mb-1"
-                      style={{ color: active === i ? "#111111" : "#6B7280" }}
+                <div className="flex items-baseline gap-6">
+                  <span
+                    className={`font-display italic text-lg transition-colors duration-300 ${
+                      active === i ? "text-rust" : "text-taupe"
+                    }`}
+                  >
+                    {slide.step}
+                  </span>
+                  <div className="flex-1">
+                    <h3
+                      className={`font-display text-xl md:text-2xl transition-colors duration-300 ${
+                        active === i ? "text-ink" : "text-taupe"
+                      }`}
                     >
                       {slide.title}
-                    </h4>
-                    <AnimatePresence>
-                      {active === i && (
-                        <motion.p
-                          className="text-xs text-gray-600 leading-relaxed"
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: "auto" }}
-                          exit={{ opacity: 0, height: 0 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {slide.description}
-                        </motion.p>
-                      )}
-                    </AnimatePresence>
+                    </h3>
+                    {active === i && (
+                      <p className="text-ink/70 text-sm md:text-base mt-3 max-w-md">
+                        {slide.description}
+                      </p>
+                    )}
                   </div>
                 </div>
-
-                {/* Progress bar for active */}
                 {active === i && (
-                  <motion.div
-                    className="mt-3 h-0.5 rounded-full"
-                    style={{ backgroundColor: "#F05A28" }}
-                    initial={{ scaleX: 0, originX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 7, ease: "linear" }}
-                  />
+                  <div key={`bar-${active}`} className="step-progress mt-5" />
                 )}
               </button>
             ))}

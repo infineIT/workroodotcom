@@ -1,19 +1,15 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import { base44 } from "@/api/base44Client";
-import { motion, useInView } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
 
 const included = [
-  "Live job capture & customer portal",
-  "Real-time messaging & alerts",
-  "Cloud dashboard — any device",
-  "Digital car record per vehicle",
+  "Live job capture and customer portal",
+  "Real-time messaging and alerts",
+  "Cloud dashboard on any device",
+  "A digital record for every vehicle",
   "No setup fees",
 ];
 
 export default function CTASection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
@@ -36,117 +32,125 @@ export default function CTASection() {
   };
 
   return (
-    <section ref={ref} id="cta" className="py-24 bg-white">
+    <section id="cta" className="section-pad bg-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={inView ? { opacity: 1 } : {}}
-              className="text-sm font-semibold uppercase tracking-widest mb-4" style={{ color: "#F05A28" }}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          <div data-reveal-group>
+            <p className="eyebrow mb-5" data-reveal>
+              Get started
+            </p>
+            <h2
+              className="font-display text-ink mb-6"
+              style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+              data-reveal
             >
-              Get Started
-            </motion.p>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1 }}
-              className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight"
-            >
-              Your Workshop's{" "}
-              <span style={{ color: "#F05A28" }}>Digital Future</span>{" "}
-              Starts Today.
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.2 }}
-              className="text-gray-600 text-lg leading-relaxed mb-8"
-            >
-              Join workshops across Australia already using workroo to build trust, reduce friction, and grow their business.
-            </motion.p>
+              Put your workshop{" "}
+              <em className="italic text-rust">on the record</em>.
+            </h2>
+            <p className="text-ink/75 text-lg leading-relaxed max-w-md mb-12" data-reveal>
+              Workshops across Australia use Workroo to build trust, cut
+              friction and grow. Yours can too.
+            </p>
 
-            <ul className="space-y-3 mb-8">
+            <ul data-reveal>
               {included.map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#FEF0EA" }}>
-                    <Check className="w-3 h-3" style={{ color: "#F05A28" }} strokeWidth={3} />
-                  </div>
-                  <span className="text-gray-600 text-sm">{item}</span>
+                <li
+                  key={item}
+                  className={`hairline-t py-4 text-ink/80 text-sm flex items-baseline gap-4 ${
+                    i === included.length - 1 ? "hairline-b" : ""
+                  }`}
+                >
+                  <span className="font-display italic text-taupe text-xs">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {item}
                 </li>
               ))}
             </ul>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="bg-white rounded-2xl border border-gray-100 shadow-lg p-8 md:p-10"
-          >
+          <div data-reveal-group>
             {submitted ? (
-              <div className="flex flex-col items-center justify-center py-10 text-center">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mb-5" style={{ backgroundColor: "#FEF0EA" }}>
-                  <Check className="w-7 h-7" style={{ color: "#F05A28" }} strokeWidth={2.5} />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">You're on the list.</h3>
-                <p className="text-gray-500 text-sm">
-                  We'll be in touch at <span className="text-gray-800">{email}</span>
+              <div className="flex flex-col justify-center h-full" data-reveal>
+                <p
+                  className="font-display text-ink mb-4"
+                  style={{ fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)" }}
+                >
+                  You're on the list.
+                </p>
+                <p className="text-taupe">
+                  We'll be in touch at <span className="text-ink">{email}</span>.
                 </p>
               </div>
             ) : (
-              <>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">Request Early Access</h3>
-                <p className="text-gray-400 text-sm mb-6">No credit card required.</p>
+              <div data-reveal>
+                <p
+                  className="font-display text-ink mb-2"
+                  style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.1rem)" }}
+                >
+                  Request early access
+                </p>
+                <p className="text-taupe text-sm mb-10">No credit card required.</p>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-8">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Workshop Name</label>
+                    <label htmlFor="cta-workshop" className="eyebrow block mb-1">
+                      Workshop name
+                    </label>
                     <input
+                      id="cta-workshop"
                       type="text"
                       value={workshopName}
                       onChange={(e) => setWorkshopName(e.target.value)}
-                      placeholder=""
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                      className="input-underline"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Contact Name</label>
+                    <label htmlFor="cta-name" className="eyebrow block mb-1">
+                      Contact name
+                    </label>
                     <input
+                      id="cta-name"
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder=""
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
+                      className="input-underline"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Email Address</label>
+                    <label htmlFor="cta-email" className="eyebrow block mb-1">
+                      Email address
+                    </label>
                     <input
+                      id="cta-email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      placeholder=""
                       required
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-                      />
-                      </div>
-                      <div>
-                      <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Phone Number</label>
-                      <input
+                      className="input-underline"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cta-phone" className="eyebrow block mb-1">
+                      Phone number
+                    </label>
+                    <input
+                      id="cta-phone"
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      placeholder=""
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-900 placeholder-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300"
-                      />
-                      </div>
-                      <div>
-                      <label className="block text-xs font-semibold text-gray-500 mb-1.5 uppercase tracking-wide">Workshop Size</label>
+                      className="input-underline"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cta-size" className="eyebrow block mb-1">
+                      Workshop size
+                    </label>
                     <select
+                      id="cta-size"
                       value={workshopSize}
                       onChange={(e) => setWorkshopSize(e.target.value)}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-gray-600 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 bg-white"
+                      className="input-underline text-ink"
                     >
                       <option value="">Select size</option>
                       <option>Solo mechanic</option>
@@ -156,23 +160,17 @@ export default function CTASection() {
                     </select>
                   </div>
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full flex items-center justify-center gap-2 py-3 text-white font-semibold rounded-lg text-sm transition-opacity hover:opacity-90 mt-2 disabled:opacity-60"
-                    style={{ backgroundColor: "#F05A28" }}
-                  >
-                    {loading ? "Sending..." : "Get Early Access"}
-                    {!loading && <ArrowRight className="w-4 h-4" />}
+                  <button type="submit" disabled={loading} className="btn-pill btn-pill-solid mt-2">
+                    {loading ? "Sending…" : "Request early access"}
                   </button>
                 </form>
 
-                <p className="text-gray-400 text-xs text-center mt-4">
-                  By submitting, you agree to be contacted by the workroo team.
+                <p className="text-taupe text-xs mt-6">
+                  By submitting, you agree to be contacted by the Workroo team.
                 </p>
-              </>
+              </div>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

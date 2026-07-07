@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import { ArrowRight, Calendar } from "lucide-react";
 
 export default function BlogPreviewSection() {
   const [posts, setPosts] = useState([]);
@@ -15,62 +14,56 @@ export default function BlogPreviewSection() {
   if (posts.length === 0) return null;
 
   return (
-    <section className="py-20 bg-white" id="blog">
+    <section className="section-pad bg-cream" id="blog">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-end justify-between mb-12">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "#F05A28" }}>Blog</p>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Latest Insights</h2>
+        <div className="flex flex-wrap items-end justify-between gap-6 mb-12" data-reveal-group>
+          <div data-reveal>
+            <p className="eyebrow mb-5">Blog</p>
+            <h2
+              className="font-display text-ink"
+              style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+            >
+              From the <em className="italic text-rust">workshop</em>.
+            </h2>
           </div>
-          <Link
-            to="/blog"
-            className="hidden md:inline-flex items-center gap-1 text-sm font-semibold hover:opacity-80 transition-opacity"
-            style={{ color: "#F05A28" }}
-          >
-            View all posts <ArrowRight className="w-4 h-4" />
+          <Link to="/blog" className="btn-pill" data-reveal>
+            View all posts
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {posts.map((post) => (
+        <div data-reveal-group>
+          {posts.map((post, i) => (
             <Link
               key={post.id}
               to={`/blog/${post.slug || post.id}`}
-              className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              className={`group grid grid-cols-1 md:grid-cols-12 gap-6 items-center hairline-t py-8 ${
+                i === posts.length - 1 ? "hairline-b" : ""
+              }`}
+              data-reveal
             >
-              {post.cover_image && (
-                <div className="h-44 overflow-hidden">
-                  <img
-                    src={post.cover_image}
-                    alt={post.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-              )}
-              <div className="p-5">
-                <h3 className="text-base font-bold text-gray-900 mb-2 group-hover:text-orange-500 transition-colors line-clamp-2">
+              <div className="md:col-span-2">
+                <span className="eyebrow">{post.published_date || ""}</span>
+              </div>
+              <div className="md:col-span-7">
+                <h3
+                  className="font-display text-ink transition-colors duration-300 group-hover:text-rust"
+                  style={{ fontSize: "clamp(1.4rem, 2.6vw, 2rem)" }}
+                >
                   {post.title}
                 </h3>
                 {post.excerpt && (
-                  <p className="text-sm text-gray-500 line-clamp-2 mb-3">{post.excerpt}</p>
+                  <p className="text-taupe text-sm mt-2 max-w-xl">{post.excerpt}</p>
                 )}
-                <div className="flex items-center gap-1 text-xs text-gray-400">
-                  <Calendar className="w-3 h-3" />
-                  <span>{post.published_date || ""}</span>
-                </div>
+              </div>
+              <div className="md:col-span-3 md:justify-self-end">
+                {post.cover_image && (
+                  <div className="img-frame w-full md:w-44 h-28">
+                    <img src={post.cover_image} alt={post.title} />
+                  </div>
+                )}
               </div>
             </Link>
           ))}
-        </div>
-
-        <div className="text-center mt-8 md:hidden">
-          <Link
-            to="/blog"
-            className="inline-flex items-center gap-1 text-sm font-semibold"
-            style={{ color: "#F05A28" }}
-          >
-            View all posts <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
       </div>
     </section>

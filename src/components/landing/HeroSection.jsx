@@ -1,90 +1,72 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, ChevronDown } from "lucide-react";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1], delay },
-});
+const WORDMARK = "Workroo";
 
 export default function HeroSection() {
   return (
-    <section
-      className="relative min-h-screen overflow-hidden pt-14"
-      style={{ background: "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 60%, #FFF5F0 100%)" }}
-    >
-      {/* Right-side image — absolutely positioned, fills right 55% of viewport */}
-      <div className="absolute inset-y-0 right-0 w-full lg:w-[55%] hidden lg:block" style={{ backgroundColor: "#FFE4D6" }}>
-        <img
-          src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/874291538_image.png"
-          alt="Customer checking vehicle status on phone"
-          className="w-full h-full object-cover object-right"
-        />
-        {/* Blend mask — left edge of image fades into bg */}
-        <div
-          className="absolute inset-y-0 left-0 w-48 pointer-events-none"
-          style={{ background: "linear-gradient(to right, #FFE4D6 0%, transparent 100%)" }}
-        />
-      </div>
+    <section id="top" className="bg-cream pt-32 md:pt-40">
+      <div className="max-w-6xl mx-auto px-6">
+        <p className="eyebrow mb-6" data-hero-rise>
+          Live workshop &amp; customer updates
+        </p>
 
-      {/* Content */}
-      <div className="relative max-w-6xl mx-auto px-6 flex items-center min-h-[calc(100vh-56px)]">
-        <div className="flex flex-col justify-center py-16 w-full lg:w-1/2">
-          <motion.h1
-            {...fadeUp(0.1)}
-            className="font-bold text-gray-900 leading-[1.1] mb-5"
-            style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)" }}
-          >
-            Mechanics &amp; Customers{" "}
-            <span style={{ color: "#F05A28" }} className="underline decoration-orange-400 underline-offset-4">
-              Connected in Real Time.
+        <h1
+          className="font-display text-ink leading-[0.92] tracking-[-0.03em] mb-8"
+          style={{ fontSize: "clamp(4.2rem, 15vw, 12.5rem)", fontWeight: 340 }}
+          data-hero-letters
+          aria-label={WORDMARK}
+        >
+          {WORDMARK.split("").map((ch, i) => (
+            <span key={i} className="hero-letter-wrap" aria-hidden="true">
+              <span className="hero-letter">{ch}</span>
             </span>
-          </motion.h1>
+          ))}
+        </h1>
 
-          <motion.p {...fadeUp(0.2)} className="text-gray-600 text-lg leading-relaxed max-w-md mb-8">
-            workroo creates a live, transparent record of every repair — so
-            customers know what they pay for, and mechanics finally get the
-            recognition their work deserves.
-          </motion.p>
-
-          <motion.div {...fadeUp(0.3)} className="flex flex-col sm:flex-row gap-3 mb-10">
-            <a
-              href="#cta"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-semibold text-white rounded-lg transition-all hover:opacity-90"
-              style={{ backgroundColor: "#F05A28" }}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 pb-16 md:pb-24">
+          <div className="lg:col-span-7">
+            <p
+              className="font-display text-ink leading-[1.15]"
+              style={{ fontSize: "clamp(1.7rem, 3.4vw, 2.7rem)", fontWeight: 340 }}
+              data-hero-rise
             >
-              Start Free Trial
-              <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="#how-it-works"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 text-base font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition-all"
-            >
-              See How It Works
-            </a>
-          </motion.div>
+              Mechanics and customers,{" "}
+              <em className="italic text-rust">connected</em> in real time.
+            </p>
+          </div>
 
-          <motion.div {...fadeUp(0.4)} className="flex items-center gap-3">
-            <div className="flex -space-x-2">
-              {["#F05A28", "#111111", "#D44D1F"].map((c, i) => (
-                <div
-                  key={i}
-                  className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-white text-xs font-semibold"
-                  style={{ backgroundColor: c }}
-                >
-                  {["Y", "N", "J"][i]}
-                </div>
-              ))}
+          <div className="lg:col-span-5 flex flex-col items-start gap-8">
+            <p className="text-ink/75 max-w-md" data-hero-rise>
+              A live, transparent record of every repair. Customers see what
+              they pay for. Mechanics get credit for the work they do.
+            </p>
+
+            <div className="flex flex-wrap gap-3" data-hero-rise>
+              <a href="#cta" className="btn-pill btn-pill-solid">
+                Get early access
+              </a>
+              <a href="#how-it-works" className="btn-pill">
+                See how it works
+              </a>
             </div>
-            <p className="text-sm text-gray-500">Trusted by workshops across Australia</p>
-          </motion.div>
+
+            <p className="eyebrow" data-hero-rise>
+              Trusted by workshops across Australia
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-gray-400">
-        <ChevronDown className="w-5 h-5 animate-bounce" />
+      {/* Full-bleed hero image */}
+      <div
+        className="img-frame w-full h-[52vh] md:h-[74vh]"
+        data-img-reveal
+        data-parallax
+      >
+        <img
+          src="https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/874291538_image.png"
+          alt="Customer checking vehicle status on their phone"
+        />
       </div>
     </section>
   );

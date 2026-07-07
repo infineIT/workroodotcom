@@ -1,54 +1,42 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
 
 export default function SolutionSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
   return (
-    <section ref={ref} id="solution" className="py-20 bg-white">
+    <section id="solution" className="section-pad bg-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-10 md:p-14 max-w-3xl mx-auto">
-          {/* Workroo icon */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-            style={{ backgroundColor: "#F05A28" }}
-          >
-            <span className="text-white font-bold text-2xl">W</span>
-          </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10" data-reveal-group>
+          <div className="lg:col-span-4">
+            <p className="eyebrow" data-reveal>
+              The solution
+            </p>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight"
-          >
-            Make Every Repair Visible
-          </motion.h2>
+          <div className="lg:col-span-8">
+            <h2
+              className="font-display text-ink mb-8"
+              style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+              data-reveal
+            >
+              Make every repair{" "}
+              <em className="italic text-rust">visible</em>.
+            </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-600 text-lg leading-relaxed mb-8"
-          >
-            Provide customers with a live, visual capture of all work carried out on their vehicle.
-            Every step is documented in real time — creating a True Car Record that builds genuine trust
-            and brand loyalty.
-          </motion.p>
+            <p className="text-ink/75 text-lg leading-relaxed max-w-xl mb-14" data-reveal>
+              Customers watch the work on their vehicle as it happens. Every
+              step is documented in real time — a true record of the car that
+              builds trust and keeps people coming back.
+            </p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="w-full rounded-lg py-4 px-6 text-center text-white font-semibold text-base"
-            style={{ backgroundColor: "#F05A28" }}
-          >
-            30% increase in customer engagement
-          </motion.div>
+            <div className="hairline-t pt-8 flex items-baseline gap-6" data-reveal>
+              <span
+                className="font-display text-ink"
+                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
+              >
+                30%
+              </span>
+              <span className="eyebrow">More customer engagement</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>

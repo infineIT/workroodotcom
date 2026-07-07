@@ -1,34 +1,29 @@
-import React, { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import React from "react";
 
 const testimonials = [
   {
-    quote: "Our customer engagement is 20% higher and increasing. workroo provides a platform to build trust on transparency.",
+    quote:
+      "Our customer engagement is 20% higher and increasing. Workroo gives us a platform to build trust on transparency.",
     name: "Yass",
     role: "Owner, Hallam Hi-Tech Australia",
-    initial: "Y",
-    photo: null,
-    type: "Workshop Owner",
+    type: "Workshop owner",
     logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/68dea466b_Hallam-Hi-Tech-Logo-Light-Background.png",
     logoSize: "h-10",
   },
   {
-    quote: "I have total visibility on what's happening in my workshop. Confidently I can take a vacation.",
+    quote:
+      "I have total visibility on what's happening in my workshop. I can take a vacation with confidence.",
     name: "Nigal",
     role: "Operations Manager, Omega Auto Parts",
-    initial: "N",
-    photo: null,
     type: "Operations",
-    featured: true,
     logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/b8325d390_omega-auto-parts-logo-colour.svg",
     logoSize: "h-6",
   },
   {
-    quote: "Wow — this is so amazing! I have never seen what was done to my car before. Now I know what I pay for.",
+    quote:
+      "I had never seen what was done to my car before. Now I know what I pay for.",
     name: "Joanna Li",
     role: "Hallam Hi-Tech Customer",
-    initial: "J",
-    photo: null,
     type: "Customer",
     logo: "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/68dea466b_Hallam-Hi-Tech-Logo-Light-Background.png",
     logoSize: "h-10",
@@ -36,86 +31,57 @@ const testimonials = [
 ];
 
 export default function TestimonialsSection() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
-
   return (
-    <section ref={ref} id="testimonials" className="py-24 bg-gray-50">
+    <section id="testimonials" className="section-pad bg-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-14"
-        >
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>Testimonials</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">Real Words from Real Workshops.</h2>
-        </motion.div>
+        <div data-reveal-group className="mb-14 md:mb-20">
+          <p className="eyebrow mb-5" data-reveal>
+            Testimonials
+          </p>
+          <h2
+            className="font-display text-ink max-w-3xl"
+            style={{ fontSize: "clamp(2.3rem, 5vw, 4rem)" }}
+            data-reveal
+          >
+            Real words from{" "}
+            <em className="italic text-rust">real workshops</em>.
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div data-reveal-group>
           {testimonials.map((t, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.12 }}
-              className={`rounded-2xl p-8 flex flex-col justify-between ${
-                t.featured
-                  ? "text-white"
-                  : "bg-white border border-gray-100 shadow-sm"
+            <figure
+              key={t.name}
+              className={`hairline-t py-10 md:py-12 grid grid-cols-1 md:grid-cols-12 gap-6 ${
+                i === testimonials.length - 1 ? "hairline-b" : ""
               }`}
-              style={t.featured ? { backgroundColor: "#111111" } : {}}
+              data-reveal
             >
-              <div>
-                <span
-                  className="inline-block text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-6"
-                  style={{
-                    backgroundColor: t.featured ? "rgba(240,90,40,0.18)" : "#FEF0EA",
-                    color: t.featured ? "#F07A55" : "#F05A28",
-                  }}
-                >
-                  {t.type}
-                </span>
+              <div className="md:col-span-3">
+                <p className="eyebrow">{t.type}</p>
+              </div>
+              <blockquote className="md:col-span-6">
                 <p
-                  className="text-base leading-relaxed mb-6"
-                  style={{ color: t.featured ? "rgba(255,255,255,0.85)" : "#374151" }}
+                  className="font-display text-ink leading-snug"
+                  style={{ fontSize: "clamp(1.35rem, 2.4vw, 1.9rem)" }}
                 >
-                  "{t.quote}"
+                  “{t.quote}”
                 </p>
-              </div>
-              {t.logo && (
-                <div className="mb-4">
-                  <img src={t.logo} alt="Company logo" className={`${t.logoSize || 'h-8'} w-auto object-contain`} />
+              </blockquote>
+              <figcaption className="md:col-span-3 flex md:flex-col md:items-end justify-between gap-4">
+                <div className="md:text-right">
+                  <div className="text-ink text-sm font-medium">{t.name}</div>
+                  <div className="text-taupe text-xs mt-1">{t.role}</div>
                 </div>
-              )}
-              <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-full overflow-hidden flex-shrink-0">
-                  {t.photo ? (
-                    <img src={t.photo} alt={t.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <div
-                      className="w-full h-full flex items-center justify-center text-white text-sm font-bold"
-                      style={{ backgroundColor: "#F05A28" }}
-                    >
-                      {t.initial}
-                    </div>
-                  )}
-                </div>
-                <div>
-                  <div
-                    className="text-sm font-semibold"
-                    style={{ color: t.featured ? "#fff" : "#111111" }}
-                  >
-                    {t.name}
-                  </div>
-                  <div
-                    className="text-xs"
-                    style={{ color: t.featured ? "rgba(255,255,255,0.4)" : "#9CA3AF" }}
-                  >
-                    {t.role}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+                {t.logo && (
+                  <img
+                    src={t.logo}
+                    alt={`${t.role.split(", ")[1] || t.name} logo`}
+                    className={`${t.logoSize} w-auto object-contain opacity-70`}
+                  />
+                )}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

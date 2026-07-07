@@ -60,15 +60,22 @@ module.exports = {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
+        cream: '#F2F0EB',
+        ink: '#100D0A',
+        taupe: '#756B60',
+        rust: '#A8511F',
+        'rust-bright': '#C97A45',
+        hairline: 'rgba(16,13,10,0.18)',
+        'hairline-cream': 'rgba(242,240,235,0.18)',
         orange: '#FF4D00',
-        alabaster: '#FAF9F6',
-        obsidian: '#1A1A1A',
+        alabaster: '#F2F0EB',
+        obsidian: '#100D0A',
         stone: '#E5E5E1',
         'stone-mid': '#C8C8C2',
   		},
       fontFamily: {
-        display: ['Syne', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
+        display: ['Fraunces', 'Georgia', 'serif'],
+        body: ['Inter', 'system-ui', 'sans-serif'],
       },
   		keyframes: {
   			'accordion-down': {

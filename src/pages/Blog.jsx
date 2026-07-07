@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import Navbar from "@/components/landing/Navbar";
 import Footer from "@/components/landing/Footer";
-import { ArrowRight, Calendar, Tag } from "lucide-react";
+import { usePageMotion } from "@/lib/motion";
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const motionRef = usePageMotion([loading]);
 
   useEffect(() => {
     base44.entities.BlogPost.filter({ published: true }, "-published_date", 50)
@@ -16,66 +17,70 @@ export default function Blog() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white font-body">
+    <div ref={motionRef} className="min-h-screen bg-cream font-body">
       <Navbar />
-      <div className="pt-24 pb-20 max-w-6xl mx-auto px-6">
-        <div className="text-center mb-14">
-          <p className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "#F05A28" }}>
+      <div className="pt-32 md:pt-44 pb-24 max-w-6xl mx-auto px-6">
+        <div className="mb-16 md:mb-24" data-reveal-group>
+          <p className="eyebrow mb-6" data-reveal>
             Blog
           </p>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900">Insights &amp; Updates</h1>
-          <p className="mt-4 text-gray-500 text-lg max-w-xl mx-auto">
-            Tips, stories and news from the workroo team.
+          <h1
+            className="font-display text-ink mb-6"
+            style={{ fontSize: "clamp(2.8rem, 7vw, 5.5rem)" }}
+            data-reveal
+          >
+            From the <em className="italic text-rust">workshop</em>.
+          </h1>
+          <p className="text-ink/75 text-lg max-w-md" data-reveal>
+            Tips, stories and news from the Workroo team.
           </p>
         </div>
 
         {loading ? (
           <div className="flex justify-center py-24">
-            <div className="w-8 h-8 border-4 border-orange-200 border-t-orange-500 rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-hairline border-t-ink rounded-full animate-spin" />
           </div>
         ) : posts.length === 0 ? (
-          <p className="text-center text-gray-400 py-24 text-lg">No posts yet — check back soon!</p>
+          <p className="text-taupe py-24 font-display text-2xl">
+            No posts yet. Check back soon.
+          </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
+          <div>
+            {posts.map((post, i) => (
               <Link
                 key={post.id}
                 to={`/blog/${post.slug || post.id}`}
-                className="group bg-white border border-gray-100 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                className={`group grid grid-cols-1 md:grid-cols-12 gap-6 items-center hairline-t py-10 ${
+                  i === posts.length - 1 ? "hairline-b" : ""
+                }`}
               >
-                {post.cover_image && (
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={post.cover_image}
-                      alt={post.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
-                <div className="p-6">
+                <div className="md:col-span-2 flex flex-col gap-2">
+                  <span className="eyebrow">{post.published_date || ""}</span>
                   {post.tags && post.tags.length > 0 && (
-                    <div className="flex items-center gap-1 mb-3">
-                      <Tag className="w-3 h-3" style={{ color: "#F05A28" }} />
-                      <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#F05A28" }}>
-                        {post.tags[0]}
-                      </span>
-                    </div>
+                    <span className="text-taupe text-xs uppercase tracking-[0.2em]">
+                      {post.tags[0]}
+                    </span>
                   )}
-                  <h2 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-orange-500 transition-colors line-clamp-2">
+                </div>
+                <div className="md:col-span-7">
+                  <h2
+                    className="font-display text-ink transition-colors duration-300 group-hover:text-rust"
+                    style={{ fontSize: "clamp(1.5rem, 3vw, 2.3rem)" }}
+                  >
                     {post.title}
                   </h2>
                   {post.excerpt && (
-                    <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
+                    <p className="text-taupe text-sm leading-relaxed mt-3 max-w-xl">
+                      {post.excerpt}
+                    </p>
                   )}
-                  <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-center gap-1 text-xs text-gray-400">
-                      <Calendar className="w-3 h-3" />
-                      <span>{post.published_date || ""}</span>
+                </div>
+                <div className="md:col-span-3 md:justify-self-end">
+                  {post.cover_image && (
+                    <div className="img-frame w-full md:w-48 h-32">
+                      <img src={post.cover_image} alt={post.title} />
                     </div>
-                    <span className="flex items-center gap-1 text-xs font-semibold" style={{ color: "#F05A28" }}>
-                      Read more <ArrowRight className="w-3 h-3" />
-                    </span>
-                  </div>
+                  )}
                 </div>
               </Link>
             ))}
