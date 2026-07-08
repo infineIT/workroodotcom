@@ -9,19 +9,19 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="section-pad bg-cream">
+    <section className="section-pad bg-ink text-white">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12" data-reveal-group>
           {stats.map((stat) => (
-            <div key={stat.label} className="hairline-t pt-6" data-reveal>
+            <div key={stat.label} className="border-t-2 border-rust pt-6" data-reveal>
               <div
-                className="font-bold text-ink mb-3"
-                style={{ fontSize: "clamp(1.9rem, 3.8vw, 3rem)" }}
+                className="font-display font-bold uppercase mb-3"
+                style={{ fontSize: "clamp(2.2rem, 4.5vw, 3.6rem)" }}
               >
                 {stat.value}
               </div>
               <div className="eyebrow mb-1">{stat.label}</div>
-              <div className="text-taupe text-sm">{stat.sublabel}</div>
+              <div className="text-white/50 text-sm">{stat.sublabel}</div>
             </div>
           ))}
         </div>

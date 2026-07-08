@@ -12,8 +12,8 @@ export default function Footer() {
     <footer className="bg-ink text-cream">
       <div className="max-w-6xl mx-auto px-6 pt-16 md:pt-24 pb-10">
         <p
-          className="font-bold uppercase tracking-tight leading-none mb-12 md:mb-16"
-          style={{ fontSize: "clamp(1.9rem, 4vw, 2.8rem)" }}
+          className="font-display font-bold uppercase leading-none mb-12 md:mb-16"
+          style={{ fontSize: "clamp(2.4rem, 5vw, 3.6rem)" }}
         >
           Work<span className="text-rust-bright">roo</span>
         </p>

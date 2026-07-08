@@ -11,7 +11,7 @@ export default function HeroSection() {
 
           <h1
             className="text-ink mb-6"
-            style={{ fontSize: "clamp(2.4rem, 6vw, 4.3rem)" }}
+            style={{ fontSize: "clamp(2.9rem, 7.5vw, 5.4rem)" }}
             data-hero-rise
           >
             Mechanics and customers,{" "}

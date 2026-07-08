@@ -32,7 +32,7 @@ export default function CTASection() {
   };
 
   return (
-    <section id="cta" className="section-pad bg-cream">
+    <section id="cta" className="section-pad bg-ink text-white">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <div data-reveal-group>
@@ -40,13 +40,13 @@ export default function CTASection() {
               Get started
             </p>
             <h2
-              className="text-ink mb-6"
+              className="text-white mb-6"
               style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
               data-reveal
             >
               Put your workshop <span className="text-rust">on the record</span>.
             </h2>
-            <p className="text-ink/75 text-lg leading-relaxed max-w-md mb-12" data-reveal>
+            <p className="text-white/70 text-lg leading-relaxed max-w-md mb-12" data-reveal>
               Workshops across Australia use Workroo to build trust, cut
               friction and grow. Yours can too.
             </p>
@@ -55,11 +55,11 @@ export default function CTASection() {
               {included.map((item, i) => (
                 <li
                   key={item}
-                  className={`hairline-t py-4 text-ink/80 text-sm flex items-baseline gap-4 ${
-                    i === included.length - 1 ? "hairline-b" : ""
+                  className={`border-t border-white/15 py-4 text-white/80 text-sm flex items-baseline gap-4 ${
+                    i === included.length - 1 ? "border-b border-white/15" : ""
                   }`}
                 >
-                  <span className="text-rust text-xs font-semibold">
+                  <span className="text-rust-bright text-xs font-semibold">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   {item}
@@ -72,28 +72,28 @@ export default function CTASection() {
             {submitted ? (
               <div className="flex flex-col justify-center h-full" data-reveal>
                 <p
-                  className="font-bold text-ink mb-4"
+                  className="font-bold text-white mb-4"
                   style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}
                 >
                   You're on the list.
                 </p>
-                <p className="text-taupe">
-                  We'll be in touch at <span className="text-ink">{email}</span>.
+                <p className="text-white/60">
+                  We'll be in touch at <span className="text-white">{email}</span>.
                 </p>
               </div>
             ) : (
               <div data-reveal>
                 <p
-                  className="font-bold text-ink mb-2"
+                  className="font-display font-bold uppercase text-white mb-2"
                   style={{ fontSize: "clamp(1.3rem, 2.4vw, 1.8rem)" }}
                 >
                   Request early access
                 </p>
-                <p className="text-taupe text-sm mb-8">No credit card required.</p>
+                <p className="text-white/50 text-sm mb-8">No credit card required.</p>
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label htmlFor="cta-workshop" className="eyebrow eyebrow-muted block mb-1">
+                    <label htmlFor="cta-workshop" className="eyebrow !text-white/50 block mb-1">
                       Workshop name
                     </label>
                     <input
@@ -105,7 +105,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-name" className="eyebrow eyebrow-muted block mb-1">
+                    <label htmlFor="cta-name" className="eyebrow !text-white/50 block mb-1">
                       Contact name
                     </label>
                     <input
@@ -117,7 +117,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-email" className="eyebrow eyebrow-muted block mb-1">
+                    <label htmlFor="cta-email" className="eyebrow !text-white/50 block mb-1">
                       Email address
                     </label>
                     <input
@@ -130,7 +130,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-phone" className="eyebrow eyebrow-muted block mb-1">
+                    <label htmlFor="cta-phone" className="eyebrow !text-white/50 block mb-1">
                       Phone number
                     </label>
                     <input
@@ -142,7 +142,7 @@ export default function CTASection() {
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-size" className="eyebrow eyebrow-muted block mb-1">
+                    <label htmlFor="cta-size" className="eyebrow !text-white/50 block mb-1">
                       Workshop size
                     </label>
                     <select
@@ -164,7 +164,7 @@ export default function CTASection() {
                   </button>
                 </form>
 
-                <p className="text-taupe text-xs mt-6">
+                <p className="text-white/40 text-xs mt-6">
                   By submitting, you agree to be contacted by the Workroo team.
                 </p>
               </div>

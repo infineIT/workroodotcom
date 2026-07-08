@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SolutionSection() {
   return (
-    <section id="solution" className="section-pad bg-cream">
+    <section id="solution" className="section-pad bg-[#F4F4F2]">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10" data-reveal-group>
           <div className="lg:col-span-4">
