@@ -6,7 +6,7 @@ export default function SolutionSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10" data-reveal-group>
           <div className="lg:col-span-4">
-            <p className="eyebrow" data-reveal>
+            <p className="eyebrow label-bar" data-reveal>
               The solution
             </p>
           </div>

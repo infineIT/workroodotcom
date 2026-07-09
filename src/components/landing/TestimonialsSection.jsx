@@ -35,7 +35,7 @@ export default function TestimonialsSection() {
     <section id="testimonials" className="section-pad bg-cream">
       <div className="max-w-6xl mx-auto px-6">
         <div data-reveal-group className="mb-14 md:mb-20">
-          <p className="eyebrow mb-5" data-reveal>
+          <p className="eyebrow label-bar mb-5" data-reveal>
             Testimonials
           </p>
           <h2

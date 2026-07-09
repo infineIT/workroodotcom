@@ -36,7 +36,7 @@ export default function CTASection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           <div data-reveal-group>
-            <p className="eyebrow mb-5" data-reveal>
+            <p className="eyebrow label-bar mb-5" data-reveal>
               Get started
             </p>
             <h2

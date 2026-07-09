@@ -70,18 +70,23 @@ export default function Navbar() {
           />
         </a>
 
-        <button
-          type="button"
-          className="menu-btn"
-          aria-label={menuOpen ? "Close menu" : "Open menu"}
-          aria-expanded={menuOpen}
-          aria-controls="site-menu"
-          onClick={() => setMenuOpen((open) => !open)}
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+        <div className="flex items-center gap-5">
+          <a href="tel:+61425164118" className="header-phone hidden sm:inline-block">
+            +61 425 164 118
+          </a>
+          <button
+            type="button"
+            className="menu-btn"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="site-menu"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </header>
 
       <nav id="site-menu" className={`menu-overlay ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>

@@ -123,6 +123,21 @@
     color: var(--taupe);
   }
 
+  /* Skewed orange bar ahead of section labels — signage energy */
+  .label-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .label-bar::before {
+    content: '';
+    width: 22px;
+    height: 3px;
+    background: var(--rust);
+    transform: skewX(-20deg);
+    flex-shrink: 0;
+  }
+
   .hairline-t { border-top: 1px solid var(--hairline); }
   .hairline-b { border-bottom: 1px solid var(--hairline); }
 
@@ -166,6 +181,15 @@
   .btn-pill:disabled {
     opacity: 0.55;
     pointer-events: none;
+  }
+  /* Outline button for dark backgrounds */
+  .btn-pill-light {
+    border-color: rgba(255, 255, 255, 0.85);
+    color: #fff;
+  }
+  .btn-pill-light:hover {
+    border-color: var(--rust-bright);
+    color: var(--rust-bright);
   }
 
   /* Square boxed inputs, dark border, orange focus (reference input style) */
@@ -228,15 +252,25 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7rem clamp(1.25rem, 4vw, 2.5rem);
-  background: #fff;
-  border-bottom: 1px solid var(--hairline);
-  transition: background-color 0.4s ease, border-color 0.4s ease;
+  padding: 0.6rem clamp(1.25rem, 4vw, 2.5rem);
+  background: var(--ink);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  transition: border-color 0.4s ease;
 }
 .menu-is-open .site-header {
-  background: transparent;
   border-bottom-color: transparent;
 }
+
+.header-phone {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+.header-phone:hover { color: var(--rust-bright); }
 
 /* Brand badge: the rectangular wordmark asset set in a white disc with the
    brand-orange ring, matching the official circular logo lockup */
@@ -266,10 +300,8 @@
   background: transparent;
   border: 0;
   cursor: pointer;
-  color: var(--ink);
-  transition: color 0.4s ease;
+  color: #fff;
 }
-.menu-is-open .menu-btn { color: #fff; }
 .menu-btn span {
   position: absolute;
   top: 50%;

@@ -18,7 +18,7 @@ export default function BlogPreviewSection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-wrap items-end justify-between gap-6 mb-12" data-reveal-group>
           <div data-reveal>
-            <p className="eyebrow mb-5">Blog</p>
+            <p className="eyebrow label-bar mb-5">Blog</p>
             <h2
               className="text-ink"
               style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}

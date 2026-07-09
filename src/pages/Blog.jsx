@@ -21,7 +21,7 @@ export default function Blog() {
       <Navbar />
       <div className="pt-32 md:pt-44 pb-24 max-w-6xl mx-auto px-6">
         <div className="mb-16 md:mb-24" data-reveal-group>
-          <p className="eyebrow mb-6" data-reveal>
+          <p className="eyebrow label-bar mb-6" data-reveal>
             Blog
           </p>
           <h1

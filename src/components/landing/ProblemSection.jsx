@@ -49,7 +49,7 @@ export default function ProblemSection() {
     <section className="section-pad bg-cream" id="how-it-works">
       <div className="max-w-6xl mx-auto px-6">
         <div data-reveal-group className="mb-14 md:mb-20">
-          <p className="eyebrow mb-5" data-reveal>
+          <p className="eyebrow label-bar mb-5" data-reveal>
             How it works
           </p>
           <h2
