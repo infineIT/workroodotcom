@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Form definitions</title>
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <!--
+      Netlify detects forms by parsing the HTML of a deploy at build time.
+      This site renders its form in React, so nothing exists in the built
+      markup for the parser to find. This file is the static declaration
+      Netlify reads; the real form in CTASection.jsx POSTs here.
+
+      The field names below MUST stay in sync with the payload built in
+      src/components/landing/CTASection.jsx — Netlify only stores fields it
+      knows about from this declaration.
+    -->
+    <form name="early-access" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="early-access" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="workshop-name" />
+      <input type="text" name="contact-name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="workshop-size" />
+    </form>
+  </body>
+</html>

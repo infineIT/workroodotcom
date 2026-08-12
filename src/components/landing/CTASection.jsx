@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { base44 } from "@/api/base44Client";
+
+/* Must match the static declaration in public/__forms.html — Netlify drops
+   fields it has not seen there. */
+const FORM_NAME = "early-access";
 
 const included = [
   "Live job capture and customer portal",
@@ -15,20 +18,45 @@ export default function CTASection() {
   const [phone, setPhone] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const [workshopName, setWorkshopName] = useState("");
   const [workshopSize, setWorkshopSize] = useState("");
+  const [botField, setBotField] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email) return;
     setLoading(true);
-    await base44.integrations.Core.SendEmail({
-      to: "charith@infineit.com",
-      subject: "New Early Access Request — workroo",
-      body: `New early access request received:\n\nWorkshop Name: ${workshopName}\nContact Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nWorkshop Size: ${workshopSize}`,
-    });
-    setLoading(false);
-    setSubmitted(true);
+    setError("");
+
+    const body = new URLSearchParams({
+      "form-name": FORM_NAME,
+      "bot-field": botField,
+      "workshop-name": workshopName,
+      "contact-name": name,
+      email,
+      phone,
+      "workshop-size": workshopSize,
+    }).toString();
+
+    try {
+      const res = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      });
+      if (!res.ok) throw new Error(`Submission failed (${res.status})`);
+      setSubmitted(true);
+    } catch (err) {
+      // Never show the success state on a failed post — the lead would be lost
+      // silently with the visitor believing they had signed up.
+      setError(
+        "Something went wrong sending that. Please try again, or email workroo@infineit.com."
+      );
+      console.error("Early access submission failed:", err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -91,13 +119,36 @@ export default function CTASection() {
                 </p>
                 <p className="text-white/50 text-sm mb-8">No credit card required.</p>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form
+                  name={FORM_NAME}
+                  method="POST"
+                  action="/__forms.html"
+                  data-netlify="true"
+                  onSubmit={handleSubmit}
+                  className="space-y-5"
+                >
+                  <input type="hidden" name="form-name" value={FORM_NAME} />
+                  {/* Honeypot: hidden from people, tempting to bots. */}
+                  <p className="hidden" aria-hidden="true">
+                    <label>
+                      Do not fill this in
+                      <input
+                        type="text"
+                        name="bot-field"
+                        tabIndex={-1}
+                        autoComplete="off"
+                        value={botField}
+                        onChange={(e) => setBotField(e.target.value)}
+                      />
+                    </label>
+                  </p>
                   <div>
                     <label htmlFor="cta-workshop" className="eyebrow !text-white/50 block mb-1">
                       Workshop name
                     </label>
                     <input
                       id="cta-workshop"
+                      name="workshop-name"
                       type="text"
                       value={workshopName}
                       onChange={(e) => setWorkshopName(e.target.value)}
@@ -110,6 +161,7 @@ export default function CTASection() {
                     </label>
                     <input
                       id="cta-name"
+                      name="contact-name"
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
@@ -122,6 +174,7 @@ export default function CTASection() {
                     </label>
                     <input
                       id="cta-email"
+                      name="email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
@@ -135,6 +188,7 @@ export default function CTASection() {
                     </label>
                     <input
                       id="cta-phone"
+                      name="phone"
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
@@ -147,6 +201,7 @@ export default function CTASection() {
                     </label>
                     <select
                       id="cta-size"
+                      name="workshop-size"
                       value={workshopSize}
                       onChange={(e) => setWorkshopSize(e.target.value)}
                       className="input-underline text-ink"
@@ -162,6 +217,12 @@ export default function CTASection() {
                   <button type="submit" disabled={loading} className="btn-pill btn-pill-solid mt-2">
                     {loading ? "Sending…" : "Request early access"}
                   </button>
+
+                  {error && (
+                    <p role="alert" className="text-rust-bright text-sm">
+                      {error}
+                    </p>
+                  )}
                 </form>
 
                 <p className="text-white/40 text-xs mt-6">
