@@ -6,7 +6,6 @@ import ProblemSection from "@/components/landing/ProblemSection";
 import SolutionSection from "@/components/landing/SolutionSection";
 import FeaturesSection from "../components/landing/FeaturesSection.jsx";
 import TestimonialsSection from "@/components/landing/TestimonialsSection";
-import StatsSection from "@/components/landing/StatsSection";
 import CTASection from "@/components/landing/CTASection";
 import Footer from "@/components/landing/Footer";
 import BlogPreviewSection from "@/components/landing/BlogPreviewSection";
@@ -30,7 +29,6 @@ export default function Landing() {
       <ProblemSection />
       <SolutionSection />
       <FeaturesSection />
-      <StatsSection />
       <TestimonialsSection />
       <BlogPreviewSection />
       <CTASection />

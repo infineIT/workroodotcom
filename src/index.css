@@ -254,12 +254,25 @@
   position: relative;
   background: var(--hero-black);
   overflow: hidden;
+  /* One screen, total: the split panel, the trust rail and the stats strip all
+     live inside this budget so nothing below the image gets clipped. */
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-split {
   display: grid;
   grid-template-columns: 1fr;
   min-height: 82vh;
+}
+@media (min-width: 900px) {
+  /* Desktop: absorb whatever height the rail and strip leave over */
+  .hero-split {
+    flex: 1 1 auto;
+    min-height: 0;
+  }
 }
 @media (min-width: 900px) {
   .hero-split {
@@ -282,6 +295,10 @@
     /* Pull the column in off the panel edge — the air is the point. */
     padding-left: clamp(3rem, 7vw, 6.5rem);
     padding-right: clamp(2.5rem, 5vw, 4.5rem);
+    /* Trimmed from the stacked values: the stats strip now takes a slice of
+       the same one-screen budget, and the type must not push past it. */
+    padding-top: clamp(5.5rem, 10vh, 7.5rem);
+    padding-bottom: clamp(3rem, 6vh, 4.5rem);
   }
 }
 
@@ -452,6 +469,79 @@
   }
 }
 
+/* ---------- Proof numbers: the strip immediately under the hero ---------- */
+.stat-band {
+  /* Above .hero-grain-global (z-index 3) — the film grain belongs on the
+     photograph, not on this clean strip */
+  position: relative;
+  z-index: 4;
+  flex: 0 0 auto;
+  padding: clamp(1.5rem, 2.6vw, 2.1rem) 0 clamp(1.6rem, 2.8vw, 2.3rem);
+  border-bottom: 1px solid rgba(23, 22, 22, 0.1);
+}
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem 1.75rem;
+}
+@media (min-width: 768px) {
+  .stat-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  }
+}
+
+.stat-cell {
+  padding-top: 0.85rem;
+}
+/* The rule draws itself in rather than simply appearing */
+.stat-rule {
+  display: block;
+  height: 2px;
+  width: 0;
+  background: var(--rust);
+  margin-bottom: 0.85rem;
+  transition: width 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--stat-i, 0) * 0.09s);
+}
+.stat-cell.is-live .stat-rule { width: 100%; }
+
+.stat-value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1;
+  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
+  /* Tabular figures stop the number jittering as it counts */
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  margin-bottom: 0.45rem;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--stat-i, 0) * 0.09s);
+}
+.stat-cell.is-live .stat-value {
+  opacity: 1;
+  transform: none;
+}
+
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stat-rule,
+  .stat-value {
+    transition: none;
+  }
+  .stat-rule { width: 100%; }
+  .stat-value { opacity: 1; transform: none; }
+}
+
 /* ---------- Fixed header ---------- */
 .site-header {
   position: fixed;
@@ -471,16 +561,51 @@
   border-bottom-color: transparent;
 }
 
-.header-phone {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+/* Header call to action — same signage language as the page buttons, sized
+   down so it sits inside the bar without crowding the menu control */
+.header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: var(--rust);
+  border: 1px solid var(--rust);
   color: #fff;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   text-decoration: none;
-  transition: color 0.25s ease;
+  padding: 0.8rem 1.4rem;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
-.header-phone:hover { color: var(--rust-bright); }
+.header-cta:hover {
+  background: #fff;
+  border-color: #fff;
+  color: var(--ink);
+}
+.header-cta-mark {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  transform: skewX(-20deg);
+  flex-shrink: 0;
+}
+/* Sized down on small screens so it shares the bar with the logo and menu
+   rather than swallowing it. Set here, not with utilities — this rule sits
+   outside Tailwind's layers and would win over them. */
+@media (max-width: 639px) {
+  .header-cta {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 0.65rem 0.85rem;
+    gap: 0.4rem;
+  }
+  .header-cta-mark {
+    display: none;
+  }
+}
 
 /* Brand badge: the rectangular wordmark asset set in a white disc with the
    brand-orange ring, matching the official circular logo lockup */

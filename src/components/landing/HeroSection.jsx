@@ -1,4 +1,5 @@
 import React from "react";
+import StatsStrip from "@/components/landing/StatsStrip";
 
 export default function HeroSection() {
   return (
@@ -49,6 +50,10 @@ export default function HeroSection() {
         <span className="hero-rail-mark" />
         Trusted by workshops across Australia
       </div>
+
+      {/* Inside the hero so it shares the one-screen budget: the split panel
+          flexes down by exactly however tall this strip ends up. */}
+      <StatsStrip />
 
       <div className="hero-grain hero-grain-global" aria-hidden="true" />
     </section>

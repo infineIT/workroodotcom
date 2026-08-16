@@ -71,8 +71,13 @@ export default function Navbar() {
         </a>
 
         <div className="flex items-center gap-5">
-          <a href="tel:+61425164118" className="header-phone hidden sm:inline-block">
-            +61 425 164 118
+          <a
+            href="/#cta"
+            onClick={(e) => handleLinkClick(e, "#cta")}
+            className="header-cta"
+          >
+            <span className="header-cta-mark" aria-hidden="true" />
+            Get early access
           </a>
           <button
             type="button"
@@ -108,6 +113,10 @@ export default function Navbar() {
 
         <div className="menu-foot font-body text-xs uppercase tracking-[0.2em]">
           <div className="flex items-center gap-6">
+            {/* Phone left the header for the CTA — it still needs a home in the nav */}
+            <a href="tel:+61425164118" tabIndex={menuOpen ? 0 : -1}>
+              +61 425 164 118
+            </a>
             <a
               href="https://www.workroo.com.au"
               target="_blank"
