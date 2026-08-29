@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,58 +5,25 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 0 2% 9%;
+    --foreground: 231 34% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 0 2% 9%;
+    --card-foreground: 231 34% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 0 2% 9%;
-    --primary: 0 2% 9%;
+    --popover-foreground: 231 34% 11%;
+    --primary: 218 100% 50%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 30 4% 96%;
-    --secondary-foreground: 0 2% 9%;
-    --muted: 30 4% 96%;
-    --muted-foreground: 30 2% 41%;
-    --accent: 16 87% 55%;
-    --accent-foreground: 0 0% 100%;
+    --secondary: 210 33% 97%;
+    --secondary-foreground: 231 34% 11%;
+    --muted: 210 33% 97%;
+    --muted-foreground: 210 8% 44%;
+    --accent: 69 96% 65%;
+    --accent-foreground: 231 34% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 2% 9% / 0.14;
-    --input: 0 2% 9% / 0.35;
-    --ring: 16 87% 55%;
-    --radius: 0rem;
-
-    /* Workroo design tokens */
-    --cream: #FFFFFF;          /* page background (legacy name kept for class reuse) */
-    --ink: #171616;            /* near-black, matches the trade reference */
-    --taupe: #6B6864;          /* secondary text and labels */
-    --rust: #F05A28;           /* Workroo brand orange — hovers, emphasis, focus */
-    --rust-bright: #FF7A45;    /* orange legible on dark backgrounds */
-    --hairline: rgba(23, 22, 22, 0.14);
-    --hairline-cream: rgba(255, 255, 255, 0.18);
-    --font-display: 'Barlow Condensed', 'Inter', system-ui, sans-serif;
-    --font-body: 'Inter', system-ui, sans-serif;
-  }
-
-  .dark {
-    --background: 0 2% 9%;
-    --foreground: 0 0% 100%;
-    --card: 0 2% 11%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 2% 11%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 2% 9%;
-    --secondary: 0 2% 14%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 2% 14%;
-    --muted-foreground: 30 2% 63%;
-    --accent: 16 87% 55%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 100% / 0.18;
-    --input: 0 0% 100% / 0.35;
-    --ring: 16 87% 55%;
+    --border: 231 34% 11% / 0.12;
+    --input: 231 34% 11% / 0.18;
+    --ring: 218 100% 50%;
+    --radius: 1.25rem;
   }
 }
 
@@ -73,149 +38,45 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body);
-    background-color: var(--cream);
-    color: var(--ink);
+    @apply bg-white text-brand-ink font-body;
     font-size: 16px;
-    line-height: 1.65;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
-  /* Condensed, uppercase headings — workshop signage, not editorial */
   h1, h2, h3 {
-    font-family: var(--font-display);
-    font-weight: 700;
-    text-transform: uppercase;
-    line-height: 1.0;
-    letter-spacing: 0.005em;
+    @apply font-display;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 0.98;
   }
   h4, h5, h6 {
-    font-family: var(--font-body);
-    font-weight: 700;
-    line-height: 1.15;
+    @apply font-body;
+    font-weight: 600;
+    line-height: 1.2;
   }
 
   ::selection {
-    background: var(--ink);
+    background: #0067FF;
     color: #fff;
   }
 }
 
 @layer utilities {
-  .font-display {
-    font-family: var(--font-display);
-  }
-  .font-body {
-    font-family: var(--font-body);
+  .font-display { font-family: "Clash Grotesque", "Instrument Sans", system-ui, sans-serif; }
+  .font-body { font-family: "Instrument Sans", system-ui, sans-serif; }
+
+  /* Section rhythm — kept name, used across every page */
+  .section-pad {
+    padding-top: clamp(3.5rem, 8vw, 6.5rem);
+    padding-bottom: clamp(3.5rem, 8vw, 6.5rem);
   }
 
-  /* Small uppercase section label */
-  .eyebrow {
-    font-family: var(--font-body);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--rust);
-  }
-  .eyebrow-muted {
-    color: var(--taupe);
-  }
-
-  /* Skewed orange bar ahead of section labels — signage energy */
-  .label-bar {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .label-bar::before {
-    content: '';
-    width: 22px;
-    height: 3px;
-    background: var(--rust);
-    transform: skewX(-20deg);
-    flex-shrink: 0;
-  }
-
-  .hairline-t { border-top: 1px solid var(--hairline); }
-  .hairline-b { border-bottom: 1px solid var(--hairline); }
-
-  /* Section rhythm */
-  .section-pad { padding-top: clamp(3.5rem, 8vw, 6.5rem); padding-bottom: clamp(3.5rem, 8vw, 6.5rem); }
-
-  /* Square, workmanlike buttons (reference: solid dark, hover accent) */
-  .btn-pill {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    border-radius: 0;
-    border: 1px solid var(--ink);
-    background: transparent;
-    color: var(--ink);
-    padding: 0.95rem 1.9rem;
-    font-family: var(--font-body);
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
-  }
-  .btn-pill:hover {
-    border-color: var(--rust);
-    color: var(--rust);
-  }
-  .btn-pill-solid {
-    background: var(--rust);
-    border-color: var(--rust);
-    color: #fff;
-  }
-  .btn-pill-solid:hover {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: #fff;
-  }
-  .btn-pill:disabled {
-    opacity: 0.55;
-    pointer-events: none;
-  }
-  /* Outline button for dark backgrounds */
-  .btn-pill-light {
-    border-color: rgba(255, 255, 255, 0.85);
-    color: #fff;
-  }
-  .btn-pill-light:hover {
-    border-color: var(--rust-bright);
-    color: var(--rust-bright);
-  }
-
-  /* Square boxed inputs, dark border, orange focus (reference input style) */
-  .input-underline {
-    width: 100%;
-    background: #fff;
-    border: 1px solid rgba(23, 22, 22, 0.35);
-    border-radius: 0;
-    padding: 0.7rem 0.9rem;
-    font-family: var(--font-body);
-    font-size: 1rem;
-    color: var(--ink);
-    transition: border-color 0.25s ease;
-    appearance: none;
-  }
-  .input-underline::placeholder { color: rgba(23, 22, 22, 0.35); }
-  .input-underline:focus {
-    outline: none;
-    border-color: var(--rust);
-  }
-  select.input-underline { cursor: pointer; }
-
-  /* Image frames: overflow-hidden reveal + parallax oversizing */
+  /* Rounded media frame */
   .img-frame {
     position: relative;
     overflow: hidden;
+    border-radius: 1.5rem;
   }
   .img-frame img {
     width: 100%;
@@ -223,516 +84,16 @@
     object-fit: cover;
     display: block;
   }
-  .img-frame[data-parallax] img {
-    height: 118%;
-    position: relative;
-    top: -9%;
-  }
 }
-
-/* ---------- How-it-works step progress ---------- */
-.step-progress {
-  height: 2px;
-  background: var(--rust);
-  transform-origin: left;
-  animation: step-progress 7s linear forwards;
-}
-@keyframes step-progress {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-/* ---------- Hero ----------------------------------------------------------
-   Two fields, not one. Type sits on a solid warm-black panel; the photo keeps
-   its own half. Nothing has to be scrimmed into submission to stay legible,
-   and the copy stack gets room to breathe.
-   The warm black is deliberately browner than --ink (#171616, effectively
-   neutral); if it reads right it wants to move into the global token. */
-.hero {
-  --hero-black: #16110C;
-  --hero-black-deep: #0B0805;
-  position: relative;
-  background: var(--hero-black);
-  overflow: hidden;
-  /* One screen, total: the split panel, the trust rail and the stats strip all
-     live inside this budget so nothing below the image gets clipped. */
-  min-height: 100vh;
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-}
-
-.hero-split {
-  display: grid;
-  grid-template-columns: 1fr;
-  min-height: 82vh;
-}
-@media (min-width: 900px) {
-  /* Desktop: absorb whatever height the rail and strip leave over */
-  .hero-split {
-    flex: 1 1 auto;
-    min-height: 0;
-  }
-}
-@media (min-width: 900px) {
-  .hero-split {
-    grid-template-columns: 47fr 53fr;
-  }
-}
-
-/* --- Left: the type field --- */
-.hero-panel {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  background: var(--hero-black);
-  padding: clamp(7rem, 14vh, 10rem) clamp(1.5rem, 5vw, 3rem)
-    clamp(4rem, 9vh, 6rem);
-}
-@media (min-width: 900px) {
-  .hero-panel {
-    /* Pull the column in off the panel edge — the air is the point. */
-    padding-left: clamp(3rem, 7vw, 6.5rem);
-    padding-right: clamp(2.5rem, 5vw, 4.5rem);
-    /* Trimmed from the stacked values: the stats strip now takes a slice of
-       the same one-screen budget, and the type must not push past it. */
-    padding-top: clamp(5.5rem, 10vh, 7.5rem);
-    padding-bottom: clamp(3rem, 6vh, 4.5rem);
-  }
-}
-
-/* Generous, even rhythm. Every gap here is bigger than it wants to be. */
-.hero-panel-inner {
-  width: 100%;
-  max-width: 34rem;
-}
-.hero-panel-inner > * + * {
-  margin-top: clamp(1.75rem, 3.4vh, 2.6rem);
-}
-.hero-panel-inner .hero-title {
-  margin-top: clamp(2rem, 4vh, 3rem);
-}
-.hero-panel-inner .hero-actions {
-  margin-top: clamp(2.25rem, 4.5vh, 3.25rem);
-}
-
-/* Sized to sit on ~3 lines inside the panel rather than 4 across the page. */
-.hero-title {
-  font-size: clamp(2.35rem, 4.4vw, 3.9rem);
-  line-height: 0.98;
-  color: #fff;
-  /* Ink spread: the hairline same-colour shadow fattens the glyph edge the way
-     paint bleeds on a rough surface. Subtler now that it is on a flat field. */
-  text-shadow: 0 0 1px currentColor;
-}
-.hero-title .hero-title-accent {
-  color: var(--rust-bright);
-  text-shadow: 0 0 1px currentColor;
-}
-
-.hero-body {
-  font-size: 1.0625rem;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.72);
-  max-width: 30rem;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.85rem;
-}
-
-/* --- Right: the photo, left as a photo --- */
-.hero-figure {
-  position: relative;
-  min-height: 46vh;
-  overflow: hidden;
-}
-@media (min-width: 900px) {
-  .hero-figure {
-    min-height: 0;
-  }
-}
-.hero-figure img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  /* The source is square (1024x1024) and the mechanic's head sits high in it,
-     so any wide crop taken from the centre decapitates him. Bias the crop
-     window toward the top and let the sides go instead. */
-  object-position: 62% 20%;
-  display: block;
-}
-
-/* Grade, not a scrim: warm the greys and settle the highlights, but leave the
-   photo's own contrast intact. */
-.hero-figure-grade {
-  position: absolute;
-  inset: 0;
-  background: #3A2412;
-  mix-blend-mode: soft-light;
-  opacity: 0.55;
-}
-
-/* Only the seam is darkened, so the panel edge reads as one surface meeting
-   another rather than a box sitting on a picture. */
-.hero-figure-edge {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(22, 17, 12, 0.85) 0%,
-      rgba(22, 17, 12, 0.35) 9%,
-      transparent 22%
-    ),
-    radial-gradient(
-      115% 115% at 55% 45%,
-      transparent 52%,
-      rgba(11, 8, 5, 0.5) 100%
-    );
-}
-
-/* Film grain — the single biggest cure for "vector". */
-.hero-grain {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 220px 220px;
-  mix-blend-mode: overlay;
-  opacity: 0.19;
-}
-/* A lighter pass across the whole hero so panel and photo share one surface. */
-.hero-grain-global {
-  z-index: 3;
-  opacity: 0.1;
-}
-
-/* --- Trust line on its own rail, out of the copy stack --- */
-.hero-rail {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  background: var(--hero-black);
-  border-top: 1px solid rgba(255, 255, 255, 0.13);
-  padding: 1.15rem clamp(1.5rem, 5vw, 3rem);
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-}
-@media (min-width: 900px) {
-  .hero-rail {
-    padding-left: clamp(3rem, 7vw, 6.5rem);
-  }
-}
-.hero-rail-mark {
-  width: 7px;
-  height: 7px;
-  background: var(--rust);
-  transform: skewX(-20deg);
-  flex-shrink: 0;
-}
-
-/* Stacked: photo above, type below, both keeping their own field.
-   Held to a 4:3 box rather than a viewport-height strip — a fixed vh on a wide
-   tablet turns the square source into a ~2:1 letterbox and cuts his head off. */
-@media (max-width: 899px) {
-  .hero-figure {
-    order: -1;
-    width: 100%;
-    /* Height capped against the width, not just the viewport: on a wide tablet
-       a pure vh strip letterboxes the square source and takes his head off. */
-    min-height: 0;
-    height: min(56vh, 78vw);
-  }
-  .hero-figure img {
-    object-position: 58% 18%;
-  }
-  .hero-panel {
-    padding-top: clamp(2.75rem, 6vh, 4rem);
-  }
-}
-@media (max-width: 599px) {
-  .hero-rail {
-    font-size: 10px;
-    letter-spacing: 0.14em;
-  }
-}
-
-/* ---------- Proof numbers: the strip immediately under the hero ---------- */
-.stat-band {
-  /* Above .hero-grain-global (z-index 3) — the film grain belongs on the
-     photograph, not on this clean strip */
-  position: relative;
-  z-index: 4;
-  flex: 0 0 auto;
-  padding: clamp(1.5rem, 2.6vw, 2.1rem) 0 clamp(1.6rem, 2.8vw, 2.3rem);
-  border-bottom: 1px solid rgba(23, 22, 22, 0.1);
-}
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem 1.75rem;
-}
-@media (min-width: 768px) {
-  .stat-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(1.25rem, 2.5vw, 2.25rem);
-  }
-}
-
-.stat-cell {
-  padding-top: 0.85rem;
-}
-/* The rule draws itself in rather than simply appearing */
-.stat-rule {
-  display: block;
-  height: 2px;
-  width: 0;
-  background: var(--rust);
-  margin-bottom: 0.85rem;
-  transition: width 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--stat-i, 0) * 0.09s);
-}
-.stat-cell.is-live .stat-rule { width: 100%; }
-
-.stat-value {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--ink);
-  line-height: 1;
-  font-size: clamp(1.5rem, 2.6vw, 2.15rem);
-  /* Tabular figures stop the number jittering as it counts */
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum" 1;
-  margin-bottom: 0.45rem;
-  opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--stat-i, 0) * 0.09s);
-}
-.stat-cell.is-live .stat-value {
-  opacity: 1;
-  transform: none;
-}
-
-.stat-label {
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  line-height: 1.3;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .stat-rule,
-  .stat-value {
-    transition: none;
-  }
-  .stat-rule { width: 100%; }
-  .stat-value { opacity: 1; transform: none; }
-}
-
-/* ---------- Fixed header ---------- */
-.site-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 70;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.6rem clamp(1.25rem, 4vw, 2.5rem);
-  background: var(--ink);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-  transition: border-color 0.4s ease;
-}
-.menu-is-open .site-header {
-  border-bottom-color: transparent;
-}
-
-/* Header call to action — same signage language as the page buttons, sized
-   down so it sits inside the bar without crowding the menu control */
-.header-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  background: var(--rust);
-  border: 1px solid var(--rust);
-  color: #fff;
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 0.8rem 1.4rem;
-  transition: background-color 0.25s ease, border-color 0.25s ease;
-}
-.header-cta:hover {
-  background: #fff;
-  border-color: #fff;
-  color: var(--ink);
-}
-.header-cta-mark {
-  width: 6px;
-  height: 6px;
-  background: currentColor;
-  transform: skewX(-20deg);
-  flex-shrink: 0;
-}
-/* Sized down on small screens so it shares the bar with the logo and menu
-   rather than swallowing it. Set here, not with utilities — this rule sits
-   outside Tailwind's layers and would win over them. */
-@media (max-width: 639px) {
-  .header-cta {
-    font-size: 10px;
-    letter-spacing: 0.06em;
-    padding: 0.65rem 0.85rem;
-    gap: 0.4rem;
-  }
-  .header-cta-mark {
-    display: none;
-  }
-}
-
-/* Brand badge: the rectangular wordmark asset set in a white disc with the
-   brand-orange ring, matching the official circular logo lockup */
-.logo-mark {
-  width: 52px;
-  height: 52px;
-  border-radius: 9999px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-  border: 1.5px solid #F7941D;
-}
-.logo-mark img {
-  width: 78%;
-  height: auto;
-  object-fit: contain;
-  display: block;
-}
-
-/* Three vertical lines folding into an X */
-.menu-btn {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  background: transparent;
-  border: 0;
-  cursor: pointer;
-  color: #fff;
-}
-.menu-btn span {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 2px;
-  height: 20px;
-  background: currentColor;
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
-}
-.menu-btn span:nth-child(1) { transform: translate(calc(-50% - 7px), -50%); }
-.menu-btn span:nth-child(2) { transform: translate(-50%, -50%); }
-.menu-btn span:nth-child(3) { transform: translate(calc(-50% + 7px), -50%); }
-.menu-btn[aria-expanded="true"] span:nth-child(1) { transform: translate(-50%, -50%) rotate(45deg); }
-.menu-btn[aria-expanded="true"] span:nth-child(2) { opacity: 0; transform: translate(-50%, -50%) scaleY(0); }
-.menu-btn[aria-expanded="true"] span:nth-child(3) { transform: translate(-50%, -50%) rotate(-45deg); }
-
-/* ---------- Full-screen overlay menu ---------- */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  background: var(--ink);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(5.5rem, 12vh, 8rem) clamp(1.5rem, 6vw, 5rem) clamp(1.5rem, 5vh, 3rem);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0s linear 0.4s;
-  overflow: hidden;
-}
-.menu-overlay.open {
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.4s ease;
-}
-
-.menu-link {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
-  line-height: 1.3;
-  color: #fff;
-  text-decoration: none;
-  opacity: 0;
-  transform: translateY(1.2rem);
-  transition:
-    opacity 0.45s ease,
-    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.25s ease,
-    padding-left 0.25s ease;
-}
-.menu-overlay.open .menu-link {
-  opacity: 1;
-  transform: translateY(0);
-  transition-delay: calc(0.1s + var(--i) * 0.06s), calc(0.1s + var(--i) * 0.06s), 0s, 0s;
-}
-.menu-link:hover,
-.menu-link:focus-visible {
-  color: var(--rust-bright);
-  padding-left: 0.4em;
-  outline: none;
-}
-
-.menu-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  border-top: 1px solid var(--hairline-cream);
-  padding-top: 1.25rem;
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-.menu-overlay.open .menu-foot {
-  opacity: 1;
-  transition-delay: 0.45s;
-}
-.menu-foot a {
-  color: rgba(255, 255, 255, 0.6);
-  transition: color 0.25s ease;
-}
-.menu-foot a:hover { color: var(--rust-bright); }
 
 /* ---------- Blog prose ---------- */
-.post-prose { color: rgba(23, 22, 22, 0.85); }
+.post-prose { color: rgba(18, 20, 36, 0.82); }
 .post-prose h1, .post-prose h2, .post-prose h3, .post-prose h4 {
-  font-family: var(--font-body);
+  font-family: "Instrument Sans", system-ui, sans-serif;
   font-weight: 700;
-  text-transform: none;
-  line-height: 1.15;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #121424;
   margin: 2.2em 0 0.7em;
 }
 .post-prose h1 { font-size: 1.9rem; }
@@ -740,39 +101,30 @@
 .post-prose h3 { font-size: 1.25rem; }
 .post-prose p { margin: 1.1em 0; }
 .post-prose a {
-  color: var(--ink);
+  color: #0067FF;
   text-decoration: underline;
   text-underline-offset: 3px;
-  transition: color 0.25s ease;
+  transition: color 0.2s ease;
 }
-.post-prose a:hover { color: var(--rust); }
+.post-prose a:hover { color: #0052CC; }
 .post-prose ul, .post-prose ol { margin: 1.1em 0; padding-left: 1.4em; }
 .post-prose li { margin: 0.4em 0; }
 .post-prose blockquote {
   font-weight: 500;
   font-size: 1.1em;
-  border-left: 2px solid var(--rust);
+  border-left: 3px solid #0067FF;
   padding-left: 1.25em;
   margin: 1.6em 0;
-  color: var(--ink);
+  color: #121424;
 }
-.post-prose img { margin: 1.6em 0; }
+.post-prose img { margin: 1.6em 0; border-radius: 1rem; }
 .post-prose code {
   font-size: 0.9em;
-  background: rgba(23, 22, 22, 0.06);
-  padding: 0.15em 0.35em;
+  background: rgba(18, 20, 36, 0.06);
+  padding: 0.15em 0.4em;
+  border-radius: 0.4em;
 }
 
-/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .step-progress { animation: none; transform: scaleX(1); }
-  .menu-overlay,
-  .menu-link,
-  .menu-foot,
-  .menu-btn span,
-  .logo-mark {
-    transition-duration: 0.01ms !important;
-    transition-delay: 0s !important;
-  }
 }

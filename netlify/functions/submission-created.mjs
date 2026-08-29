@@ -23,21 +23,21 @@ const FIELD_LABELS = {
 
 /* Pulled from src/index.css so the emails and the site can't drift apart. */
 const BRAND = {
-  ink: "#171616",
-  inkDeep: "#0B0805",
-  rust: "#F05A28",
-  taupe: "#6B6864",
-  canvas: "#EEEBE7",
+  ink: "#121424",
+  inkDeep: "#0B0D1A",
+  blue: "#0067FF",
+  taupe: "#63737E",
+  canvas: "#F5F8FB",
   card: "#FFFFFF",
-  hairline: "#E2DED9",
+  hairline: "#E2E5EC",
 };
 
-/* Barlow Condensed won't load in a mail client, so the display face falls back
-   to the condensed grotesques that ship with macOS/iOS and Windows. */
+/* Clash Grotesque won't load in a mail client, so the display face falls back
+   to the grotesques that ship with macOS/iOS and Windows. */
 const DISPLAY_STACK =
-  "'Barlow Condensed','Oswald','Helvetica Neue Condensed','Arial Narrow',Helvetica,Arial,sans-serif";
+  "'Clash Grotesque','Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif";
 const BODY_STACK =
-  "'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
+  "'Instrument Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif";
 
 const REQUIRED_ENV = ["SMTP_HOST", "SMTP_USER", "SMTP_PASS"];
 
@@ -99,7 +99,7 @@ function formatStamp(iso) {
 /* ---------------------------------------------------------------- layout -- */
 
 /**
- * The shared chrome: masthead, rust rule, card, footer. Both messages pour
+ * The shared chrome: masthead, blue rule, card, footer. Both messages pour
  * their own middle into it so they read as the same piece of stationery.
  */
 function shell({ title, preheader, eyebrow, headline, lede, body, meta }) {
@@ -141,12 +141,12 @@ function shell({ title, preheader, eyebrow, headline, lede, body, meta }) {
               <div style="font-family:${BODY_STACK};font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.5);padding-top:9px">${esc(eyebrow.masthead)}</div>
             </td>
           </tr>
-          <tr><td bgcolor="${BRAND.rust}" style="background:${BRAND.rust};height:4px;line-height:4px;font-size:0">&nbsp;</td></tr>
+          <tr><td bgcolor="${BRAND.blue}" style="background:${BRAND.blue};height:4px;line-height:4px;font-size:0">&nbsp;</td></tr>
 
           <tr>
             <td class="wr-pad wr-card" bgcolor="${BRAND.card}" style="background:${BRAND.card};padding:38px 40px 34px">
-              <div style="font-family:${BODY_STACK};font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:${BRAND.rust};padding-bottom:14px">${esc(eyebrow.card)}</div>
-              <h1 class="wr-h1 wr-ink" style="margin:0;font-family:${DISPLAY_STACK};font-size:36px;font-weight:700;line-height:1.06;letter-spacing:0.01em;text-transform:uppercase;color:${BRAND.ink}">${esc(headline)}</h1>
+              <div style="font-family:${BODY_STACK};font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:${BRAND.blue};padding-bottom:14px">${esc(eyebrow.card)}</div>
+              <h1 class="wr-h1 wr-ink" style="margin:0;font-family:${DISPLAY_STACK};font-size:36px;font-weight:700;line-height:1.06;letter-spacing:-0.01em;color:${BRAND.ink}">${esc(headline)}</h1>
               <p class="wr-muted" style="margin:12px 0 0;font-family:${BODY_STACK};font-size:15px;line-height:1.55;color:${BRAND.taupe}">${lede}</p>
               ${body}
             </td>
@@ -175,11 +175,11 @@ function shell({ title, preheader, eyebrow, headline, lede, body, meta }) {
 /** A field's value, linked when it's something you'd act on. */
 function renderValue({ name, value }, { link = true } = {}) {
   if (link && name === "email") {
-    return `<a href="mailto:${escUrl(value)}" style="color:${BRAND.rust};text-decoration:none">${esc(value)}</a>`;
+    return `<a href="mailto:${escUrl(value)}" style="color:${BRAND.blue};text-decoration:none">${esc(value)}</a>`;
   }
   if (link && name === "phone") {
     const dialable = value.replace(/[^\d+]/g, "");
-    return `<a href="tel:${escUrl(dialable)}" style="color:${BRAND.rust};text-decoration:none">${esc(value)}</a>`;
+    return `<a href="tel:${escUrl(dialable)}" style="color:${BRAND.blue};text-decoration:none">${esc(value)}</a>`;
   }
   return esc(value);
 }
@@ -201,7 +201,7 @@ function detailTable(rows, options) {
 function button(href, label) {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:14px">
                 <tr>
-                  <td bgcolor="${BRAND.rust}" style="background:${BRAND.rust}">
+                  <td bgcolor="${BRAND.blue}" style="background:${BRAND.blue}">
                     <a href="${href}" style="display:inline-block;padding:15px 28px;font-family:${BODY_STACK};font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FFFFFF;text-decoration:none">${esc(label)}</a>
                   </td>
                 </tr>
@@ -271,7 +271,7 @@ function stepList() {
   const items = NEXT_STEPS.map(
     ([title, copy], i) => `
                 <tr>
-                  <td width="46" style="padding:0 0 22px;vertical-align:top;font-family:${DISPLAY_STACK};font-size:22px;font-weight:700;line-height:1.1;color:${BRAND.rust}">${String(i + 1).padStart(2, "0")}</td>
+                  <td width="46" style="padding:0 0 22px;vertical-align:top;font-family:${DISPLAY_STACK};font-size:22px;font-weight:700;line-height:1.1;color:${BRAND.blue}">${String(i + 1).padStart(2, "0")}</td>
                   <td style="padding:0 0 22px;vertical-align:top">
                     <div class="wr-ink" style="font-family:${BODY_STACK};font-size:15px;font-weight:700;line-height:1.35;color:${BRAND.ink}">${esc(title)}</div>
                     <div class="wr-muted" style="font-family:${BODY_STACK};font-size:14px;line-height:1.55;color:${BRAND.taupe};padding-top:4px">${esc(copy)}</div>
@@ -331,7 +331,7 @@ function buildConfirmation(data) {
       headline,
       lede,
       body,
-      meta: `You're getting this because you asked for early access on the Workroo site.<br>Replies go to <a href="mailto:${escUrl(replyTo)}" style="color:${BRAND.rust};text-decoration:none">${esc(replyTo)}</a>.`,
+      meta: `You're getting this because you asked for early access on the Workroo site.<br>Replies go to <a href="mailto:${escUrl(replyTo)}" style="color:${BRAND.blue};text-decoration:none">${esc(replyTo)}</a>.`,
     }),
   };
 }

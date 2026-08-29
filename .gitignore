@@ -33,3 +33,7 @@ base44/.app.jsonc
 
 # Netlify CLI local state
 .netlify
+
+# AI session scaffolding
+.claude/
+guide.md

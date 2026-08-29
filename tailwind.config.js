@@ -6,8 +6,10 @@ module.exports = {
   	extend: {
   		borderRadius: {
   			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+  			md: 'calc(var(--radius) - 4px)',
+  			sm: 'calc(var(--radius) - 8px)',
+  			pill: '9999px',
+  			card: '1.5rem'
   		},
   		colors: {
   			background: 'hsl(var(--background))',
@@ -60,22 +62,23 @@ module.exports = {
   				border: 'hsl(var(--sidebar-border))',
   				ring: 'hsl(var(--sidebar-ring))'
   			},
-        cream: '#FFFFFF',
-        ink: '#171616',
-        taupe: '#6B6864',
-        rust: '#F05A28',
-        'rust-bright': '#FF7A45',
-        hairline: 'rgba(23,22,22,0.14)',
-        'hairline-cream': 'rgba(255,255,255,0.18)',
-        orange: '#F05A28',
-        alabaster: '#FFFFFF',
-        obsidian: '#171616',
-        stone: '#E5E5E1',
-        'stone-mid': '#C8C8C2',
+        brand: {
+          blue: '#0067FF',
+          'blue-dark': '#0052CC',
+          lime: '#E7FC52',
+          ink: '#121424',
+          navy: '#232D3F',
+          'navy-deep': '#1A2042',
+          slate: '#63737E',
+          panel: '#F5F8FB',
+          'panel-2': '#EEEEEE',
+          line: 'rgba(18,20,36,0.12)',
+          'line-dark': 'rgba(255,255,255,0.14)'
+        }
   		},
       fontFamily: {
-        display: ['Inter', 'system-ui', 'sans-serif'],
-        body: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Clash Grotesque"', '"Instrument Sans"', 'system-ui', 'sans-serif'],
+        body: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
       },
   		keyframes: {
   			'accordion-down': {
@@ -93,10 +96,6 @@ module.exports = {
         'fade-in': {
           from: { opacity: '0' },
           to: { opacity: '1' }
-        },
-        'line-grow': {
-          from: { scaleX: '0' },
-          to: { scaleX: '1' }
         }
   		},
   		animation: {
@@ -109,7 +108,8 @@ module.exports = {
   },
   plugins: [require("tailwindcss-animate")],
   safelist: [
-    'text-orange', 'bg-orange', 'border-stone', 'bg-alabaster', 'bg-obsidian', 
-    'text-obsidian', 'font-display', 'font-body', 'glass-trace', 'kinetic-border'
+    'bg-brand-blue', 'bg-brand-navy', 'bg-brand-navy-deep', 'bg-brand-lime', 'bg-brand-panel',
+    'text-brand-blue', 'text-brand-lime', 'text-brand-ink', 'text-brand-slate', 'text-white',
+    'font-display', 'font-body'
   ]
 }

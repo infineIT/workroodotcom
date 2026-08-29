@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import Navbar from "@/components/landing/Navbar";
-import Footer from "@/components/landing/Footer";
 import ReactMarkdown from "react-markdown";
-import { usePageMotion } from "@/lib/motion";
 
 export default function BlogPost() {
   const { slugOrId } = useParams();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
-  const motionRef = usePageMotion([loading]);
 
   useEffect(() => {
     async function load() {
@@ -34,17 +30,22 @@ export default function BlogPost() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-cream flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-hairline border-t-ink rounded-full animate-spin" />
+      <div className="min-h-[60vh] flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-brand-line border-t-brand-blue rounded-full animate-spin" />
       </div>
     );
   }
 
   if (notFound || !post) {
     return (
-      <div className="min-h-screen bg-cream flex flex-col items-center justify-center gap-6 px-6">
-        <p className="text-ink text-2xl font-bold">Post not found.</p>
-        <Link to="/blog" className="btn-pill">
+      <div className="min-h-[60vh] flex flex-col items-center justify-center gap-6 px-6">
+        <p className="text-brand-ink text-2xl font-display font-semibold">
+          Post not found.
+        </p>
+        <Link
+          to="/blog"
+          className="inline-flex items-center rounded-pill border border-brand-ink px-6 py-3 text-sm font-semibold text-brand-ink transition-colors hover:bg-brand-ink hover:text-white"
+        >
           Back to blog
         </Link>
       </div>
@@ -52,28 +53,26 @@ export default function BlogPost() {
   }
 
   return (
-    <div ref={motionRef} className="min-h-screen bg-cream font-body">
-      <Navbar />
-      <div className="pt-32 md:pt-44 pb-24 max-w-3xl mx-auto px-6">
+    <article className="section-pad bg-white">
+      <div className="max-w-3xl mx-auto px-6">
         <Link
           to="/blog"
-          className="eyebrow inline-block mb-10 transition-colors hover:text-rust"
+          className="inline-block mb-10 text-xs font-semibold uppercase tracking-[0.14em] text-brand-slate transition-colors hover:text-brand-blue"
         >
           ← Back to blog
         </Link>
 
         {post.tags && post.tags.length > 0 && (
-          <p className="eyebrow mb-4">{post.tags.join(" · ")}</p>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-brand-blue">
+            {post.tags.join(" · ")}
+          </p>
         )}
 
-        <h1
-          className="text-ink mb-8"
-          style={{ fontSize: "clamp(1.9rem, 4.5vw, 3rem)" }}
-        >
+        <h1 className="text-brand-ink mb-8 text-[clamp(1.9rem,4.5vw,3rem)]">
           {post.title}
         </h1>
 
-        <div className="flex items-center gap-4 mb-10 pb-8 hairline-b">
+        <div className="flex items-center gap-4 mb-10 pb-8 border-b border-brand-line">
           {post.author_avatar && (
             <img
               src={post.author_avatar}
@@ -82,15 +81,19 @@ export default function BlogPost() {
             />
           )}
           {post.author_name && (
-            <span className="text-ink text-sm font-medium">{post.author_name}</span>
+            <span className="text-brand-ink text-sm font-medium">
+              {post.author_name}
+            </span>
           )}
           {post.published_date && (
-            <span className="eyebrow">{post.published_date}</span>
+            <span className="text-xs uppercase tracking-[0.14em] text-brand-slate">
+              {post.published_date}
+            </span>
           )}
         </div>
 
         {post.cover_image && (
-          <div className="img-frame h-64 md:h-96 mb-12" data-img-reveal data-parallax>
+          <div className="img-frame h-64 md:h-96 mb-12">
             <img src={post.cover_image} alt={post.title} />
           </div>
         )}
@@ -99,7 +102,6 @@ export default function BlogPost() {
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </div>
       </div>
-      <Footer />
-    </div>
+    </article>
   );
 }

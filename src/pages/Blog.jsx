@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
-import Navbar from "@/components/landing/Navbar";
-import Footer from "@/components/landing/Footer";
-import { usePageMotion } from "@/lib/motion";
+import Reveal from "@/components/ui-brand/Reveal";
+import { Accent } from "@/components/ui-brand/SectionHeading";
 
 export default function Blog() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const motionRef = usePageMotion([loading]);
 
   useEffect(() => {
     base44.entities.BlogPost.filter({ published: true }, "-published_date", 50)
@@ -17,77 +15,65 @@ export default function Blog() {
   }, []);
 
   return (
-    <div ref={motionRef} className="min-h-screen bg-cream font-body">
-      <Navbar />
-      <div className="pt-32 md:pt-44 pb-24 max-w-6xl mx-auto px-6">
-        <div className="mb-16 md:mb-24" data-reveal-group>
-          <p className="eyebrow label-bar mb-6" data-reveal>
+    <section className="section-pad bg-white">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-2xl mb-16">
+          <Reveal as="p" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-slate">
             Blog
-          </p>
-          <h1
-            className="text-ink mb-6"
-            style={{ fontSize: "clamp(2.2rem, 5vw, 3.6rem)" }}
-            data-reveal
-          >
-            From the <span className="text-rust">workshop</span>.
-          </h1>
-          <p className="text-ink/75 text-lg max-w-md" data-reveal>
+          </Reveal>
+          <Reveal as="h1" delay={0.05} className="mt-5 text-[clamp(2.2rem,5vw,3.6rem)] text-brand-ink">
+            From the <Accent>workshop</Accent>.
+          </Reveal>
+          <Reveal as="p" delay={0.1} className="mt-5 text-lg text-brand-ink/70">
             Tips, stories and news from the Workroo team.
-          </p>
+          </Reveal>
         </div>
 
         {loading ? (
           <div className="flex justify-center py-24">
-            <div className="w-8 h-8 border-2 border-hairline border-t-ink rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-brand-line border-t-brand-blue rounded-full animate-spin" />
           </div>
         ) : posts.length === 0 ? (
-          <p className="text-taupe py-24 text-xl font-medium">
+          <p className="text-brand-slate py-24 text-xl font-medium">
             No posts yet. Check back soon.
           </p>
         ) : (
-          <div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (
-              <Link
-                key={post.id}
-                to={`/blog/${post.slug || post.id}`}
-                className={`group grid grid-cols-1 md:grid-cols-12 gap-6 items-center hairline-t py-10 ${
-                  i === posts.length - 1 ? "hairline-b" : ""
-                }`}
-              >
-                <div className="md:col-span-2 flex flex-col gap-2">
-                  <span className="eyebrow eyebrow-muted">{post.published_date || ""}</span>
-                  {post.tags && post.tags.length > 0 && (
-                    <span className="text-rust text-xs font-semibold uppercase tracking-[0.14em]">
-                      {post.tags[0]}
-                    </span>
-                  )}
-                </div>
-                <div className="md:col-span-7">
-                  <h2
-                    className="text-ink font-semibold transition-colors duration-300 group-hover:text-rust"
-                    style={{ fontSize: "clamp(1.3rem, 2.4vw, 1.8rem)" }}
-                  >
-                    {post.title}
-                  </h2>
-                  {post.excerpt && (
-                    <p className="text-taupe text-sm leading-relaxed mt-3 max-w-xl">
-                      {post.excerpt}
-                    </p>
-                  )}
-                </div>
-                <div className="md:col-span-3 md:justify-self-end">
+              <Reveal key={post.id} delay={(i % 3) * 0.05}>
+                <Link
+                  to={`/blog/${post.slug || post.id}`}
+                  className="group block rounded-card border border-brand-line overflow-hidden bg-white h-full"
+                >
                   {post.cover_image && (
-                    <div className="img-frame w-full md:w-48 h-32">
+                    <div className="img-frame aspect-[16/10] rounded-none">
                       <img src={post.cover_image} alt={post.title} />
                     </div>
                   )}
-                </div>
-              </Link>
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 text-xs uppercase tracking-[0.14em] text-brand-slate">
+                      <span>{post.published_date || ""}</span>
+                      {post.tags && post.tags.length > 0 && (
+                        <span className="text-brand-blue font-semibold">
+                          {post.tags[0]}
+                        </span>
+                      )}
+                    </div>
+                    <h2 className="mt-2 text-lg text-brand-ink group-hover:text-brand-blue transition-colors">
+                      {post.title}
+                    </h2>
+                    {post.excerpt && (
+                      <p className="mt-2 text-sm text-brand-slate line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    )}
+                  </div>
+                </Link>
+              </Reveal>
             ))}
           </div>
         )}
       </div>
-      <Footer />
-    </div>
+    </section>
   );
 }

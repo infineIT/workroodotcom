@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Check } from "lucide-react";
 
 /* Must match the static declaration in public/__forms.html — Netlify drops
    fields it has not seen there. */
@@ -11,6 +12,11 @@ const included = [
   "A digital record for every vehicle",
   "No setup fees",
 ];
+
+const fieldClass =
+  "w-full rounded-xl border border-brand-line bg-white px-4 py-3 text-brand-ink text-sm outline-none transition-colors focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20";
+const labelClass =
+  "block mb-1.5 text-xs font-semibold uppercase tracking-[0.12em] text-brand-slate";
 
 export default function CTASection() {
   const [email, setEmail] = useState("");
@@ -60,35 +66,26 @@ export default function CTASection() {
   };
 
   return (
-    <section id="cta" className="section-pad bg-ink text-white">
+    <section id="cta" className="section-pad bg-white">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          <div data-reveal-group>
-            <p className="eyebrow label-bar mb-5" data-reveal>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-slate mb-5">
               Get started
             </p>
-            <h2
-              className="text-white mb-6"
-              style={{ fontSize: "clamp(1.9rem, 4vw, 2.9rem)" }}
-              data-reveal
-            >
-              Put your workshop <span className="text-rust">on the record</span>.
+            <h2 className="text-brand-ink text-[clamp(1.9rem,4vw,2.9rem)] mb-6">
+              Put your workshop <span className="text-brand-blue">on the record</span>.
             </h2>
-            <p className="text-white/70 text-lg leading-relaxed max-w-md mb-12" data-reveal>
+            <p className="text-brand-ink/70 text-lg leading-relaxed max-w-md mb-10">
               Workshops across Australia use Workroo to build trust, cut
               friction and grow. Yours can too.
             </p>
 
-            <ul data-reveal>
-              {included.map((item, i) => (
-                <li
-                  key={item}
-                  className={`border-t border-white/15 py-4 text-white/80 text-sm flex items-baseline gap-4 ${
-                    i === included.length - 1 ? "border-b border-white/15" : ""
-                  }`}
-                >
-                  <span className="text-rust-bright text-xs font-semibold">
-                    {String(i + 1).padStart(2, "0")}
+            <ul className="space-y-3">
+              {included.map((item) => (
+                <li key={item} className="flex items-center gap-3 text-brand-ink/80">
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-lime">
+                    <Check className="h-3.5 w-3.5 text-brand-ink" />
                   </span>
                   {item}
                 </li>
@@ -96,28 +93,25 @@ export default function CTASection() {
             </ul>
           </div>
 
-          <div data-reveal-group>
+          <div className="rounded-card border border-brand-line bg-brand-panel p-7 sm:p-9">
             {submitted ? (
-              <div className="flex flex-col justify-center h-full" data-reveal>
-                <p
-                  className="font-bold text-white mb-4"
-                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.2rem)" }}
-                >
+              <div className="flex flex-col justify-center h-full">
+                <p className="font-display font-semibold text-brand-ink text-[clamp(1.5rem,3vw,2.2rem)] mb-4">
                   You're on the list.
                 </p>
-                <p className="text-white/60">
-                  We'll be in touch at <span className="text-white">{email}</span>.
+                <p className="text-brand-slate">
+                  We'll be in touch at{" "}
+                  <span className="text-brand-ink">{email}</span>.
                 </p>
               </div>
             ) : (
-              <div data-reveal>
-                <p
-                  className="font-display font-bold uppercase text-white mb-2"
-                  style={{ fontSize: "clamp(1.3rem, 2.4vw, 1.8rem)" }}
-                >
+              <div>
+                <p className="font-display font-semibold text-brand-ink text-[clamp(1.3rem,2.4vw,1.7rem)] mb-1">
                   Request early access
                 </p>
-                <p className="text-white/50 text-sm mb-8">No credit card required.</p>
+                <p className="text-brand-slate text-sm mb-7">
+                  No credit card required.
+                </p>
 
                 <form
                   name={FORM_NAME}
@@ -125,7 +119,7 @@ export default function CTASection() {
                   action="/__forms.html"
                   data-netlify="true"
                   onSubmit={handleSubmit}
-                  className="space-y-5"
+                  className="space-y-4"
                 >
                   <input type="hidden" name="form-name" value={FORM_NAME} />
                   {/* Honeypot: hidden from people, tempting to bots. */}
@@ -143,7 +137,7 @@ export default function CTASection() {
                     </label>
                   </p>
                   <div>
-                    <label htmlFor="cta-workshop" className="eyebrow !text-white/50 block mb-1">
+                    <label htmlFor="cta-workshop" className={labelClass}>
                       Workshop name
                     </label>
                     <input
@@ -152,11 +146,11 @@ export default function CTASection() {
                       type="text"
                       value={workshopName}
                       onChange={(e) => setWorkshopName(e.target.value)}
-                      className="input-underline"
+                      className={fieldClass}
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-name" className="eyebrow !text-white/50 block mb-1">
+                    <label htmlFor="cta-name" className={labelClass}>
                       Contact name
                     </label>
                     <input
@@ -165,11 +159,11 @@ export default function CTASection() {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="input-underline"
+                      className={fieldClass}
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-email" className="eyebrow !text-white/50 block mb-1">
+                    <label htmlFor="cta-email" className={labelClass}>
                       Email address
                     </label>
                     <input
@@ -179,11 +173,11 @@ export default function CTASection() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="input-underline"
+                      className={fieldClass}
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-phone" className="eyebrow !text-white/50 block mb-1">
+                    <label htmlFor="cta-phone" className={labelClass}>
                       Phone number
                     </label>
                     <input
@@ -192,11 +186,11 @@ export default function CTASection() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="input-underline"
+                      className={fieldClass}
                     />
                   </div>
                   <div>
-                    <label htmlFor="cta-size" className="eyebrow !text-white/50 block mb-1">
+                    <label htmlFor="cta-size" className={labelClass}>
                       Workshop size
                     </label>
                     <select
@@ -204,7 +198,7 @@ export default function CTASection() {
                       name="workshop-size"
                       value={workshopSize}
                       onChange={(e) => setWorkshopSize(e.target.value)}
-                      className="input-underline text-ink"
+                      className={fieldClass}
                     >
                       <option value="">Select size</option>
                       <option>Solo mechanic</option>
@@ -214,18 +208,22 @@ export default function CTASection() {
                     </select>
                   </div>
 
-                  <button type="submit" disabled={loading} className="btn-pill btn-pill-solid mt-2">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="inline-flex items-center justify-center gap-2 rounded-pill bg-brand-blue px-6 py-3 text-sm font-semibold text-white leading-none transition-colors duration-200 hover:bg-brand-blue-dark disabled:opacity-55 disabled:pointer-events-none"
+                  >
                     {loading ? "Sending…" : "Request early access"}
                   </button>
 
                   {error && (
-                    <p role="alert" className="text-rust-bright text-sm">
+                    <p role="alert" className="text-brand-blue text-sm">
                       {error}
                     </p>
                   )}
                 </form>
 
-                <p className="text-white/40 text-xs mt-6">
+                <p className="text-brand-slate/80 text-xs mt-6">
                   By submitting, you agree to be contacted by the Workroo team.
                 </p>
               </div>
