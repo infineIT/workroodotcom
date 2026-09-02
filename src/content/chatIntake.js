@@ -8,8 +8,8 @@
 
 export const CHAT_FORM_NAME = "chat-intake";
 
-/* Milliseconds a visitor spends on the site before Roo pops out. */
-export const CHAT_REVEAL_DELAY = 30000;
+/* Milliseconds a visitor spends on the site before Roo pops out (15s). */
+export const CHAT_REVEAL_DELAY = 15000;
 
 export const chatIntro =
   "G'day! I'm Roo \u{1F998} — got a sec? A few quick questions and someone real at Workroo will get back to you.";
