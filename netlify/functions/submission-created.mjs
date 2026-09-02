@@ -21,6 +21,20 @@ const FIELD_LABELS = {
   "workshop-size": "Workshop size",
 };
 
+/* The disguised chat widget (src/components/chat/ChatWidget.jsx +
+   src/content/chatIntake.js). Order here is the order the questions were asked,
+   and drives the order of the blocks in the email. */
+const CHAT_FIELD_LABELS = {
+  name: "Name",
+  email: "Email",
+  "workshop-size": "Workshop size",
+  "found-us": "How they found us",
+  "why-workroo": "Why they looked at Workroo",
+  "features-interest": "Features they're interested in",
+  "biggest-headache": "Biggest headache right now",
+  wishlist: "What they'd like Workroo to bring",
+};
+
 /* Pulled from src/index.css so the emails and the site can't drift apart. */
 const BRAND = {
   ink: "#121424",
@@ -71,8 +85,8 @@ const esc = (value) =>
    bracket in a submitted field must not be able to break out of the attribute. */
 const escUrl = (value) => esc(encodeURI(String(value).trim()));
 
-function renderRows(data) {
-  return Object.entries(FIELD_LABELS)
+function renderRows(data, labels = FIELD_LABELS) {
+  return Object.entries(labels)
     .map(([name, label]) => ({ name, label, value: String(data[name] ?? "").trim() }))
     .filter((row) => row.value);
 }
@@ -336,6 +350,100 @@ function buildConfirmation(data) {
   };
 }
 
+/* ------------------------------------------------ disguised chat intake -- */
+
+/* Free-text answers, so each one gets its own stacked block with the question
+   above it rather than a tidy two-column table. */
+function qaBlocks(rows) {
+  const items = rows
+    .map(
+      (row, i) => `
+                <tr>
+                  <td class="wr-hair" style="padding:${i === 0 ? "0" : "20px"} 0 0;border-top:${i === 0 ? "0" : `1px solid ${BRAND.hairline}`}">
+                    <div class="wr-muted" style="font-family:${BODY_STACK};font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND.taupe}">${esc(row.label)}</div>
+                    <div class="wr-ink" style="font-family:${BODY_STACK};font-size:16px;font-weight:500;line-height:1.5;color:${BRAND.ink};padding-top:6px;white-space:pre-wrap">${renderValue(row)}</div>
+                  </td>
+                </tr>
+                <tr><td style="height:16px;line-height:16px;font-size:0">&nbsp;</td></tr>`
+    )
+    .join("");
+  return `<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top:28px">${items}</table>`;
+}
+
+function buildChatNotification(data, payload) {
+  const rows = renderRows(data, CHAT_FIELD_LABELS);
+  const name = data.name?.trim();
+  const headline = name || data.email?.trim() || "A new visitor";
+  const stamp = formatStamp(payload?.created_at ?? new Date().toISOString());
+
+  const text = [
+    "NEW CHAT INTAKE",
+    "",
+    `${headline} answered the chat questions on the Workroo site.`,
+    "",
+    ...rows.map(({ label, value }) => `${label}\n${value}\n`),
+    data.email ? `Reply straight to this email to reach ${headline}.` : "",
+    `Submitted ${stamp} · form "chat-intake"`,
+    "A copy is stored in the Netlify Forms dashboard.",
+  ].join("\n");
+
+  const body =
+    qaBlocks(rows) +
+    (data.email
+      ? button(
+          `mailto:${escUrl(data.email)}?subject=${encodeURIComponent(`Re: your questions about Workroo — ${headline}`)}`,
+          `Reply to ${headline}`
+        )
+      : "");
+
+  return {
+    subject: `Chat intake — ${headline}`,
+    text,
+    html: shell({
+      title: `Chat intake — ${headline}`,
+      preheader:
+        [name, data["workshop-size"], data["found-us"]].filter(Boolean).join(" · ") ||
+        "A visitor answered the chat questions on the Workroo site.",
+      eyebrow: { masthead: "Chat intake", card: "New chat intake" },
+      headline,
+      lede: "answered the chat questions on the Workroo site.",
+      body,
+      meta: `Submitted ${esc(stamp)} &middot; form &ldquo;chat-intake&rdquo;<br>A copy is stored in the Netlify Forms dashboard.`,
+    }),
+  };
+}
+
+function buildChatConfirmation(data) {
+  const firstName = data.name ? data.name.trim().split(/\s+/)[0] : "";
+  const headline = firstName ? `Thanks, ${firstName}` : "Thanks";
+  const replyTo = env("LEAD_TO", "charith@infineit.com");
+
+  const body = `<p class="wr-muted" style="margin:18px 0 0;font-family:${BODY_STACK};font-size:15px;line-height:1.6;color:${BRAND.taupe}">Thank you for taking the time to answer those &mdash; genuinely appreciated. Someone over at Workroo will have a look over your details and get back to you soon.</p>
+              ${button("https://www.workroo.com.au", "See what Workroo does")}`;
+
+  const text = [
+    headline.toUpperCase(),
+    "",
+    "Thank you for taking the time to answer those — genuinely appreciated. Someone over at Workroo will have a look over your details and get back to you soon.",
+    "",
+    "Workroo · Melbourne, Australia",
+  ].join("\n");
+
+  return {
+    subject: "Thanks — someone at Workroo will be in touch",
+    text,
+    html: shell({
+      title: "Thanks — someone at Workroo will be in touch",
+      preheader: "We've got your answers. Someone at Workroo will be in touch soon.",
+      eyebrow: { masthead: "Chat intake", card: "We've got your answers" },
+      headline,
+      lede: "We've got your answers.",
+      body,
+      meta: `You're getting this because you answered the chat questions on the Workroo site.<br>Replies go to <a href="mailto:${escUrl(replyTo)}" style="color:${BRAND.blue};text-decoration:none">${esc(replyTo)}</a>.`,
+    }),
+  };
+}
+
 /* ------------------------------------------------------------------ send -- */
 
 export default async (req) => {
@@ -347,6 +455,7 @@ export default async (req) => {
   }
 
   const data = payload?.data ?? {};
+  const isChatIntake = (payload?.form_name ?? "") === "chat-intake";
   const from = env("LEAD_FROM", env("SMTP_USER"));
   const leadTo = env("LEAD_TO", "charith@infineit.com");
   let transport;
@@ -355,7 +464,9 @@ export default async (req) => {
   // nobody is told about it.
   try {
     transport = buildTransport();
-    const notification = buildNotification(data, payload);
+    const notification = isChatIntake
+      ? buildChatNotification(data, payload)
+      : buildNotification(data, payload);
     await transport.sendMail({
       from,
       to: leadTo,
@@ -369,7 +480,7 @@ export default async (req) => {
     // The submission is already stored in Netlify Forms, so the lead is not
     // lost — surface the failure in the function log and fail the event so it
     // is visibly red in the dashboard rather than silently dropped.
-    console.error("Failed to send the SMTP copy of an early access lead:", error);
+    console.error("Failed to send the SMTP copy of a form submission:", error);
     return new Response(`SMTP send failed: ${error.message}`, { status: 500 });
   }
 
@@ -377,7 +488,9 @@ export default async (req) => {
   // take down an event that has already done its important job.
   if (data.email) {
     try {
-      const confirmation = buildConfirmation(data);
+      const confirmation = isChatIntake
+        ? buildChatConfirmation(data)
+        : buildConfirmation(data);
       await transport.sendMail({
         from,
         to: data.email,

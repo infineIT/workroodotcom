@@ -25,5 +25,23 @@
       <input type="tel" name="phone" />
       <input type="text" name="workshop-size" />
     </form>
+
+    <!--
+      "chat-intake": the questions asked by the disguised chat widget
+      (src/components/chat/ChatWidget.jsx). Field names MUST match the payload
+      built there and the labels in netlify/functions/submission-created.mjs.
+    -->
+    <form name="chat-intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="hidden" name="form-name" value="chat-intake" />
+      <input type="text" name="bot-field" />
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="workshop-size" />
+      <input type="text" name="found-us" />
+      <input type="text" name="why-workroo" />
+      <input type="text" name="features-interest" />
+      <input type="text" name="biggest-headache" />
+      <input type="text" name="wishlist" />
+    </form>
   </body>
 </html>

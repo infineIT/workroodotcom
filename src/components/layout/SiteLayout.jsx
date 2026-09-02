@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import Nav from "./Nav";
 import Footer from "./Footer";
 import ScrollToTop from "./ScrollToTop";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 export default function SiteLayout() {
   return (
@@ -13,6 +14,7 @@ export default function SiteLayout() {
         <Outlet />
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }
