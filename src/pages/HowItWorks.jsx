@@ -5,11 +5,16 @@ import MediaCard from "@/components/ui-brand/MediaCard";
 import StatBlock from "@/components/ui-brand/StatBlock";
 import FullBleedSection from "@/components/ui-brand/FullBleedSection";
 import FinalCta from "@/components/sections/FinalCta";
+import SEO from "@/components/SEO";
 import { steps, proof } from "@/content/proof";
 
 export default function HowItWorks() {
   return (
     <>
+      <SEO
+        title="How Workroo Works | Live Workshop Updates"
+        description="See how Workroo connects bookings, repair work and customer updates in four simple steps for Australian auto workshops."
+      />
       <section className="section-pad bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <Reveal as="p" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-slate">

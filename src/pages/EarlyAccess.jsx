@@ -2,6 +2,7 @@ import React from "react";
 import Reveal from "@/components/ui-brand/Reveal";
 import SectionHeading, { Accent } from "@/components/ui-brand/SectionHeading";
 import CTASection from "@/components/landing/CTASection";
+import SEO from "@/components/SEO";
 import {
   Accordion,
   AccordionContent,
@@ -27,6 +28,10 @@ const faqs = [
 export default function EarlyAccess() {
   return (
     <>
+      <SEO
+        title="Early Access for Australian Workshops | Workroo"
+        description="Join Workroo early access and help shape live workshop updates, transparent repair records and customer communication."
+      />
       <section className="section-pad bg-white pb-0">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <Reveal as="p" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-slate">

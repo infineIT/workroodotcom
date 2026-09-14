@@ -8,10 +8,29 @@ import CaseStudyCard from "@/components/ui-brand/CaseStudyCard";
 import FullBleedSection from "@/components/ui-brand/FullBleedSection";
 import StatBlock from "@/components/ui-brand/StatBlock";
 import FinalCta from "@/components/sections/FinalCta";
+import SEO from "@/components/SEO";
 import PageNotFound from "@/lib/PageNotFound";
 import { solutionByAudience } from "@/content/solutions";
 import { featureBySlug } from "@/content/features";
 import { testimonialByAudience } from "@/content/testimonials";
+
+const seoByAudience = {
+  "workshop-owners": {
+    title: "Workshop Management Software for Mechanics | Workroo",
+    description:
+      "Help customers see every repair step with Workroo workshop management software for Australian mechanics and auto workshops.",
+  },
+  operations: {
+    title: "Workshop Operations Software | Workroo",
+    description:
+      "Keep every job, booking and workshop team in one view with real-time operations software from Workroo.",
+  },
+  customers: {
+    title: "Transparent Car Repairs for Customers | Workroo",
+    description:
+      "See what happened to your car in real time with Workroo's transparent repair record and live workshop updates.",
+  },
+};
 
 export default function Solution() {
   const { audience } = useParams();
@@ -21,9 +40,11 @@ export default function Solution() {
 
   const feats = sol.featureSlugs.map(featureBySlug).filter(Boolean);
   const testimonial = testimonialByAudience(sol.audience);
+  const pageSeo = seoByAudience[audience];
 
   return (
     <>
+      <SEO {...pageSeo} />
       <section className="section-pad bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <Reveal as="p" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-slate">

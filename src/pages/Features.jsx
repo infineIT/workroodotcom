@@ -6,6 +6,7 @@ import FeatureCard from "@/components/ui-brand/FeatureCard";
 import CaseStudyCard from "@/components/ui-brand/CaseStudyCard";
 import FullBleedSection from "@/components/ui-brand/FullBleedSection";
 import FinalCta from "@/components/sections/FinalCta";
+import SEO from "@/components/SEO";
 import { features } from "@/content/features";
 import { testimonialByAudience } from "@/content/testimonials";
 
@@ -34,6 +35,10 @@ function Grid({ items }) {
 export default function Features() {
   return (
     <>
+      <SEO
+        title="Workshop Management Features | Workroo"
+        description="Explore Workroo's connected workshop tools for bookings, job management, live repair updates, alerts and customer communication."
+      />
       <section className="section-pad bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <Reveal as="p" className="text-xs font-semibold uppercase tracking-[0.16em] text-brand-slate">

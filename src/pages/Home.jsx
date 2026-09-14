@@ -12,6 +12,7 @@ import CaseStudyCard from "@/components/ui-brand/CaseStudyCard";
 import FullBleedSection from "@/components/ui-brand/FullBleedSection";
 import FinalCta from "@/components/sections/FinalCta";
 import BlogPreview from "@/components/sections/BlogPreview";
+import SEO from "@/components/SEO";
 import { features } from "@/content/features";
 import { testimonials } from "@/content/testimonials";
 import { proof, steps, IMAGES } from "@/content/proof";
@@ -23,6 +24,7 @@ const cardVariants = ["white", "navy", "blue"];
 export default function Home() {
   return (
     <>
+      <SEO />
       {/* 1 — Hero */}
       <section className="section-pad bg-white">
         <div className="max-w-3xl mx-auto px-6 text-center">

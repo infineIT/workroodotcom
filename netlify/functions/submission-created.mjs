@@ -316,7 +316,7 @@ function buildConfirmation(data) {
               </table>
               ${detailTable(rows, { link: false })}
               <p class="wr-muted" style="margin:4px 0 0;font-family:${BODY_STACK};font-size:14px;line-height:1.6;color:${BRAND.taupe}">Spotted a typo, or a number that's changed? Just reply to this email &mdash; it comes straight to us.</p>
-              ${button("https://www.workroo.com.au", "See what Workroo does")}`;
+              ${button("https://workroo.com", "See what Workroo does")}`;
 
   const text = [
     headline.toUpperCase(),
@@ -419,7 +419,7 @@ function buildChatConfirmation(data) {
   const replyTo = env("LEAD_TO", "charith@infineit.com");
 
   const body = `<p class="wr-muted" style="margin:18px 0 0;font-family:${BODY_STACK};font-size:15px;line-height:1.6;color:${BRAND.taupe}">Thank you for taking the time to answer those &mdash; genuinely appreciated. Someone over at Workroo will have a look over your details and get back to you soon.</p>
-              ${button("https://www.workroo.com.au", "See what Workroo does")}`;
+              ${button("https://workroo.com", "See what Workroo does")}`;
 
   const text = [
     headline.toUpperCase(),

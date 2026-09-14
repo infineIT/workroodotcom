@@ -49,7 +49,7 @@ export const footerColumns = [
     title: "Company",
     links: [
       { label: "Blog", to: "/blog" },
-      { label: "Website", href: "https://www.workroo.com.au" },
+      { label: "Website", href: "https://workroo.com" },
       { label: "Facebook", href: "https://www.facebook.com/workroo/" },
       { label: "LinkedIn", href: "https://www.linkedin.com/company/workroo/" },
     ],
@@ -61,5 +61,5 @@ export const CONTACT = {
   phone: "+61 425 164 118",
   phoneHref: "tel:+61425164118",
   location: "Melbourne, Australia",
-  website: "https://www.workroo.com.au",
+  website: "https://workroo.com",
 };
