@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { getPublishedPosts } from "@/lib/blog";
 import SectionHeading, { Accent } from "@/components/ui-brand/SectionHeading";
 import Reveal from "@/components/ui-brand/Reveal";
 
@@ -9,9 +9,14 @@ export default function BlogPreview() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    base44.entities.BlogPost.filter({ published: true }, "-published_date", 3)
-      .then(setPosts)
-      .catch(() => {});
+    let active = true;
+    getPublishedPosts(3).then((result) => {
+      if (active) setPosts(result);
+    });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   if (posts.length === 0) return null;

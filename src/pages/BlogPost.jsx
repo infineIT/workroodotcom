@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
+import { getBlogPost } from "@/lib/blog";
 import ReactMarkdown from "react-markdown";
 import SEO from "@/components/SEO";
 
@@ -21,22 +21,20 @@ export default function BlogPost() {
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    async function load() {
-      // Try by slug first, fall back to id
-      const bySlug = await base44.entities.BlogPost.filter({ slug: slugOrId });
-      if (bySlug && bySlug.length > 0) {
-        setPost(bySlug[0]);
+    let active = true;
+    getBlogPost(slugOrId).then((result) => {
+      if (!active) return;
+      if (result) {
+        setPost(result);
       } else {
-        try {
-          const byId = await base44.entities.BlogPost.get(slugOrId);
-          setPost(byId);
-        } catch {
-          setNotFound(true);
-        }
+        setNotFound(true);
       }
       setLoading(false);
-    }
-    load();
+    });
+
+    return () => {
+      active = false;
+    };
   }, [slugOrId]);
 
   if (loading) {

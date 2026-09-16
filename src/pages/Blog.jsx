@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { base44 } from "@/api/base44Client";
+import { getPublishedPosts } from "@/lib/blog";
 import Reveal from "@/components/ui-brand/Reveal";
 import { Accent } from "@/components/ui-brand/SectionHeading";
 import SEO from "@/components/SEO";
@@ -10,9 +10,16 @@ export default function Blog() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    base44.entities.BlogPost.filter({ published: true }, "-published_date", 50)
-      .then(setPosts)
-      .finally(() => setLoading(false));
+    let active = true;
+    getPublishedPosts(50).then((result) => {
+      if (!active) return;
+      setPosts(result);
+      setLoading(false);
+    });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   return (
