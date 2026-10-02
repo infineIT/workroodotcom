@@ -149,7 +149,7 @@ export default function Home() {
               to="/features"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand-blue hover:text-brand-blue-dark"
             >
-              Explore all 11 features <ArrowRight className="h-4 w-4" />
+              Explore all {features.length} features <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

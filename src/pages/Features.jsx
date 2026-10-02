@@ -48,7 +48,7 @@ export default function Features() {
             Everything your workshop runs on, <Accent>in one place</Accent>.
           </Reveal>
           <Reveal as="p" delay={0.1} className="mt-6 text-lg leading-relaxed text-brand-ink/70">
-            Eleven connected tools — from the booking diary to live customer
+            {features.length} connected tools — from the booking diary to live customer
             updates to reporting. Built for auto workshops, mobile-first, cloud-first.
           </Reveal>
         </div>

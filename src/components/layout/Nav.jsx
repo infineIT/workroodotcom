@@ -80,9 +80,8 @@ export default function Nav() {
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur border-b border-brand-line">
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between gap-4">
-        <Link to="/" aria-label="Workroo — home" className="flex items-center gap-2">
-          <img src={LOGO_SRC} alt="Workroo" className="h-9 w-9 rounded-full" />
-          <span className="font-display text-xl text-brand-ink">Workroo</span>
+        <Link to="/" aria-label="Workroo — home" className="flex items-center">
+          <img src={LOGO_SRC} alt="Workroo" className="h-14 w-14 rounded-full" />
         </Link>
 
         <nav className="hidden lg:flex items-center gap-7">

@@ -9,9 +9,8 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10">
           <div className="col-span-2 md:col-span-1">
-            <Link to="/" className="flex items-center gap-2">
-              <img src={LOGO_SRC} alt="Workroo" className="h-9 w-9 rounded-full" />
-              <span className="font-display text-xl">Workroo</span>
+            <Link to="/" className="flex items-center">
+              <img src={LOGO_SRC} alt="Workroo" className="h-14 w-14 rounded-full" />
             </Link>
             <p className="mt-4 text-sm text-white/60 max-w-xs leading-relaxed">
               Mechanics and customers, connected in real time. A true record of

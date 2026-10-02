@@ -1,7 +1,6 @@
 /* Single source of truth for the primary nav, mobile nav and footer. */
 
-export const LOGO_SRC =
-  "https://media.base44.com/images/public/69d78b7f4ff0affa598fbcbb/aaddf76e2_image.png";
+export const LOGO_SRC = "/logo.png";
 
 export const navGroups = [
   {

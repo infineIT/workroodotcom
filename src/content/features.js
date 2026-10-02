@@ -10,9 +10,12 @@ import {
   Truck,
   Wrench,
   BarChart3,
+  CalendarCheck,
+  Star,
+  Package,
 } from "lucide-react";
 
-/* The 11 Workroo capabilities. Copy is carried over verbatim from the
+/* The Workroo capabilities. Copy is carried over verbatim from the
    original site; `slug` powers deep-link anchors on /features. */
 export const features = [
   {
@@ -124,6 +127,36 @@ export const features = [
     description:
       "See the numbers that matter — sales, payments received, stock value and team efficiency — in one reporting system.",
     highlight: "Decisions backed by numbers",
+  },
+  {
+    number: "12",
+    slug: "online-booking",
+    icon: CalendarCheck,
+    title: "Online booking",
+    headline: "Let customers book themselves",
+    description:
+      "Customers book their own service straight from your website, any time of day. Requests land directly in your diary, ready to confirm — no phone tag required.",
+    highlight: "No phone tag, more bookings",
+  },
+  {
+    number: "13",
+    slug: "customer-feedback",
+    icon: Star,
+    title: "Customer feedback",
+    headline: "Hear it straight from the job",
+    description:
+      "Collect ratings and reviews the moment a job wraps up, while the experience is still fresh. Turn satisfied customers into public proof for your workshop. Directly integrated with all social channels.",
+    highlight: "Reviews collected while it's fresh",
+  },
+  {
+    number: "14",
+    slug: "inventory-management",
+    icon: Package,
+    title: "Inventory management",
+    headline: "Know what's on the shelf",
+    description:
+      "Track parts and stock levels in real time, so you always know what's on hand. Get alerted before you run low, so a job never stalls waiting on parts.",
+    highlight: "Never run short on parts",
   },
 ];
 
